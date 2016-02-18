@@ -19,9 +19,6 @@ extern NSString *playingViewExitNotification;
 
 @interface ViewController (){
     float radius;
-    float circleX;
-    float circleY;
-    int ballNumber;
 }
 
 @property(nonatomic, retain) UIDynamicAnimator *theAnimator;
@@ -47,9 +44,6 @@ extern NSString *playingViewExitNotification;
     [super viewDidLoad];
     self.arrayButtons = [[NSMutableArray alloc] initWithCapacity:6];
     radius = self.view.frame.size.width/8.0;
-    //圆的x，y
-    circleX = self.view.frame.size.width/2 - radius;
-    circleY = self.view.frame.size.height - radius*10;
     [self addSubViews];
 }
 
@@ -114,46 +108,6 @@ extern NSString *playingViewExitNotification;
         [self alwaysMove:view timeInterval:timeInterval];
     }];
 }
-
-#pragma mark -
-#pragma mark 球的吸附效果
--(void)initAnimatorAndGravity{
-    if (!self.theAnimator) {
-        self.theAnimator = [[UIDynamicAnimator alloc] initWithReferenceView:self.view];
-    }
-    if (!self.gravityBehaviour) {
-     self.gravityBehaviour = [[UIGravityBehavior alloc] init];
-    }
-    self.gravityBehaviour.gravityDirection = CGVectorMake(0, -1);
-    ViewController *controller = self;
-    //球的吸附效果
-    NSArray *arrayViews = self.arrayButtons;
-    [self.gravityBehaviour setAction:^{
-        for (UIView *ballView in arrayViews) {
-            if (ballView.frame.origin.y <= circleY + radius*4) {
-                UISnapBehavior *snapBehavior = [[UISnapBehavior alloc] initWithItem:ballView
-                                                                        snapToPoint:CGPointMake([controller getPositionXFor:(ballView.tag-1000) * M_PI / 3], [controller getPositionYFor:(ballView.tag-1000) * M_PI / 3])];
-                [snapBehavior setAction:^{
-                    
-                }];
-                [controller.theAnimator addBehavior:snapBehavior];
-            }
-            
-        }
-    }];
-    [self.theAnimator addBehavior:self.gravityBehaviour];
-}
-
-- (double)getPositionYFor:(double)radian {
-    int y = circleY + radius + radius * sin(radian);
-    return y;
-}
-
-- (double)getPositionXFor:(double)radian {
-    double x = circleX + radius + radius * cos(radian);
-    return x;
-}
-
 
 #pragma mark -
 #pragma mark 动画
