@@ -34,6 +34,7 @@
     UIView *board = [[UIView alloc] initWithFrame:CGRectMake(20, -400, self.frame.size.width - 20*2, 300)];
     UIImage *boardImage = [UIImage imageNamed:@"muban"];
     board.backgroundColor = [UIColor clearColor];
+    board.tag = 40000;
     board.layer.contents = (__bridge id)(boardImage.CGImage);
     
     UIView *ropeLeft = [[UIView alloc] initWithFrame:CGRectMake(30,0 - self.frame.size.height, 50, self.frame.size.height)];

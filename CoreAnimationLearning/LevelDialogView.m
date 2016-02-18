@@ -254,6 +254,13 @@ extern NSString *playingViewExitNotification;
     
     [self.viewController addChildViewController:collecPlay];
     [self.viewController.view addSubview:collecPlay.view];
+    collecPlay.view.alpha = 0.0;
+//    CGRect rectPre = collecPlay.view.frame;
+//    collecPlay.view.frame = CGRectMake(-rectPre.size.width, rectPre.origin.y, rectPre.size.width, rectPre.size.height);
+    [UIView animateWithDuration:0.3 animations:^{
+//        collecPlay.view.frame = rectPre;
+        collecPlay.view.alpha = 1.0;
+    }];
 }
 
 #pragma mark - notification

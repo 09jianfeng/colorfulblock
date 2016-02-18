@@ -13,7 +13,6 @@
 #import "BallView.h"
 #import "LevelDialogView.h"
 #import "SystemInfo.h"
-#import "WebViewGifPlayer.h"
 #import "GameResultData.h"
 
 extern NSString *playingViewExitNotification;
@@ -28,8 +27,6 @@ extern NSString *playingViewExitNotification;
 @property(nonatomic, retain) UIDynamicAnimator *theAnimator;
 @property(nonatomic, retain) UIGravityBehavior *gravityBehaviour;
 @property(nonatomic, retain) NSArray *backgroundArray;
-@property(nonatomic, retain) UILabel *label;
-@property(nonatomic, retain) UIButton *circle;
 @property(nonatomic, retain) NSMutableArray *arrayButtons;
 
 @property(nonatomic, assign) int circleNum;
@@ -43,8 +40,6 @@ extern NSString *playingViewExitNotification;
     self.theAnimator = nil;
     self.gravityBehaviour = nil;
     self.backgroundArray = nil;
-    self.label = nil;
-    self.circle = nil;
     self.arrayButtons = nil;
 }
 
@@ -52,13 +47,14 @@ extern NSString *playingViewExitNotification;
     [super viewDidLoad];
     self.arrayButtons = [[NSMutableArray alloc] initWithCapacity:6];
     radius = self.view.frame.size.width/8.0;
+    //圆的x，y
     circleX = self.view.frame.size.width/2 - radius;
-    circleY = self.view.frame.size.height - radius*3.5;
+    circleY = self.view.frame.size.height - radius*10;
     [self addSubViews];
 }
 
 -(void)addSubViews{
-    UIImage *manuBackground = [UIImage imageNamed:@"manu_background.png"];
+    UIImage *manuBackground = [UIImage imageNamed:@"playing_background"];
     self.view.layer.contents = (__bridge id)(manuBackground.CGImage);
     
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(self.view.frame.size.width/2-radius*7/2, 50, radius*7, radius*3)];
@@ -66,6 +62,8 @@ extern NSString *playingViewExitNotification;
     imageView.layer.cornerRadius = 10.0;
     imageView.layer.masksToBounds = YES;
     imageView.backgroundColor = [UIColor clearColor];
+    
+    //开始游戏按钮
     UIButton *beginPlayButton = [[UIButton alloc] initWithFrame:CGRectMake(-self.view.frame.size.width, imageView.frame.origin.y+imageView.frame.size.height+radius, radius*4, radius*1.5)];
     [beginPlayButton setImage:[UIImage imageNamed:@"image_begin.png"] forState:UIControlStateNormal];
     beginPlayButton.backgroundColor = [UIColor clearColor];
@@ -75,75 +73,10 @@ extern NSString *playingViewExitNotification;
     [UIView animateWithDuration:1.0 animations:^{
         beginPlayButton.frame = CGRectMake(self.view.frame.size.width/2-radius*2, imageView.frame.origin.y+imageView.frame.size.height+radius, radius*4, radius*1.5);
     } completion:^(BOOL isFinish){
-        [self beginAnimation:beginPlayButton];
     }];
     
-    self.label = [[UILabel alloc] initWithFrame:CGRectMake(circleX, circleY + radius*2.5, radius*2, 40)];
-    self.label.textColor = [UIColor colorWithRed:0.3 green:0.2 blue:0.62 alpha:1.0];
-    self.label.font = [UIFont systemFontOfSize:18];
-    self.label.text = @"微信";
-    self.label.alpha = 0.0;
-    self.label.textAlignment = NSTextAlignmentCenter;
-    [self.view addSubview:self.label];
-    [self addCircle];
-    
-    WebViewGifPlayer *gifPlayer = [[WebViewGifPlayer alloc] initWithFrame:CGRectMake(circleX + radius, circleY - radius*3, 200, 200)];
-    [gifPlayer beginPlayGifWithPath:[[NSBundle mainBundle] pathForResource:@"hudie" ofType:@"gif"]];
-    [self.view addSubview:gifPlayer];
-    self.view.backgroundColor = [UIColor clearColor];
-    gifPlayer.transform = CGAffineTransformMakeScale(0.3, 0.3);
-    
-    UILabel *allPointsButton = [[UILabel alloc] initWithFrame:CGRectMake(2*self.view.frame.size.width, imageView.frame.origin.y+imageView.frame.size.height+radius + beginPlayButton.frame.size.height+radius, radius*4, radius*1.5)];
-    allPointsButton.backgroundColor = [UIColor colorWithRed:0.98 green:0.98 blue:0.98 alpha:1.0];
-    int numbers = [GameResultData getAllBlockenBlocks];
-    allPointsButton.textColor = [UIColor redColor];
-    allPointsButton.text = [NSString stringWithFormat:@"您共拆了%d砖块",numbers];
-    allPointsButton.textAlignment = NSTextAlignmentCenter;
-    allPointsButton.tag = 1103;
-    [self.view addSubview:allPointsButton];
-    [UIView animateWithDuration:1.0 animations:^{
-        allPointsButton.frame = CGRectMake(self.view.frame.size.width/2-radius*2, imageView.frame.origin.y+imageView.frame.size.height+radius+ beginPlayButton.frame.size.height+radius, radius*4, radius*1.5);
-    } completion:^(BOOL isfinish){
-    }];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playingViewExitNotificationResponseControl:) name:playingViewExitNotification object:nil];
-}
-
-- (void)addCircle {
-    int circleRadius = radius*1.5;
-    self.circle = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width/2 - circleRadius, circleY - radius/2.0, 2 * circleRadius, 2 * circleRadius)];
-    [self.circle setTitle:@"分享" forState:UIControlStateNormal];
-    [self.circle setTitleColor:[UIColor colorWithRed:0.9 green:0.2 blue:0.2 alpha:0.9] forState:UIControlStateNormal];
-    self.circle.layer.cornerRadius = circleRadius;
-    self.circle.tag = 2000;
-    [self.circle addTarget:self action:@selector(buttonPressedCircle:) forControlEvents:UIControlEventTouchUpInside];
-    [self beginAnimation:self.circle];
-    [self.view addSubview:self.circle];
-}
-
-- (void)dropBall {
-    if(ballNumber > 5) return;
-    for(int i = 0;i<6;i++){
-        UIView *ballView = [self addBallView];
-        [self.gravityBehaviour addItem:ballView];
-        [self.arrayButtons addObject:ballView];
-        ballNumber++;
-    }
-}
-
-- (UIView *)addBallView {
-    BallView *ballView = [[BallView alloc] initWithRadius:radius];
-    ballView.tag = 1000+ballNumber;
-    [ballView addTarget:self action:@selector(buttonPressed:) forControlEvents:UIControlEventTouchUpInside];
-    ballView.center = CGPointMake(self.view.frame.size.width/2.0, self.view.frame.size.height);
-    NSString *buttonImageName = [NSString stringWithFormat:@"circlebutton_7.png"];
-    if (ballNumber == 0) {
-        buttonImageName = @"circlebutton_3.png";
-    }
-    
-    [ballView setImage:[UIImage imageNamed:buttonImageName] forState:UIControlStateNormal];
-    [self.view addSubview:ballView];
-    return ballView;
 }
 
 - (void)viewDidAppear:(BOOL)animated{
@@ -160,59 +93,8 @@ extern NSString *playingViewExitNotification;
 -(void)playingViewExitNotificationResponseControl:(id)send{
     UILabel *allPointsShowView = (UILabel *)[self.view viewWithTag:1103];
     int numbers = [GameResultData getAllBlockenBlocks];
+    if(allPointsShowView)
     allPointsShowView.text = [NSString stringWithFormat:@"您共拆了%d砖块",numbers];
-}
-
--(void)buttonPressed:(id)sender{
-    [self changeBallViewBackground];
-    UIButton *button = (UIButton*)sender;
-    int tag = (int)button.tag;
-    switch (tag) {
-        case 1000:
-        {
-            self.label.text = @"微信";
-            NSString *buttonImageName = [NSString stringWithFormat:@"circlebutton_3.png"];
-            [button setImage:[UIImage imageNamed:buttonImageName] forState:UIControlStateNormal];
-        }
-            break;
-        case 1001:
-        {
-            self.label.text = @"微博";
-            NSString *buttonImageName = [NSString stringWithFormat:@"circlebutton_3.png"];
-            [button setImage:[UIImage imageNamed:buttonImageName] forState:UIControlStateNormal];
-        }
-            break;
-        case 1002:
-        {
-            self.label.text = @"QQ";
-            NSString *buttonImageName = [NSString stringWithFormat:@"circlebutton_3.png"];
-            [button setImage:[UIImage imageNamed:buttonImageName] forState:UIControlStateNormal];
-        }
-            break;
-        case 1003:
-        {
-            self.label.text = @"QQ空间";
-            NSString *buttonImageName = [NSString stringWithFormat:@"circlebutton_3.png"];
-            [button setImage:[UIImage imageNamed:buttonImageName] forState:UIControlStateNormal];
-        }
-            break;
-        case 1004:
-        {
-            self.label.text = @"facebook";
-            NSString *buttonImageName = [NSString stringWithFormat:@"circlebutton_3.png"];
-            [button setImage:[UIImage imageNamed:buttonImageName] forState:UIControlStateNormal];
-        }
-            break;
-        case 1005:
-        {
-            self.label.text = @"twitter";
-            NSString *buttonImageName = [NSString stringWithFormat:@"circlebutton_3.png"];
-            [button setImage:[UIImage imageNamed:buttonImageName] forState:UIControlStateNormal];
-        }
-            break;            
-        default:
-            break;
-    }
 }
 
 -(void)buttonPlayPressed:(id)sender{
@@ -220,41 +102,6 @@ extern NSString *playingViewExitNotification;
     levelDialogView.viewController = self;
     levelDialogView.backgroundColor = [UIColor clearColor];
     [self.view addSubview:levelDialogView];
-}
-
--(void)buttonPressedCircle:(id)sender{
-    static int a = 0;
-    if (!a) {
-        a=1;
-        [self.theAnimator removeAllBehaviors];
-        [self initAnimatorAndGravity];
-        [self dropBall];
-        [UIView animateWithDuration:0.3 animations:^{
-            self.label.alpha = 1.0;
-        }];
-    }else{
-        a=0;
-        [self.theAnimator removeAllBehaviors];
-        for (BallView *ballView in self.arrayButtons) {
-            UISnapBehavior *snapBehavior = [[UISnapBehavior alloc] initWithItem:ballView
-                                                                    snapToPoint:CGPointMake(self.view.frame.size.width/2,self.view.frame.size.height+radius)];
-            [snapBehavior setAction:^{
-                
-            }];
-            [self.theAnimator addBehavior:snapBehavior];
-        }
-        [UIView animateWithDuration:0.3 animations:^{
-            self.label.alpha = 0.0;
-        }];
-    }
-    
-}
-
--(void)changeBallViewBackground{
-    for (int i = 0; i<6; i++) {
-        UIButton *button = (UIButton *)[self.view viewWithTag:1000+i];
-        [button setImage:[UIImage imageNamed:@"circlebutton_7.png"] forState:UIControlStateNormal];
-    }
 }
 
 #pragma mark -
@@ -306,8 +153,11 @@ extern NSString *playingViewExitNotification;
     double x = circleX + radius + radius * cos(radian);
     return x;
 }
+
+
 #pragma mark -
 #pragma mark 动画
+//左右摇动变大变小的动画
 -(void)beginAnimation:(UIButton *)bt{
     //1.绕中心圆移动 Circle move   没添加进去先
     CAKeyframeAnimation *pathAnimation = [CAKeyframeAnimation animationWithKeyPath:@"position"];

@@ -147,6 +147,7 @@ static NSString * const reuseIdentifier = @"Cell";
 -(void)buttonStopPressed:(id)sender{
     [self.timer invalidate];
     UIViewFinishPlayAlert *finish = [[UIViewFinishPlayAlert alloc] initWithFrame:self.view.bounds];
+    finish.tag = 3000;
     [self.view addSubview:finish];
     finish.collectionViewController = self;
     [finish showView];
@@ -299,13 +300,13 @@ static NSString * const reuseIdentifier = @"Cell";
     
     if (indexPath.row%2) {
         if (!_noBackgroundImage) {
-            UIImage *imageBlack = [UIImage imageNamed:@"playing_cellbackground"];
+            UIImage *imageBlack = [UIImage imageNamed:@"playing_cellbackground1"];
             cell.layer.contents = (__bridge id)(imageBlack.CGImage);
         }
         
     }else{
         if (!_noBackgroundImage) {
-            UIImage *imageBlack = [UIImage imageNamed:@"playing_cellbackground"];
+            UIImage *imageBlack = [UIImage imageNamed:@"playing_cellbackground1"];
             cell.layer.contents = (__bridge id)(imageBlack.CGImage);
         }
     }
@@ -425,8 +426,29 @@ static NSString * const reuseIdentifier = @"Cell";
 
 -(void)exitTheGame{
     [GameResultData gameResultAddBrockenBlocks:self.Allpoints];
-    [self.view removeFromSuperview];
-    [self removeFromParentViewController];
+    
+//    UIView *alertView = [self.view viewWithTag:40000];
+//    [UIView animateWithDuration:0.3 animations:^{
+////        alertView.frame = CGRectMake(alertView.frame.origin.x, -self.view.frame.origin.y, alertView.frame.size.width, alertView.frame.size.height);
+//    } completion:^(BOOL isFinish){
+//        
+//        [UIView animateWithDuration:0.3 animations:^{
+//            self.view.frame = CGRectMake(self.view.frame.size.width*2, self.view.frame.origin.y, self.view.frame.size.width, self.view.frame.size.height);
+//        } completion:^(BOOL isFinish){
+//            [self.view removeFromSuperview];
+//            [self removeFromParentViewController];
+//        }];
+//        
+//    }];
+    
+    [UIView animateWithDuration:0.3 animations:^{
+//        self.view.frame = CGRectMake(self.view.frame.size.width*2, self.view.frame.origin.y, self.view.frame.size.width, self.view.frame.size.height);
+        self.view.alpha = 0.0;
+    } completion:^(BOOL isFinish){
+        [self.view removeFromSuperview];
+        [self removeFromParentViewController];
+    }];
+    
     [[NSNotificationCenter defaultCenter] postNotificationName:playingViewExitNotification object:nil userInfo:nil];
 }
 
