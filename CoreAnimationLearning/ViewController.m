@@ -51,27 +51,133 @@ extern NSString *playingViewExitNotification;
     UIImage *manuBackground = [UIImage imageNamed:@"playing_background"];
     self.view.layer.contents = (__bridge id)(manuBackground.CGImage);
     
-    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(self.view.frame.size.width/2-radius*7/2, 50, radius*7, radius*3)];
+    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectZero];
+    imageView.tag = 10000;
     imageView.image = [UIImage imageNamed:@"image_title.png"];
     imageView.layer.cornerRadius = 10.0;
     imageView.layer.masksToBounds = YES;
     imageView.backgroundColor = [UIColor clearColor];
-    
-    //开始游戏按钮
-    UIButton *beginPlayButton = [[UIButton alloc] initWithFrame:CGRectMake(-self.view.frame.size.width, imageView.frame.origin.y+imageView.frame.size.height+radius, radius*4, radius*1.5)];
-    [beginPlayButton setImage:[UIImage imageNamed:@"image_begin.png"] forState:UIControlStateNormal];
-    beginPlayButton.backgroundColor = [UIColor clearColor];
-    [beginPlayButton addTarget:self action:@selector(buttonPlayPressed:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:imageView];
-    [self.view addSubview:beginPlayButton];
-    [UIView animateWithDuration:1.0 animations:^{
-        beginPlayButton.frame = CGRectMake(self.view.frame.size.width/2-radius*2, imageView.frame.origin.y+imageView.frame.size.height+radius, radius*4, radius*1.5);
+    
+    //难度1
+    UIButton *difficultyLevel1 = [[UIButton alloc] initWithFrame:CGRectZero];
+    difficultyLevel1.tag = 10001;
+    difficultyLevel1.backgroundColor = [UIColor clearColor];
+    [difficultyLevel1 setImage:[UIImage imageNamed:@"easy.png"] forState:UIControlStateNormal];
+    [difficultyLevel1 addTarget:self action:@selector(level1ButtonPlayPressed:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:difficultyLevel1];
+    
+    //难度2
+    UIButton *difficultyLevel2 = [[UIButton alloc] initWithFrame:CGRectZero];
+    difficultyLevel2.tag = 10002;
+    difficultyLevel2.backgroundColor = [UIColor clearColor];
+    [difficultyLevel2 setImage:[UIImage imageNamed:@"normal.png"] forState:UIControlStateNormal];
+    [difficultyLevel2 addTarget:self action:@selector(level2ButtonPlayPressed:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:difficultyLevel2];
+    
+    //难度3
+    UIButton *difficultyLevel3 = [[UIButton alloc] initWithFrame:CGRectZero];
+    difficultyLevel3.tag = 10003;
+    difficultyLevel3.backgroundColor = [UIColor clearColor];
+    [difficultyLevel3 setImage:[UIImage imageNamed:@"difficult.png"] forState:UIControlStateNormal];
+    [difficultyLevel3 addTarget:self action:@selector(level3ButtonPlayPressed:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:difficultyLevel3];
+    
+    //难度4
+    UIButton *difficultyLevel4 = [[UIButton alloc] initWithFrame:CGRectZero];
+    difficultyLevel4.tag = 10004;
+    difficultyLevel4.backgroundColor = [UIColor clearColor];
+    [difficultyLevel4 setImage:[UIImage imageNamed:@"hehe.png"] forState:UIControlStateNormal];
+    [difficultyLevel4 addTarget:self action:@selector(level4ButtonPlayPressed:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:difficultyLevel4];
+    
+    UIButton *buttonRanking = [[UIButton alloc] initWithFrame:CGRectZero];
+    buttonRanking.tag = 10005;
+    buttonRanking.backgroundColor = [UIColor grayColor];
+    [self.view addSubview:buttonRanking];
+    
+    UIButton *buttonShare = [[UIButton alloc] initWithFrame:CGRectZero];
+    buttonShare.tag = 10006;
+    buttonShare.backgroundColor = [UIColor grayColor];
+    [self.view addSubview:buttonShare];
+    
+    UIButton *buttonStar = [[UIButton alloc] initWithFrame:CGRectZero];
+    buttonStar.tag = 10007;
+    buttonStar.backgroundColor = [UIColor grayColor];
+    [self.view addSubview:buttonStar];
+    
+    
+    [self beginMainManuAnimation];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playingViewExitNotificationResponseControl:) name:playingViewExitNotification object:nil];
+}
+
+
+-(void)beginMainManuAnimation{
+    
+    int unitHeight = CGRectGetHeight(self.view.frame)/36;
+    int buttonHeight = unitHeight*3;
+    int buttonWidth = buttonHeight*2.6;
+    int topOffset = unitHeight*2;
+    int buttonInsert = 0;
+    float animateTime = 0.5;
+    
+    UIImageView *imageView = [self.view viewWithTag:10000];
+    imageView.frame = CGRectMake(self.view.frame.size.width/2-radius*7/2, -self.view.frame.size.height, radius*7, radius*3);
+    [UIView animateWithDuration:animateTime animations:^{
+        imageView.frame = CGRectMake(self.view.frame.size.width/2-radius*7/2, 50, radius*7, radius*3);
+    }];
+    
+    UIButton *difficultyLevel1 = [self.view viewWithTag:10001];
+    difficultyLevel1.frame = CGRectMake(-self.view.frame.size.width, CGRectGetHeight(self.view.frame)/2 + topOffset, buttonWidth, buttonHeight);
+    [UIView animateWithDuration:animateTime animations:^{
+        difficultyLevel1.frame = CGRectMake(self.view.frame.size.width/2-buttonWidth/2, CGRectGetHeight(self.view.frame)/2 + topOffset, buttonWidth, buttonHeight);
+    } completion:^(BOOL isFinish){
+    }];
+    
+    UIButton *difficultyLevel2 = [self.view viewWithTag:10002];
+    difficultyLevel2.frame = CGRectMake(2*self.view.frame.size.width, difficultyLevel1.frame.origin.y+difficultyLevel1.frame.size.height+buttonInsert, buttonWidth, buttonHeight);
+    [UIView animateWithDuration:animateTime animations:^{
+        difficultyLevel2.frame = CGRectMake(self.view.frame.size.width/2-buttonWidth/2, difficultyLevel1.frame.origin.y+buttonHeight+buttonInsert, buttonWidth, buttonHeight);
+    } completion:^(BOOL isFinish){
+    }];
+    
+    UIButton *difficultyLevel3 = [self.view viewWithTag:10003];
+    difficultyLevel3.frame = CGRectMake(-self.view.frame.size.width, difficultyLevel2.frame.origin.y+buttonHeight+buttonInsert, buttonWidth, buttonHeight);
+    [UIView animateWithDuration:animateTime animations:^{
+        difficultyLevel3.frame = CGRectMake(self.view.frame.size.width/2-buttonWidth/2, difficultyLevel2.frame.origin.y+buttonHeight+buttonInsert, buttonWidth, buttonHeight);
+    } completion:^(BOOL isFinish){
+    }];
+    
+    UIButton *difficultyLevel4 = [self.view viewWithTag:10004];
+    difficultyLevel4.frame = CGRectMake(2*self.view.frame.size.width, difficultyLevel3.frame.origin.y+buttonHeight+buttonInsert, buttonWidth, buttonHeight);
+    [UIView animateWithDuration:animateTime animations:^{
+        difficultyLevel4.frame = CGRectMake(self.view.frame.size.width/2-buttonWidth/2, difficultyLevel3.frame.origin.y+buttonHeight+buttonInsert, buttonWidth, buttonHeight);
     } completion:^(BOOL isFinish){
     }];
     
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playingViewExitNotificationResponseControl:) name:playingViewExitNotification object:nil];
+    
+    int unitWidth = CGRectGetWidth(self.view.frame)/16;
+    int leftOffset = unitWidth*3;
+//    int rightOffset = unitWidth*3;
+    int buttonFunctionWidth = unitWidth*2;
+    int buttonFunctionY = CGRectGetHeight(self.view.frame)/2 - buttonFunctionWidth;
+    
+    UIButton *buttonRanking = [self.view viewWithTag:10005];
+    buttonRanking.frame = CGRectMake(leftOffset, buttonFunctionY, buttonFunctionWidth, buttonFunctionWidth);
+    
+    UIButton *buttonShare = [self.view viewWithTag:10006];
+    buttonShare.frame = CGRectMake(buttonRanking.frame.origin.x + buttonFunctionWidth*2, buttonFunctionY, buttonFunctionWidth, buttonFunctionWidth);
+    
+    UIButton *buttonStar = [self.view viewWithTag:10007];
+    buttonStar.frame = CGRectMake(0, buttonFunctionY, buttonFunctionWidth, buttonFunctionWidth);
+    [UIView animateWithDuration:1.0 animations:^{
+        buttonStar.frame = CGRectMake(buttonShare.frame.origin.x + buttonFunctionWidth*2, buttonFunctionY, buttonFunctionWidth, buttonFunctionWidth);
+    } completion:^(BOOL finished) {
+    }];
 }
+
 
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
@@ -82,20 +188,46 @@ extern NSString *playingViewExitNotification;
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark - 开始拆砖块游戏
+-(void)beginGameWith:(int)timeLimit widthNum:(int)widthNum colorNum:(int)colorNum gameDifficultyLevel:(GameDifficultyLevel)gameDifficultyLevel{
+    UICollectionViewFlowLayout *flowlayout = [[UICollectionViewFlowLayout alloc] init];
+    CollectionViewControllerPlay *collecPlay = [[CollectionViewControllerPlay alloc] initWithCollectionViewLayout:flowlayout];
+    collecPlay.view.backgroundColor = [UIColor whiteColor];
+    collecPlay.collectionView.backgroundColor = [UIColor whiteColor];
+    
+    collecPlay.timeLimit = timeLimit;
+    collecPlay.gameDifficultyLevel = gameDifficultyLevel;
+    collecPlay.widthNum = widthNum;
+    collecPlay.gameInitTypeNum = colorNum;
+    
+    [self addChildViewController:collecPlay];
+    [self.view addSubview:collecPlay.view];
+    collecPlay.view.alpha = 0.0;
+    [UIView animateWithDuration:0.3 animations:^{
+        collecPlay.view.alpha = 1.0;
+    }];
+}
+
 #pragma mark -
 #pragma mark 事件
 -(void)playingViewExitNotificationResponseControl:(id)send{
-    UILabel *allPointsShowView = (UILabel *)[self.view viewWithTag:1103];
-    int numbers = [GameResultData getAllBlockenBlocks];
-    if(allPointsShowView)
-    allPointsShowView.text = [NSString stringWithFormat:@"您共拆了%d砖块",numbers];
+    [self beginMainManuAnimation];
 }
 
--(void)buttonPlayPressed:(id)sender{
-    LevelDialogView *levelDialogView = [[LevelDialogView alloc] initWithFrame:self.view.bounds];
-    levelDialogView.viewController = self;
-    levelDialogView.backgroundColor = [UIColor clearColor];
-    [self.view addSubview:levelDialogView];
+-(void)level1ButtonPlayPressed:(id)sender{
+    [self beginGameWith:50 widthNum:9 colorNum:6 gameDifficultyLevel:GameDifficultyLevel1];
+}
+
+-(void)level2ButtonPlayPressed:(id)sender{
+    [self beginGameWith:56 widthNum:10 colorNum:8 gameDifficultyLevel:GameDifficultyLevel2];
+}
+
+-(void)level3ButtonPlayPressed:(id)sender{
+    [self beginGameWith:60 widthNum:11 colorNum:10 gameDifficultyLevel:GameDifficultyLevel3];
+}
+
+-(void)level4ButtonPlayPressed:(id)sender{
+    [self beginGameWith:60 widthNum:11 colorNum:12 gameDifficultyLevel:GameDifficultyLevel4];
 }
 
 #pragma mark -

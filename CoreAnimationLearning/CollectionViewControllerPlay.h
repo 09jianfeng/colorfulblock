@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ViewController.h"
 
 @interface CollectionViewControllerPlay : UICollectionViewController
 //是否要背景图片
@@ -18,7 +19,9 @@
 //游戏结束时间
 @property(nonatomic, assign) float timeLimit;
 //第几关。用来获取过关的分数
-@property(nonatomic, assign) int gameLevelIndex;
+@property(nonatomic, assign) GameDifficultyLevel gameDifficultyLevel;
 
 -(void)exitTheGame;
+-(void)contiuneTheGame;
+-(void)replayTheGame;
 @end

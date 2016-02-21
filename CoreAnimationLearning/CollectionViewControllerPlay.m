@@ -88,7 +88,6 @@ static NSString * const reuseIdentifier = @"Cell";
     
     CGFloat width = self.view.frame.size.width/_widthNum;
     int heightnum = self.view.frame.size.height/width-1;
-    
     float allblockNump = 0.65;
     self.gameAlgorithm = [[GameAlgorithm alloc] initWithWidthNum:_widthNum heightNum:heightnum gamecolorexternNum:self.gameInitTypeNum allblockNumpercent:allblockNump];
     
@@ -99,18 +98,24 @@ static NSString * const reuseIdentifier = @"Cell";
     self.gravity.magnitude = 2;
     [self.animator addBehavior:self.gravity];
     
+    
+    int lastOriginY = heightnum*width;
+    int lastHeight = self.view.frame.size.height - heightnum*width;
+    int labelPointsHeight = 20;
     self.labelPoints = [[UILabel alloc] init];
-    self.labelPoints.frame = CGRectMake(self.view.frame.size.width - 50,self.view.frame.size.height - processHeight, 50, 20);
+    self.labelPoints.frame = CGRectMake(self.view.frame.size.width - 60,lastOriginY + lastHeight/2-labelPointsHeight/2, 50, labelPointsHeight);
     self.labelPoints.text = @"0";
-    self.labelPoints.font = [UIFont systemFontOfSize:18];
+    self.labelPoints.font = [UIFont systemFontOfSize:22];
     self.labelPoints.textAlignment = NSTextAlignmentCenter;
-    self.labelPoints.textColor = [UIColor colorWithRed:0.9 green:0.1 blue:0.1 alpha:1.0];
+    self.labelPoints.textColor = [UIColor whiteColor];
     if (!_noBackgroundImage) {
         [self.view addSubview:self.labelPoints];
     }
     
-    UIButton *buttonStop = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
-    buttonStop.frame = CGRectMake(self.view.frame.size.width - 100,self.view.frame.size.height - processHeight, 50, 20);
+    int buttonStopHeight = 30;
+    UIButton *buttonStop = [UIButton buttonWithType:UIButtonTypeCustom];
+    [buttonStop setImage:[UIImage imageNamed:@"stop"] forState:UIControlStateNormal];
+    buttonStop.frame = CGRectMake(self.view.frame.size.width - 100,lastOriginY + lastHeight/2 - buttonStopHeight/2, 30, buttonStopHeight);
     [buttonStop addTarget:self action:@selector(buttonStopPressed:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:buttonStop];
     
@@ -118,7 +123,8 @@ static NSString * const reuseIdentifier = @"Cell";
     if (IsPadUIBlockGame()) {
         labelLen = 620;
     }
-    self.processView = [[ProGressView alloc] initWithFrame:CGRectMake(10, self.view.frame.size.height - processHeight+10, labelLen, 5)];
+    int processViewHeight = 5;
+    self.processView = [[ProGressView alloc] initWithFrame:CGRectMake(10,lastOriginY + lastHeight/2 - processViewHeight/2, labelLen, processViewHeight)];
     self.processView.backgroundColor = [UIColor whiteColor];
     self.processView.alpha = 0.5;
     if (!_noBackgroundImage) {
@@ -148,6 +154,7 @@ static NSString * const reuseIdentifier = @"Cell";
     [self.timer invalidate];
     UIViewFinishPlayAlert *finish = [[UIViewFinishPlayAlert alloc] initWithFrame:self.view.bounds];
     finish.tag = 3000;
+    finish.gameCurrentPoints = self.Allpoints;
     [self.view addSubview:finish];
     finish.collectionViewController = self;
     [finish showView];
@@ -157,16 +164,7 @@ static NSString * const reuseIdentifier = @"Cell";
 #pragma mark logic
 -(void)endTheGame{
     [self.timer invalidate];
-    NSString *message = @"";
-    [GameResultData gameResultAddBrockenBlocks:self.Allpoints];
-    if (self.Allpoints >= [_gameAlgorithm getAllValueBlockNum]) {
-        [LevelAndUserInfo passLevel:_gameLevelIndex points:_Allpoints startNum:3];
-        message = [NSString stringWithFormat:@"恭喜过关\n您的总分是：%d",self.Allpoints];
-    }else{
-        message = [NSString stringWithFormat:@"很遗憾\n您的总分是：%d",self.Allpoints];
-    }
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:message delegate:self cancelButtonTitle:@"确定" otherButtonTitles:@"重玩",nil];
-    [alert show];
+    [self buttonStopPressed:nil];
 }
 
 -(void)replayGame{
@@ -395,7 +393,12 @@ static NSString * const reuseIdentifier = @"Cell";
     }
     [self beginActionAnimatorBehavior:self.mutArraySprites];
     
-    _Allpoints = _Allpoints + spritesNumShouldDrop*2 - 2;
+    int points = spritesNumShouldDrop*2 - 2;
+    if (points > 0) {
+        _Allpoints = _Allpoints + points;
+    }else{
+        seconde+=5;
+    }
     self.labelPoints.text = [NSString stringWithFormat:@"%d",_Allpoints];
     
     [_gameAlgorithm isHaveBlockToDestroy:^(BOOL isHave){
@@ -415,7 +418,7 @@ static NSString * const reuseIdentifier = @"Cell";
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
     if (buttonIndex == 1) {
         if (alertView.tag == 2000) {
-            [self continueGame];
+            [self contiuneTheGame];
         }else{
           [self replayGame];
         }
@@ -426,23 +429,7 @@ static NSString * const reuseIdentifier = @"Cell";
 
 -(void)exitTheGame{
     [GameResultData gameResultAddBrockenBlocks:self.Allpoints];
-    
-//    UIView *alertView = [self.view viewWithTag:40000];
-//    [UIView animateWithDuration:0.3 animations:^{
-////        alertView.frame = CGRectMake(alertView.frame.origin.x, -self.view.frame.origin.y, alertView.frame.size.width, alertView.frame.size.height);
-//    } completion:^(BOOL isFinish){
-//        
-//        [UIView animateWithDuration:0.3 animations:^{
-//            self.view.frame = CGRectMake(self.view.frame.size.width*2, self.view.frame.origin.y, self.view.frame.size.width, self.view.frame.size.height);
-//        } completion:^(BOOL isFinish){
-//            [self.view removeFromSuperview];
-//            [self removeFromParentViewController];
-//        }];
-//        
-//    }];
-    
     [UIView animateWithDuration:0.3 animations:^{
-//        self.view.frame = CGRectMake(self.view.frame.size.width*2, self.view.frame.origin.y, self.view.frame.size.width, self.view.frame.size.height);
         self.view.alpha = 0.0;
     } completion:^(BOOL isFinish){
         [self.view removeFromSuperview];
@@ -452,7 +439,11 @@ static NSString * const reuseIdentifier = @"Cell";
     [[NSNotificationCenter defaultCenter] postNotificationName:playingViewExitNotification object:nil userInfo:nil];
 }
 
--(void)continueGame{
+-(void)contiuneTheGame{
     self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(timerResponce:) userInfo:nil repeats:YES];
+}
+
+-(void)replayTheGame{
+    [self replayGame];
 }
 @end

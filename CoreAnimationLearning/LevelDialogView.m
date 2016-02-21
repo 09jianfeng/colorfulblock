@@ -248,7 +248,7 @@ extern NSString *playingViewExitNotification;
     int colorNum = [[dicLevels objectForKey:levelinfoColorNum] intValue];
     
     collecPlay.timeLimit = timeLimit;
-    collecPlay.gameLevelIndex = (int)indexPath.row;
+    collecPlay.gameDifficultyLevel = (int)indexPath.row;
     collecPlay.widthNum = widthNum;
     collecPlay.gameInitTypeNum = colorNum;
     

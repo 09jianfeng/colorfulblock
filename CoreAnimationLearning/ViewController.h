@@ -8,6 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
+typedef enum {
+    GameDifficultyLevel1,
+    GameDifficultyLevel2,
+    GameDifficultyLevel3,
+    GameDifficultyLevel4
+}GameDifficultyLevel;
+
 @interface ViewController : UIViewController
 
 
