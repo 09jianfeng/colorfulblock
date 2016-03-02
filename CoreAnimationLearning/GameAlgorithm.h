@@ -38,7 +38,7 @@ typedef enum{
 -(NSArray *)getplacethatShoulddrop:(int)index placeShouldUpdate:(NSMutableArray **)mutableShouldDrop;
 
 //是否还有砖块可以消除
--(void)isHaveBlockToDestroy:(void(^)(BOOL isHave))callbackBlock;
+-(void)isHaveBlockToDestroy:(void(^)(BOOL isHave,BOOL isPerfectPlay))callbackBlock;
 
 //彩色砖块总数
 -(int)getAllValueBlockNum;

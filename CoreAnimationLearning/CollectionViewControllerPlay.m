@@ -392,8 +392,11 @@ static NSString * const reuseIdentifier = @"Cell";
     }
     self.labelPoints.text = [NSString stringWithFormat:@"%d",_Allpoints];
     
-    [_gameAlgorithm isHaveBlockToDestroy:^(BOOL isHave){
+    [_gameAlgorithm isHaveBlockToDestroy:^(BOOL isHave,BOOL isPerfectPlay){
         if (!isHave) {
+            if (isPerfectPlay) {
+                [GameResultData setGameResultForDifLevel:self.gameDifficultyLevel bestPoints:self.Allpoints isPerfectPlay:YES];
+            }
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self endTheGame];
             });
@@ -419,7 +422,6 @@ static NSString * const reuseIdentifier = @"Cell";
 }
 
 -(void)exitTheGame{
-    [GameResultData gameResultAddBrockenBlocks:self.Allpoints];
     [UIView animateWithDuration:0.3 animations:^{
         self.view.alpha = 0.0;
     } completion:^(BOOL isFinish){

@@ -7,8 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "ViewController.h"
 
 @interface GameResultData : NSObject
-+(void)gameResultAddBrockenBlocks:(int)blocks;
-+(int)getAllBlockenBlocks;
++(void)setGameResultForDifLevel:(GameDifficultyLevel)difLevel bestPoints:(int)bestPoints isPerfectPlay:(BOOL)isPerfectPlay;
++(int)getBestPointsForDifLevel:(GameDifficultyLevel)difLevel;
++(int)getPerfectTimesForDifLevel:(GameDifficultyLevel)difLevel;
 @end

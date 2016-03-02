@@ -220,19 +220,25 @@
 
 
 //是否还有砖块可以消除
--(void)isHaveBlockToDestroy:(void(^)(BOOL isHave))callbackBlock{
+-(void)isHaveBlockToDestroy:(void(^)(BOOL isHave,BOOL isPerfectPlay))callbackBlock{
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+        BOOL isPerfect = YES;
         for (int i = 0; i < _widthNum; i++) {
             for (int j = 0; j < _heightNum; j++) {
+                if (a[j][i] > 0) {
+                    isPerfect = NO;
+                }
+                
                 NSArray *arr = [self getplacethatShoulddrop:i heightindex:j];
                 if (arr.count > 0) {
-                    callbackBlock(YES);
+                    isPerfect = NO;
+                    callbackBlock(YES,isPerfect);
                     return;
                 }
             }
         }
         
-        callbackBlock(NO);
+        callbackBlock(NO,isPerfect);
     });
 }
 

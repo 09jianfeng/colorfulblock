@@ -14,6 +14,7 @@
 #import "LevelDialogView.h"
 #import "SystemInfo.h"
 #import "GameResultData.h"
+#import "RankingView.h"
 
 extern NSString *playingViewExitNotification;
 
@@ -95,6 +96,7 @@ extern NSString *playingViewExitNotification;
     buttonRanking.tag = 10005;
     buttonRanking.backgroundColor = [UIColor clearColor];
     [buttonRanking setImage:[UIImage imageNamed:@"btn_rank"] forState:UIControlStateNormal];
+    [buttonRanking addTarget:self action:@selector(buttonPressedRanking:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:buttonRanking];
     
     UIButton *buttonShare = [[UIButton alloc] initWithFrame:CGRectZero];
@@ -165,18 +167,21 @@ extern NSString *playingViewExitNotification;
     
     int unitWidth = CGRectGetWidth(self.view.frame)/16;
     int leftOffset = unitWidth*3;
-//    int rightOffset = unitWidth*3;
     int buttonFunctionWidth = unitWidth*2;
     int buttonFunctionY = CGRectGetHeight(self.view.frame) - buttonFunctionWidth * 2;
     
     UIButton *buttonRanking = [self.view viewWithTag:10005];
-    buttonRanking.frame = CGRectMake(leftOffset, buttonFunctionY, buttonFunctionWidth, buttonFunctionWidth);
+    buttonRanking.frame = CGRectMake(-leftOffset, buttonFunctionY, buttonFunctionWidth, buttonFunctionWidth);
+    [UIView animateWithDuration:1.0 animations:^{
+        buttonRanking.frame = CGRectMake(leftOffset, buttonFunctionY, buttonFunctionWidth, buttonFunctionWidth);
+    } completion:^(BOOL finished) {
+    }];
     
     UIButton *buttonShare = [self.view viewWithTag:10006];
     buttonShare.frame = CGRectMake(buttonRanking.frame.origin.x + buttonFunctionWidth*2, buttonFunctionY, buttonFunctionWidth, buttonFunctionWidth);
     
     UIButton *buttonStar = [self.view viewWithTag:10007];
-    buttonStar.frame = CGRectMake(0, buttonFunctionY, buttonFunctionWidth, buttonFunctionWidth);
+    buttonStar.frame = CGRectMake(self.view.frame.size.width, buttonFunctionY, buttonFunctionWidth, buttonFunctionWidth);
     [UIView animateWithDuration:1.0 animations:^{
         buttonStar.frame = CGRectMake(buttonShare.frame.origin.x + buttonFunctionWidth*2, buttonFunctionY, buttonFunctionWidth, buttonFunctionWidth);
     } completion:^(BOOL finished) {
@@ -218,7 +223,7 @@ extern NSString *playingViewExitNotification;
 }
 
 #pragma mark -
-#pragma mark 事件
+#pragma mark button事件
 -(void)playingViewExitNotificationResponseControl:(id)send{
     [self beginMainManuAnimation];
 }
@@ -237,6 +242,13 @@ extern NSString *playingViewExitNotification;
 
 -(void)level4ButtonPlayPressed:(id)sender{
     [self beginGameWith:60 widthNum:11 colorNum:12 gameDifficultyLevel:GameDifficultyLevel4];
+}
+
+-(void)buttonPressedRanking:(id)sender{
+    RankingView *rankingView = [[RankingView alloc] initWithFrame:self.view.bounds];
+    rankingView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.5];
+    [rankingView showView];
+    [self.view addSubview:rankingView];
 }
 
 #pragma mark -

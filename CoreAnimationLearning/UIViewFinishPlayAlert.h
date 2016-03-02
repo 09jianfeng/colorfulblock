@@ -12,6 +12,7 @@
 @interface UIViewFinishPlayAlert : UIView
 @property(nonatomic,assign) CollectionViewControllerPlay *collectionViewController;
 @property(nonatomic,assign) int gameCurrentPoints;
+@property(nonatomic,assign) BOOL isPerfectPlay;
 
 -(void)continueGame;
 -(void)showView;

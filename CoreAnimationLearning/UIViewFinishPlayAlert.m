@@ -8,6 +8,7 @@
 
 #import "UIViewFinishPlayAlert.h"
 #import "GameAudioPlay.h"
+#import "GameResultData.h"
 
 @interface UIViewFinishPlayAlert()
 @property(nonatomic,retain) UIDynamicAnimator *ani;
@@ -30,6 +31,8 @@
 }
 
 -(void)showView{
+    [GameResultData setGameResultForDifLevel:self.collectionViewController.gameDifficultyLevel bestPoints:self.gameCurrentPoints isPerfectPlay:self.isPerfectPlay];
+    
     self.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.5];
     
     float boardWidth =  self.frame.size.width*2.0/3.0;
