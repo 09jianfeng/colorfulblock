@@ -63,7 +63,7 @@ extern NSString *playingViewExitNotification;
     UIButton *difficultyLevel1 = [[UIButton alloc] initWithFrame:CGRectZero];
     difficultyLevel1.tag = 10001;
     difficultyLevel1.backgroundColor = [UIColor clearColor];
-    [difficultyLevel1 setImage:[UIImage imageNamed:@"easy.png"] forState:UIControlStateNormal];
+    [difficultyLevel1 setImage:[UIImage imageNamed:@"btn_easy.png"] forState:UIControlStateNormal];
     [difficultyLevel1 addTarget:self action:@selector(level1ButtonPlayPressed:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:difficultyLevel1];
     
@@ -71,7 +71,7 @@ extern NSString *playingViewExitNotification;
     UIButton *difficultyLevel2 = [[UIButton alloc] initWithFrame:CGRectZero];
     difficultyLevel2.tag = 10002;
     difficultyLevel2.backgroundColor = [UIColor clearColor];
-    [difficultyLevel2 setImage:[UIImage imageNamed:@"normal.png"] forState:UIControlStateNormal];
+    [difficultyLevel2 setImage:[UIImage imageNamed:@"btn_normal.png"] forState:UIControlStateNormal];
     [difficultyLevel2 addTarget:self action:@selector(level2ButtonPlayPressed:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:difficultyLevel2];
     
@@ -79,7 +79,7 @@ extern NSString *playingViewExitNotification;
     UIButton *difficultyLevel3 = [[UIButton alloc] initWithFrame:CGRectZero];
     difficultyLevel3.tag = 10003;
     difficultyLevel3.backgroundColor = [UIColor clearColor];
-    [difficultyLevel3 setImage:[UIImage imageNamed:@"difficult.png"] forState:UIControlStateNormal];
+    [difficultyLevel3 setImage:[UIImage imageNamed:@"btn_hard.png"] forState:UIControlStateNormal];
     [difficultyLevel3 addTarget:self action:@selector(level3ButtonPlayPressed:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:difficultyLevel3];
     
@@ -87,23 +87,26 @@ extern NSString *playingViewExitNotification;
     UIButton *difficultyLevel4 = [[UIButton alloc] initWithFrame:CGRectZero];
     difficultyLevel4.tag = 10004;
     difficultyLevel4.backgroundColor = [UIColor clearColor];
-    [difficultyLevel4 setImage:[UIImage imageNamed:@"hehe.png"] forState:UIControlStateNormal];
+    [difficultyLevel4 setImage:[UIImage imageNamed:@"btn_crazy.png"] forState:UIControlStateNormal];
     [difficultyLevel4 addTarget:self action:@selector(level4ButtonPlayPressed:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:difficultyLevel4];
     
     UIButton *buttonRanking = [[UIButton alloc] initWithFrame:CGRectZero];
     buttonRanking.tag = 10005;
-    buttonRanking.backgroundColor = [UIColor grayColor];
+    buttonRanking.backgroundColor = [UIColor clearColor];
+    [buttonRanking setImage:[UIImage imageNamed:@"btn_rank"] forState:UIControlStateNormal];
     [self.view addSubview:buttonRanking];
     
     UIButton *buttonShare = [[UIButton alloc] initWithFrame:CGRectZero];
     buttonShare.tag = 10006;
-    buttonShare.backgroundColor = [UIColor grayColor];
+    buttonShare.backgroundColor = [UIColor clearColor];
+    [buttonShare setImage:[UIImage imageNamed:@"btn_praise"] forState:UIControlStateNormal];
     [self.view addSubview:buttonShare];
     
     UIButton *buttonStar = [[UIButton alloc] initWithFrame:CGRectZero];
     buttonStar.tag = 10007;
-    buttonStar.backgroundColor = [UIColor grayColor];
+    buttonStar.backgroundColor = [UIColor clearColor];
+    [buttonStar setImage:[UIImage imageNamed:@"btn_share"] forState:UIControlStateNormal];
     [self.view addSubview:buttonStar];
     
     
@@ -118,14 +121,16 @@ extern NSString *playingViewExitNotification;
     int unitHeight = CGRectGetHeight(self.view.frame)/36;
     int buttonHeight = unitHeight*3;
     int buttonWidth = buttonHeight*2.6;
-    int topOffset = unitHeight*2;
-    int buttonInsert = 0;
+    int topOffset = -unitHeight*4;
+    int buttonInsert = unitHeight;
     float animateTime = 0.5;
     
     UIImageView *imageView = [self.view viewWithTag:10000];
-    imageView.frame = CGRectMake(self.view.frame.size.width/2-radius*7/2, -self.view.frame.size.height, radius*7, radius*3);
+    imageView.frame = CGRectMake(self.view.frame.size.width/2.0-radius*5.5/2.5, -self.view.frame.size.height, radius*5.5, radius*3.5);
     [UIView animateWithDuration:animateTime animations:^{
-        imageView.frame = CGRectMake(self.view.frame.size.width/2-radius*7/2, 50, radius*7, radius*3);
+        imageView.frame = CGRectMake(self.view.frame.size.width/2.0-radius*5.5/2.0, 50.0, radius*5.5, radius*3.5);
+    }completion:^(BOOL finished) {
+        [self beginAnimation:imageView];
     }];
     
     UIButton *difficultyLevel1 = [self.view viewWithTag:10001];
@@ -162,7 +167,7 @@ extern NSString *playingViewExitNotification;
     int leftOffset = unitWidth*3;
 //    int rightOffset = unitWidth*3;
     int buttonFunctionWidth = unitWidth*2;
-    int buttonFunctionY = CGRectGetHeight(self.view.frame)/2 - buttonFunctionWidth;
+    int buttonFunctionY = CGRectGetHeight(self.view.frame) - buttonFunctionWidth * 2;
     
     UIButton *buttonRanking = [self.view viewWithTag:10005];
     buttonRanking.frame = CGRectMake(leftOffset, buttonFunctionY, buttonFunctionWidth, buttonFunctionWidth);
@@ -190,6 +195,10 @@ extern NSString *playingViewExitNotification;
 
 #pragma mark - 开始拆砖块游戏
 -(void)beginGameWith:(int)timeLimit widthNum:(int)widthNum colorNum:(int)colorNum gameDifficultyLevel:(GameDifficultyLevel)gameDifficultyLevel{
+    //移除imageView的循环动画效果，以免影响正在做的游戏效果
+    UIImageView *imageView = [self.view viewWithTag:10000];
+    [imageView.layer removeAllAnimations];
+    
     UICollectionViewFlowLayout *flowlayout = [[UICollectionViewFlowLayout alloc] init];
     CollectionViewControllerPlay *collecPlay = [[CollectionViewControllerPlay alloc] initWithCollectionViewLayout:flowlayout];
     collecPlay.view.backgroundColor = [UIColor whiteColor];
@@ -215,15 +224,15 @@ extern NSString *playingViewExitNotification;
 }
 
 -(void)level1ButtonPlayPressed:(id)sender{
-    [self beginGameWith:50 widthNum:9 colorNum:6 gameDifficultyLevel:GameDifficultyLevel1];
+    [self beginGameWith:50 widthNum:8 colorNum:8 gameDifficultyLevel:GameDifficultyLevel1];
 }
 
 -(void)level2ButtonPlayPressed:(id)sender{
-    [self beginGameWith:56 widthNum:10 colorNum:8 gameDifficultyLevel:GameDifficultyLevel2];
+    [self beginGameWith:56 widthNum:9 colorNum:9 gameDifficultyLevel:GameDifficultyLevel2];
 }
 
 -(void)level3ButtonPlayPressed:(id)sender{
-    [self beginGameWith:60 widthNum:11 colorNum:10 gameDifficultyLevel:GameDifficultyLevel3];
+    [self beginGameWith:60 widthNum:10 colorNum:10 gameDifficultyLevel:GameDifficultyLevel3];
 }
 
 -(void)level4ButtonPlayPressed:(id)sender{
@@ -244,7 +253,7 @@ extern NSString *playingViewExitNotification;
 #pragma mark -
 #pragma mark 动画
 //左右摇动变大变小的动画
--(void)beginAnimation:(UIButton *)bt{
+-(void)beginAnimation:(UIView *)bt{
     //1.绕中心圆移动 Circle move   没添加进去先
     CAKeyframeAnimation *pathAnimation = [CAKeyframeAnimation animationWithKeyPath:@"position"];
     pathAnimation.calculationMode = kCAAnimationPaced;
@@ -261,7 +270,7 @@ extern NSString *playingViewExitNotification;
     
     //x方向伸缩
     CAKeyframeAnimation *scaleX = [CAKeyframeAnimation animationWithKeyPath:@"transform.scale.x"];
-    scaleX.values = @[@1.0,@1.1,@1.0];
+    scaleX.values = @[@1.0,@1.02,@1.0];
     scaleX.keyTimes = @[@0.0,@0.5,@1.0];
     scaleX.repeatCount = MAXFLOAT;
     scaleX.autoreverses = YES;
@@ -271,7 +280,7 @@ extern NSString *playingViewExitNotification;
     
     //y方向伸缩
     CAKeyframeAnimation *scaleY = [CAKeyframeAnimation animationWithKeyPath:@"transform.scale.y"];
-    scaleY.values = @[@1.0,@1.1,@1.0];
+    scaleY.values = @[@1.0,@1.02,@1.0];
     scaleY.keyTimes = @[@0.0,@0.5,@1.0];
     scaleY.repeatCount = MAXFLOAT;
     scaleY.autoreverses = YES;
@@ -282,7 +291,7 @@ extern NSString *playingViewExitNotification;
     CAAnimationGroup *groupAnnimation = [CAAnimationGroup animation];
     groupAnnimation.autoreverses = YES;
     groupAnnimation.duration = (arc4random()%30 + 30)/10.0;
-    groupAnnimation.animations = @[scaleX, scaleY];
+    groupAnnimation.animations = @[pathAnimation,scaleX, scaleY];
     groupAnnimation.repeatCount = MAXFLOAT;
     //开演
     [bt.layer addAnimation:groupAnnimation forKey:@"groupAnnimation"];

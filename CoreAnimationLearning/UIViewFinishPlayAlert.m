@@ -7,6 +7,7 @@
 //
 
 #import "UIViewFinishPlayAlert.h"
+#import "GameAudioPlay.h"
 
 @interface UIViewFinishPlayAlert()
 @property(nonatomic,retain) UIDynamicAnimator *ani;
@@ -32,48 +33,45 @@
     self.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.5];
     
     float boardWidth =  self.frame.size.width*2.0/3.0;
-    float boardHeigh = boardWidth*1.5;
+    float boardHeigh = boardWidth*0.8;
     UIView *board = [[UIView alloc] initWithFrame:CGRectMake(CGRectGetWidth(self.frame)/2.0 - boardWidth/2.0, -400,boardWidth, boardHeigh)];
     board.tag = 20000;
     board.layer.cornerRadius = 10.0;
-    board.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.5];
+    board.layer.contents = (__bridge id _Nullable)([UIImage imageNamed:@"bg_stop"].CGImage);
     
-    float unitHeigh = CGRectGetHeight(self.frame)/6.0;
-    float unitWidth = CGRectGetWidth(board.frame)/16.0;
+    float unitHeigh = CGRectGetHeight(board.frame)/7.0;
+    float unitWidth = CGRectGetWidth(board.frame)/14.0;
     float buttonFunctionWidth = unitWidth*3.0;
-    float buttonFunctionY = CGRectGetHeight(board.frame) - unitHeigh;
+    float buttonFunctionY = CGRectGetHeight(board.frame) - unitHeigh/2.0 -  buttonFunctionWidth;
     
-    UILabel *labelDifficultyLevel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, boardWidth, unitHeigh)];
-    NSString *diffLev = @"";
-    switch (self.collectionViewController.gameDifficultyLevel) {
-        case GameDifficultyLevel1:
-            diffLev = @"简单模式";
-            break;
-        case GameDifficultyLevel2:
-            diffLev = @"普通模式";
-            break;
-        case GameDifficultyLevel3:
-            diffLev = @"困难模式";
-            break;
-        case GameDifficultyLevel4:
-            diffLev = @"呵呵模式";
-            break;
-            
-        default:
-            break;
-    }
-    labelDifficultyLevel.text = diffLev;
-    labelDifficultyLevel.textColor = [UIColor whiteColor];
-    labelDifficultyLevel.textAlignment = NSTextAlignmentCenter;
-    labelDifficultyLevel.font = [UIFont boldSystemFontOfSize:40];
+    UIImageView *labelDifficultyLevel = [[UIImageView alloc] initWithFrame:CGRectMake(boardWidth/2.0 - unitHeigh*2.0, unitHeigh, unitHeigh*4.0, unitHeigh)];
+    NSString *diffLev = [NSString stringWithFormat:@"pic_name_0%d",self.collectionViewController.gameDifficultyLevel];
+    labelDifficultyLevel.image = [UIImage imageNamed:diffLev];
     [board addSubview:labelDifficultyLevel];
 
     UILabel *labelPoints = [[UILabel alloc] initWithFrame:CGRectMake(0, unitHeigh, boardWidth, unitHeigh)];
     labelPoints.textAlignment = NSTextAlignmentCenter;
-    labelPoints.textColor = [UIColor whiteColor];
-    labelPoints.font = [UIFont systemFontOfSize:23];
-    labelPoints.text = [NSString stringWithFormat:@"%d分",self.gameCurrentPoints];
+    labelPoints.textColor = [UIColor colorWithRed:160.0/255.0 green:52.0/255.0 blue:15.0/255.0 alpha:1.0];
+    labelPoints.font = [UIFont fontWithName:@"AmericanTypewriter-bold" size:30.0];
+    labelPoints.text = [NSString stringWithFormat:@"0"];
+    labelPoints.center = CGPointMake(boardWidth/2, boardHeigh/2);
     [board addSubview:labelPoints];
+    __block int points = 0;
+    int gameCurrentPoints = self.gameCurrentPoints;
+    //数字增加动画以及音效
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.8 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        dispatch_source_t timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, dispatch_get_main_queue());
+        dispatch_source_set_timer(timer, DISPATCH_TIME_NOW, 0.04 * NSEC_PER_SEC, 0 * NSEC_PER_SEC);
+        dispatch_source_set_event_handler(timer, ^{
+            [GameAudioPlay playNumAddingAudio];
+            labelPoints.text = [NSString stringWithFormat:@"%d",points];
+            points++;
+            if (points >= gameCurrentPoints) {
+                dispatch_source_cancel(timer);
+            }
+        });
+        dispatch_resume(timer);
+    });
     
     UIButton *buttonReplay = [[UIButton alloc] initWithFrame:CGRectMake(boardWidth/2 - buttonFunctionWidth/2, buttonFunctionY, buttonFunctionWidth, buttonFunctionWidth)];
     buttonReplay.backgroundColor = [UIColor clearColor];
@@ -81,13 +79,13 @@
     [buttonReplay addTarget:self action:@selector(buttonReplayLevelPressed:) forControlEvents:UIControlEventTouchUpInside];
     [board addSubview:buttonReplay];
     
-    UIButton *buttonContinue = [[UIButton alloc] initWithFrame:CGRectMake(boardWidth/2 - buttonFunctionWidth/2 - unitWidth - buttonFunctionWidth, buttonFunctionY, buttonFunctionWidth, buttonFunctionWidth)];
+    UIButton *buttonContinue = [[UIButton alloc] initWithFrame:CGRectMake(boardWidth/2 - buttonFunctionWidth/2 - buttonFunctionWidth, buttonFunctionY, buttonFunctionWidth, buttonFunctionWidth)];
     buttonContinue.backgroundColor = [UIColor clearColor];
     [buttonContinue setImage:[UIImage imageNamed:@"button_continue"] forState:UIControlStateNormal];
     [buttonContinue addTarget:self action:@selector(buttonContinuePressed:) forControlEvents:UIControlEventTouchUpInside];
     [board addSubview:buttonContinue];
     
-    UIButton *buttonMainManu = [[UIButton alloc] initWithFrame:CGRectMake(boardWidth/2 + buttonFunctionWidth/2 + unitWidth, buttonFunctionY, buttonFunctionWidth, buttonFunctionWidth)];
+    UIButton *buttonMainManu = [[UIButton alloc] initWithFrame:CGRectMake(boardWidth/2 + buttonFunctionWidth/2 , buttonFunctionY, buttonFunctionWidth, buttonFunctionWidth)];
     buttonMainManu.backgroundColor = [UIColor clearColor];
     [buttonMainManu setImage:[UIImage imageNamed:@"button_home"] forState:UIControlStateNormal];
     [buttonMainManu addTarget:self action:@selector(buttonMainManu:) forControlEvents:UIControlEventTouchUpInside];

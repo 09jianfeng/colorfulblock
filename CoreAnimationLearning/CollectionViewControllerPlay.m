@@ -7,7 +7,6 @@
 //
 
 #import "CollectionViewControllerPlay.h"
-#import <AVFoundation/AVFoundation.h>
 #import "GameAlgorithm.h"
 #import "SpriteUIView.h"
 #import "ProGressView.h"
@@ -15,6 +14,7 @@
 #import "LevelAndUserInfo.h"
 #import "UIViewFinishPlayAlert.h"
 #import "GameResultData.h"
+#import "GameAudioPlay.h"
 
 NSString *playingViewExitNotification = @"playingViewExitNotification";
 
@@ -23,8 +23,6 @@ NSString *playingViewExitNotification = @"playingViewExitNotification";
    int seconde;
 }
 
-@property(nonatomic, retain) AVAudioPlayer *audioplayerCorrect;
-@property(nonatomic, retain) AVAudioPlayer *audioplayerError;
 @property(nonatomic, retain) GameAlgorithm *gameAlgorithm;
 @property(nonatomic, retain) UIDynamicAnimator *animator;
 @property(nonatomic, retain) UIGravityBehavior *gravity;
@@ -34,6 +32,9 @@ NSString *playingViewExitNotification = @"playingViewExitNotification";
 @property(nonatomic, assign) int Allpoints;
 //mutArraySprites 存储正在动的sprites
 @property(nonatomic, strong) NSMutableArray *mutArraySprites;
+
+@property(nonatomic, assign) float blockWidth;
+@property(nonatomic, assign) int heightnum;
 @end
 
 @implementation CollectionViewControllerPlay
@@ -52,8 +53,6 @@ static NSString * const reuseIdentifier = @"Cell";
 
 -(void)dealloc{
     self.mutArraySprites = nil;
-    self.audioplayerCorrect = nil;
-    self.audioplayerError = nil;
     self.gameAlgorithm = nil;
     self.animator = nil;
     self.gravity = nil;
@@ -64,12 +63,18 @@ static NSString * const reuseIdentifier = @"Cell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    UIImage *backImage = [UIImage imageNamed:@"playing_background"];
+    UIImage *backImage = [UIImage imageNamed:@"playing_ground"];
     self.collectionView.layer.contents = (__bridge id)(backImage.CGImage);
 }
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    if (self.gameDifficultyLevel == GameDifficultyLevel1) {
+        self.collectionView.contentInset = UIEdgeInsetsMake(10, 10, 30, 10);
+    }else{
+        self.collectionView.contentInset = UIEdgeInsetsMake(10, 10, 20, 10);
+    }
+    
     seconde = 0;
     
     // Register cell classes
@@ -86,10 +91,10 @@ static NSString * const reuseIdentifier = @"Cell";
     }
     
     
-    CGFloat width = self.view.frame.size.width/_widthNum;
-    int heightnum = self.view.frame.size.height/width-1;
+    _blockWidth = (self.collectionView.frame.size.width - self.collectionView.contentInset.left - self.collectionView.contentInset.right)/_widthNum;
+    _heightnum = (self.collectionView.frame.size.height - self.collectionView.contentInset.top - self.collectionView.contentInset.bottom)/_blockWidth;
     float allblockNump = 0.65;
-    self.gameAlgorithm = [[GameAlgorithm alloc] initWithWidthNum:_widthNum heightNum:heightnum gamecolorexternNum:self.gameInitTypeNum allblockNumpercent:allblockNump];
+    self.gameAlgorithm = [[GameAlgorithm alloc] initWithWidthNum:_widthNum heightNum:_heightnum gamecolorexternNum:self.gameInitTypeNum allblockNumpercent:allblockNump];
     
     //做重力动画的
     self.animator = [[UIDynamicAnimator alloc] initWithReferenceView:self.view];
@@ -99,23 +104,23 @@ static NSString * const reuseIdentifier = @"Cell";
     [self.animator addBehavior:self.gravity];
     
     
-    int lastOriginY = heightnum*width;
-    int lastHeight = self.view.frame.size.height - heightnum*width;
+    int lastOriginY = _heightnum * _blockWidth;
+    int lastHeight = self.view.frame.size.height - _heightnum * _blockWidth;
     int labelPointsHeight = 20;
     self.labelPoints = [[UILabel alloc] init];
-    self.labelPoints.frame = CGRectMake(self.view.frame.size.width - 60,lastOriginY + lastHeight/2-labelPointsHeight/2, 50, labelPointsHeight);
+    self.labelPoints.frame = CGRectMake(self.view.frame.size.width - 70,lastOriginY + lastHeight/2-labelPointsHeight/2, 50, labelPointsHeight);
     self.labelPoints.text = @"0";
-    self.labelPoints.font = [UIFont systemFontOfSize:22];
+    self.labelPoints.font = [UIFont fontWithName:@"AmericanTypewriter-bold" size:17.0];
+    self.labelPoints.textColor = [UIColor colorWithRed:160.0/255.0 green:52.0/255.0 blue:15.0/255.0 alpha:1.0];
     self.labelPoints.textAlignment = NSTextAlignmentCenter;
-    self.labelPoints.textColor = [UIColor whiteColor];
     if (!_noBackgroundImage) {
         [self.view addSubview:self.labelPoints];
     }
     
-    int buttonStopHeight = 30;
+    int buttonStopHeight = 20;
     UIButton *buttonStop = [UIButton buttonWithType:UIButtonTypeCustom];
-    [buttonStop setImage:[UIImage imageNamed:@"stop"] forState:UIControlStateNormal];
-    buttonStop.frame = CGRectMake(self.view.frame.size.width - 100,lastOriginY + lastHeight/2 - buttonStopHeight/2, 30, buttonStopHeight);
+    [buttonStop setImage:[UIImage imageNamed:@"btn_stop"] forState:UIControlStateNormal];
+    buttonStop.frame = CGRectMake(self.view.frame.size.width - 100,lastOriginY + lastHeight/2 - buttonStopHeight/2, 20, buttonStopHeight);
     [buttonStop addTarget:self action:@selector(buttonStopPressed:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:buttonStop];
     
@@ -124,9 +129,8 @@ static NSString * const reuseIdentifier = @"Cell";
         labelLen = 620;
     }
     int processViewHeight = 5;
-    self.processView = [[ProGressView alloc] initWithFrame:CGRectMake(10,lastOriginY + lastHeight/2 - processViewHeight/2, labelLen, processViewHeight)];
-    self.processView.backgroundColor = [UIColor whiteColor];
-    self.processView.alpha = 0.5;
+    self.processView = [[ProGressView alloc] initWithFrame:CGRectMake(20,lastOriginY + lastHeight/2 - processViewHeight/2, labelLen, processViewHeight)];
+    self.processView.backgroundColor = [UIColor colorWithRed:160.0/255.0 green:52.0/255.0 blue:15.0/255.0 alpha:1.0];
     if (!_noBackgroundImage) {
         [self.view addSubview:self.processView];
         self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(timerResponce:) userInfo:nil repeats:YES];
@@ -171,33 +175,13 @@ static NSString * const reuseIdentifier = @"Cell";
     self.Allpoints = 0;
     [self.processView setprocess:0.0];
     seconde = 0;
-    CGFloat width = self.view.frame.size.width/_widthNum;
-    int heightnum = self.view.frame.size.height/width - 1;
-    self.gameAlgorithm = [[GameAlgorithm alloc] initWithWidthNum:_widthNum heightNum:heightnum gamecolorexternNum:self.gameInitTypeNum allblockNumpercent:0.65];
+    self.gameAlgorithm = [[GameAlgorithm alloc] initWithWidthNum:_widthNum heightNum:_heightnum gamecolorexternNum:self.gameInitTypeNum allblockNumpercent:0.65];
     [self.collectionView reloadData];
     self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(timerResponce:) userInfo:nil repeats:YES];
 }
 
--(void)playAudioIsCorrect:(BOOL)isCorrect{
-    NSString *stringCottect = @"";
-    if (isCorrect) {
-        stringCottect = @"correct.mp3";
-    }else{
-        stringCottect = @"error.mp3";
-    }
-    //1.音频文件的url路径
-    NSURL *url=[[NSBundle mainBundle]URLForResource:stringCottect withExtension:Nil];
-    //2.创建播放器（注意：一个AVAudioPlayer只能播放一个url）
-    self.audioplayerCorrect=[[AVAudioPlayer alloc]initWithContentsOfURL:url error:Nil];
-    //3.缓冲
-    [self.audioplayerCorrect prepareToPlay];
-    [self.audioplayerCorrect play];
-}
-
 -(int)numberOfblock{
-    CGFloat width = self.view.frame.size.width/_widthNum;
-    int heightnum = self.view.frame.size.height/width + 1;
-    return heightnum*_widthNum;
+    return _heightnum*_widthNum;
 }
 
 -(UIImage *)getColorInColorType:(blockcolor)blockcolorType{
@@ -290,7 +274,8 @@ static NSString * const reuseIdentifier = @"Cell";
 
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return [self numberOfblock];
+    NSInteger numberOfBlock = [self numberOfblock];
+    return numberOfBlock;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -329,8 +314,7 @@ static NSString * const reuseIdentifier = @"Cell";
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
-    CGFloat width = self.view.frame.size.width/_widthNum;
-    return CGSizeMake(width, width);
+    return CGSizeMake((int)_blockWidth, (int)_blockWidth);
 }
 
 //cell的最小行间距
@@ -351,7 +335,6 @@ static NSString * const reuseIdentifier = @"Cell";
     } completion:^(BOOL finish){
         cell.alpha = 1;
     }];
-    [self playAudioIsCorrect:YES];
     
     NSMutableArray *mutableShoulUpdate = nil;
     //获取要remove掉的label
@@ -396,8 +379,10 @@ static NSString * const reuseIdentifier = @"Cell";
     int points = spritesNumShouldDrop*2 - 2;
     if (points > 0) {
         _Allpoints = _Allpoints + points;
+        [GameAudioPlay playClickBlockAudio:YES];
     }else{
         seconde+=5;
+        [GameAudioPlay playClickBlockAudio:NO];
     }
     self.labelPoints.text = [NSString stringWithFormat:@"%d",_Allpoints];
     
