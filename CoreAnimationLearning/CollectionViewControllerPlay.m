@@ -65,6 +65,10 @@ static NSString * const reuseIdentifier = @"Cell";
     [super viewDidLoad];
     UIImage *backImage = [UIImage imageNamed:@"playing_ground"];
     self.collectionView.layer.contents = (__bridge id)(backImage.CGImage);
+    
+    //缓存视频，图片资源。以免在执行动画的时候，导致动画节目卡顿
+    [GameAudioPlay playClickBlockAudio:YES];
+    [UIImage imageNamed:@"back_point.png"];
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -336,6 +340,7 @@ static NSString * const reuseIdentifier = @"Cell";
         cell.alpha = 1;
     }];
     
+    
     NSMutableArray *mutableShoulUpdate = nil;
     //获取要remove掉的label
     NSArray *arrayshouldRemoveIndexpath = [self.gameAlgorithm getplacethatShoulddrop:(int)indexPath.row  placeShouldUpdate:&mutableShoulUpdate];
@@ -376,6 +381,7 @@ static NSString * const reuseIdentifier = @"Cell";
     }
     [self beginActionAnimatorBehavior:self.mutArraySprites];
     
+    //计算消除的个数，增加的分数
     int points = spritesNumShouldDrop*2 - 2;
     if (points > 0) {
         _Allpoints = _Allpoints + points;
