@@ -7,6 +7,10 @@
 //
 
 #import "RankingView.h"
+#import "GameResultData.h"
+
+extern NSString *GAMEBESTPOINTKEY;
+extern NSString *GAMEPEFECTTIMESKET;
 
 @interface RankingView()<UIScrollViewDelegate>
 @property(nonatomic,retain) UIDynamicAnimator *ani;
@@ -39,6 +43,7 @@
     board.layer.cornerRadius = 10.0;
     board.layer.masksToBounds = YES;
     board.layer.borderWidth = 5.0;
+    board.tag = 3000;
     board.layer.borderColor = [UIColor whiteColor].CGColor;
     [self addSubviewForBoard:board];
     [self addGravityAnimation:board];
@@ -51,17 +56,16 @@
     UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, scrollViewWidth, scrollViewHeigh)];
     scrollView.pagingEnabled = YES;
     scrollView.contentSize = CGSizeMake(board.frame.size.width * 4.0, scrollViewHeigh);
-    NSArray *textArray = @[@"简单模式",@"历史最高：500",@"完美拆除：5",@"hehehhe"];
-    for (int i = 0; i < 3; i++) {
-        UIView *subView = [self subViewForScrollView:textArray[i] bestPoint:0 perfectTimes:0 viewFrame:CGRectMake(scrollViewWidth * i, 0, scrollViewWidth, scrollViewHeigh)];
-        subView.backgroundColor = [UIColor colorWithWhite:i/4.0 alpha:1.0];
+    for (NSInteger  i = 0; i < 4; i++) {
+        NSDictionary *levelDicInfo = [[GameResultData getDictionaryOfGameResult] objectAtIndex:i];
+        UIView *subView = [self subViewForScrollView:i+1 bestPoint:[levelDicInfo objectForKey:GAMEBESTPOINTKEY] perfectTimes:[levelDicInfo objectForKey:GAMEPEFECTTIMESKET] viewFrame:CGRectMake(scrollViewWidth * i, 0, scrollViewWidth, scrollViewHeigh)];
         [scrollView addSubview:subView];
     }
     scrollView.contentOffset = CGPointMake(0, 0);
     scrollView.showsHorizontalScrollIndicator = NO;
     [board addSubview:scrollView];
     
-    float buttonHeigh = board.frame.size.height/5.0;
+    float buttonHeigh = boardUnitHeigh/2;
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
     button.frame = CGRectMake(buttonHeigh,board.frame.size.height - buttonHeigh*1.5, buttonHeigh, buttonHeigh);
     button.backgroundColor = [UIColor grayColor];
@@ -69,10 +73,29 @@
     [board addSubview:button];
 }
 
--(UIView *)subViewForScrollView:(NSString *)title bestPoint:(int)bestPoint perfectTimes:(int)perfectTimes viewFrame:(CGRect)viewFrame{
+-(UIView *)subViewForScrollView:(GameDifficultyLevel)difLevel bestPoint:(NSString *)bestPoint perfectTimes:(NSString *)perfectTimes viewFrame:(CGRect)viewFrame{
     UIView *subViewInScrollView = [[UIView alloc] initWithFrame:viewFrame];
     float unitHeigh = viewFrame.size.height/16.0;
     float textwidth = viewFrame.size.width;
+    
+    NSString *title = @"简单模式";
+    switch (difLevel) {
+        case GameDifficultyLevel1:
+            title = @"简单模式";
+            break;
+        case GameDifficultyLevel2:
+            title = @"普通模式";
+            break;
+        case GameDifficultyLevel3:
+            title = @"困难模式";
+            break;
+        case GameDifficultyLevel4:
+            title = @"疯狂模式";
+            break;
+            
+        default:
+            break;
+    }
     
     UILabel *labelTitle = [[UILabel alloc] initWithFrame:CGRectMake(0, unitHeigh, textwidth, unitHeigh*4)];
     labelTitle.text = title;
@@ -82,14 +105,14 @@
     [subViewInScrollView addSubview:labelTitle];
     
     UILabel *labelBestPoint = [[UILabel alloc] initWithFrame:CGRectMake(0, unitHeigh * 6, textwidth, unitHeigh*4)];
-    labelBestPoint.text = title;
+    labelBestPoint.text = [NSString stringWithFormat:@"历史最高：%@",bestPoint];
     labelBestPoint.textAlignment = NSTextAlignmentCenter;
     labelBestPoint.textColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:1.0];
     labelBestPoint.font = [UIFont boldSystemFontOfSize:23];
     [subViewInScrollView addSubview:labelBestPoint];
 
     UILabel *labelPerfect = [[UILabel alloc] initWithFrame:CGRectMake(0, unitHeigh * 11, textwidth, unitHeigh*4)];
-    labelPerfect.text = title;
+    labelPerfect.text = [NSString stringWithFormat:@"完美拆除：%@",perfectTimes];
     labelPerfect.textAlignment = NSTextAlignmentCenter;
     labelPerfect.textColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:1.0];
     labelPerfect.font = [UIFont boldSystemFontOfSize:23];
@@ -109,7 +132,14 @@
 
 #pragma mark - button click event
 -(void)buttonPressedBack:(id)sender{
-    [self removeFromSuperview];
+    [self.ani removeAllBehaviors];
+    
+    UIView *board = [self viewWithTag:3000];
+    [UIView animateWithDuration:0.3 animations:^{
+        board.frame = CGRectMake(board.frame.origin.x, -board.frame.size.height, board.frame.size.width, board.frame.size.height);
+    } completion:^(BOOL finished) {
+        [self removeFromSuperview];
+    }];
 }
 
 #pragma mark - UIScrollView delegate

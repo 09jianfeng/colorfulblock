@@ -13,4 +13,6 @@
 +(void)setGameResultForDifLevel:(GameDifficultyLevel)difLevel bestPoints:(int)bestPoints isPerfectPlay:(BOOL)isPerfectPlay;
 +(int)getBestPointsForDifLevel:(GameDifficultyLevel)difLevel;
 +(int)getPerfectTimesForDifLevel:(GameDifficultyLevel)difLevel;
++(NSArray *)getDictionaryOfGameResult;
+
 @end

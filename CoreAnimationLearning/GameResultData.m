@@ -9,9 +9,9 @@
 #import "GameResultData.h"
 #import "GameKeyValue.h"
 
-static NSString *GAMERESULTDATAKEY = @"GAMERESULTDATAKEY";
-static NSString *GAMEBESTPOINTKEY = @"GAMEBESTPOINTKEY";
-static NSString *GAMEPEFECTTIMESKET = @"GAMEPEFECTTIMESKET";
+NSString *GAMERESULTDATAKEY = @"GAMERESULTDATAKEY";
+NSString *GAMEBESTPOINTKEY = @"GAMEBESTPOINTKEY";
+NSString *GAMEPEFECTTIMESKET = @"GAMEPEFECTTIMESKET";
 
 @interface GameResultData()
 @property(nonatomic, retain) NSMutableArray *mutableArrayGameResult;
@@ -41,6 +41,10 @@ static NSString *GAMEPEFECTTIMESKET = @"GAMEPEFECTTIMESKET";
         }
     }
     return self;
+}
+
++(NSArray *)getDictionaryOfGameResult{
+    return [[GameResultData shareInstance] mutableArrayGameResult];
 }
 
 +(void)setGameResultForDifLevel:(GameDifficultyLevel)difLevel bestPoints:(int)bestPoints isPerfectPlay:(BOOL)isPerfectPlay{

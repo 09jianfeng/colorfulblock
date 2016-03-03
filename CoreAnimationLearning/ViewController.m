@@ -103,14 +103,29 @@ extern NSString *playingViewExitNotification;
     buttonShare.tag = 10006;
     buttonShare.backgroundColor = [UIColor clearColor];
     [buttonShare setImage:[UIImage imageNamed:@"btn_praise"] forState:UIControlStateNormal];
+    [buttonShare addTarget:self action:@selector(buttonPressedAssessment:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:buttonShare];
     
     UIButton *buttonStar = [[UIButton alloc] initWithFrame:CGRectZero];
     buttonStar.tag = 10007;
     buttonStar.backgroundColor = [UIColor clearColor];
     [buttonStar setImage:[UIImage imageNamed:@"btn_share"] forState:UIControlStateNormal];
+    [buttonShare addTarget:self action:@selector(buttonPressedShare:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:buttonStar];
     
+    UIButton *buttonVoice = [[UIButton alloc] initWithFrame:CGRectZero];
+    buttonVoice.tag = 10008;
+    buttonVoice.backgroundColor = [UIColor clearColor];
+    [buttonVoice setImage:[UIImage imageNamed:@"btn_share"] forState:UIControlStateNormal];
+    [buttonVoice addTarget:self action:@selector(buttonPressedVoice:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:buttonVoice];
+    
+    UIButton *buttonTutorial = [[UIButton alloc] initWithFrame:CGRectZero];
+    buttonTutorial.tag = 10009;
+    buttonTutorial.backgroundColor = [UIColor clearColor];
+    [buttonTutorial setImage:[UIImage imageNamed:@"btn_share"] forState:UIControlStateNormal];
+    [buttonTutorial addTarget:self action:@selector(buttonPressedTutorial:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:buttonTutorial];
     
     [self beginMainManuAnimation];
     
@@ -165,10 +180,10 @@ extern NSString *playingViewExitNotification;
     
     
     
-    int unitWidth = CGRectGetWidth(self.view.frame)/16;
-    int leftOffset = unitWidth*3;
-    int buttonFunctionWidth = unitWidth*2;
-    int buttonFunctionY = CGRectGetHeight(self.view.frame) - buttonFunctionWidth * 2;
+    float unitWidth = CGRectGetWidth(self.view.frame)/21;
+    float leftOffset = unitWidth;
+    float buttonFunctionWidth = unitWidth*3;
+    float buttonFunctionY = CGRectGetHeight(self.view.frame) - buttonFunctionWidth * 2;
     
     UIButton *buttonRanking = [self.view viewWithTag:10005];
     buttonRanking.frame = CGRectMake(-leftOffset, buttonFunctionY, buttonFunctionWidth, buttonFunctionWidth);
@@ -178,14 +193,21 @@ extern NSString *playingViewExitNotification;
     }];
     
     UIButton *buttonShare = [self.view viewWithTag:10006];
-    buttonShare.frame = CGRectMake(buttonRanking.frame.origin.x + buttonFunctionWidth*2, buttonFunctionY, buttonFunctionWidth, buttonFunctionWidth);
+    buttonShare.frame = CGRectMake(leftOffset + 4.0 * unitWidth, buttonFunctionY, buttonFunctionWidth, buttonFunctionWidth);
     
     UIButton *buttonStar = [self.view viewWithTag:10007];
     buttonStar.frame = CGRectMake(self.view.frame.size.width, buttonFunctionY, buttonFunctionWidth, buttonFunctionWidth);
     [UIView animateWithDuration:1.0 animations:^{
-        buttonStar.frame = CGRectMake(buttonShare.frame.origin.x + buttonFunctionWidth*2, buttonFunctionY, buttonFunctionWidth, buttonFunctionWidth);
+        buttonStar.frame = CGRectMake(leftOffset + 4.0 * unitWidth * 2.0, buttonFunctionY, buttonFunctionWidth, buttonFunctionWidth);
     } completion:^(BOOL finished) {
     }];
+    
+    UIButton *buttonVoice = [self.view viewWithTag:10008];
+    buttonVoice.frame = CGRectMake(leftOffset + 4.0 * unitWidth * 3.0, buttonFunctionY, buttonFunctionWidth, buttonFunctionWidth);
+    
+    UIButton *buttonTutorial = [self.view viewWithTag:10009];
+    buttonTutorial.frame = CGRectMake(leftOffset + 4.0 * unitWidth * 4.0, buttonFunctionY, buttonFunctionWidth, buttonFunctionWidth);
+    
 }
 
 
@@ -249,6 +271,22 @@ extern NSString *playingViewExitNotification;
     rankingView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.5];
     [rankingView showView];
     [self.view addSubview:rankingView];
+}
+
+-(void)buttonPressedAssessment:(id)sender{
+    
+}
+
+-(void)buttonPressedShare:(id)sender{
+    
+}
+
+-(void)buttonPressedTutorial:(id)sender{
+    
+}
+
+-(void)buttonPressedVoice:(id)sender{
+    
 }
 
 #pragma mark -
