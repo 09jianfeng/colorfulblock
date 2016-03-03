@@ -12,6 +12,7 @@
 @property(nonatomic, retain) AVAudioPlayer *audioplayerCorrect;
 @property(nonatomic, retain) AVAudioPlayer *audioplayerError;
 @property(nonatomic, retain) AVAudioPlayer *audioNumAdding;
+@property(nonatomic, retain) AVAudioPlayer *audioMain;
 @end
 
 @implementation GameAudioPlay
@@ -64,4 +65,19 @@
     [[GameAudioPlay shareInstance] playAudioWithFileName:@"music_num_add.mp3"];
 }
 
+-(void)playMainAud{
+    //1.音频文件的url路径
+    NSURL *url=[[NSBundle mainBundle] URLForResource:@"music_main.mp3" withExtension:Nil];
+    //2.创建播放器（注意：一个AVAudioPlayer只能播放一个url）
+    AVAudioPlayer *audioplayerCorrect=[[AVAudioPlayer alloc]initWithContentsOfURL:url error:Nil];
+    //3.缓冲
+    [audioplayerCorrect prepareToPlay];
+    [audioplayerCorrect play];
+    audioplayerCorrect.numberOfLoops = 1000000;
+    self.audioMain = audioplayerCorrect;
+}
+
++(void)playMainAudio{
+    [[GameAudioPlay shareInstance] playMainAud];
+}
 @end

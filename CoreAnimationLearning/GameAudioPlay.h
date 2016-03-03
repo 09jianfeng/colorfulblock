@@ -12,4 +12,5 @@
 @interface GameAudioPlay : NSObject
 +(void)playClickBlockAudio:(BOOL)isError;
 +(void)playNumAddingAudio;
++(void)playMainAudio;
 @end

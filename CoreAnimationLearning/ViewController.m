@@ -18,6 +18,7 @@
 #import "WeiXinShare.h"
 #import "GameCenterManager.h"
 #import "IntroduceView.h"
+#import "GameAudioPlay.h"
 
 extern NSString *playingViewExitNotification;
 
@@ -54,6 +55,8 @@ extern NSString *playingViewExitNotification;
     // Set GameCenter Manager Delegate
     [[GameCenterManager sharedManager] setDelegate:self];
     [[GameCenterManager sharedManager] checkGameCenterAvailability:YES];
+    
+    [GameAudioPlay playMainAudio];
 }
 
 -(void)addSubViews{
