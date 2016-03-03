@@ -17,6 +17,7 @@
 #import "RankingView.h"
 #import "WeiXinShare.h"
 #import "GameCenterManager.h"
+#import "IntroduceView.h"
 
 extern NSString *playingViewExitNotification;
 
@@ -290,12 +291,13 @@ extern NSString *playingViewExitNotification;
 }
 
 -(void)buttonPressedTutorial:(id)sender{
-    // If you have one leaderboard, present the leaderboard
-    // If you have more than one, shows all leaderboards and allows player to choose which one to show
-    [[GameCenterManager sharedManager] presentLeaderboardsOnViewController:self withLeaderboard:nil];
-    
-    // Presents the leaderboard with the ID of LeaderboardID
-    [[GameCenterManager sharedManager] presentLeaderboardsOnViewController:self withLeaderboard:@"LeaderboardID"];
+    IntroduceView *intrDuc = [[IntroduceView alloc] initWithFrame:CGRectMake(0, -CGRectGetHeight(self.view.frame), CGRectGetWidth(self.view.frame), CGRectGetHeight(self.view.frame))];
+    [self.view addSubview:intrDuc];
+    [UIView animateWithDuration:0.3 animations:^{
+        intrDuc.frame = self.view.bounds;
+    } completion:^(BOOL finished) {
+        
+    }];
 }
 
 -(void)buttonPressedVoice:(id)sender{

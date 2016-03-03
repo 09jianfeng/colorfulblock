@@ -86,6 +86,9 @@
 		78CE59841C8821CA0091EBE3 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CE59801C8821CA0091EBE3 /* Reachability.m */; };
 		78CE59861C8821DC0091EBE3 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78CE59851C8821DC0091EBE3 /* Security.framework */; };
 		78CE59881C88366E0091EBE3 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 78CE59871C88366E0091EBE3 /* icon.png */; };
+		78CE598B1C88408F0091EBE3 /* introduce_4s.png in Resources */ = {isa = PBXBuildFile; fileRef = 78CE59891C88408F0091EBE3 /* introduce_4s.png */; };
+		78CE598C1C88408F0091EBE3 /* introduce_5s.png in Resources */ = {isa = PBXBuildFile; fileRef = 78CE598A1C88408F0091EBE3 /* introduce_5s.png */; };
+		78CE598F1C8841310091EBE3 /* IntroduceView.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CE598E1C8841310091EBE3 /* IntroduceView.m */; };
 		78E260931B1AEBA600EB9F3E /* GameResultData.m in Sources */ = {isa = PBXBuildFile; fileRef = 78E260921B1AEBA600EB9F3E /* GameResultData.m */; };
 		78EE81971C812D4200CD33BD /* bg_progress_02.png in Resources */ = {isa = PBXBuildFile; fileRef = 78EE81961C812D4200CD33BD /* bg_progress_02.png */; };
 		78EE819B1C81302700CD33BD /* btn_stop.png in Resources */ = {isa = PBXBuildFile; fileRef = 78EE819A1C81302700CD33BD /* btn_stop.png */; };
@@ -231,6 +234,10 @@
 		78CE59801C8821CA0091EBE3 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Reachability.m; path = "thirdPard/GC Manager/Reachability.m"; sourceTree = SOURCE_ROOT; };
 		78CE59851C8821DC0091EBE3 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		78CE59871C88366E0091EBE3 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon.png; path = image/icon.png; sourceTree = SOURCE_ROOT; };
+		78CE59891C88408F0091EBE3 /* introduce_4s.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = introduce_4s.png; path = image/introduce_4s.png; sourceTree = SOURCE_ROOT; };
+		78CE598A1C88408F0091EBE3 /* introduce_5s.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = introduce_5s.png; path = image/introduce_5s.png; sourceTree = SOURCE_ROOT; };
+		78CE598D1C8841310091EBE3 /* IntroduceView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntroduceView.h; sourceTree = "<group>"; };
+		78CE598E1C8841310091EBE3 /* IntroduceView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IntroduceView.m; sourceTree = "<group>"; };
 		78E260901B1ACB5D00EB9F3E /* macro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = macro.h; sourceTree = "<group>"; };
 		78E260911B1AEBA600EB9F3E /* GameResultData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameResultData.h; sourceTree = "<group>"; };
 		78E260921B1AEBA600EB9F3E /* GameResultData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameResultData.m; sourceTree = "<group>"; };
@@ -499,6 +506,8 @@
 				780E17671AEE95CA007A4A88 /* BallView.m */,
 				780E34B51C868D7F00B1932A /* RankingView.h */,
 				780E34B61C868D7F00B1932A /* RankingView.m */,
+				78CE598D1C8841310091EBE3 /* IntroduceView.h */,
+				78CE598E1C8841310091EBE3 /* IntroduceView.m */,
 			);
 			name = view;
 			sourceTree = "<group>";
@@ -558,6 +567,8 @@
 		78FD4B331C7476C400905640 /* image */ = {
 			isa = PBXGroup;
 			children = (
+				78CE59891C88408F0091EBE3 /* introduce_4s.png */,
+				78CE598A1C88408F0091EBE3 /* introduce_5s.png */,
 				78CE59871C88366E0091EBE3 /* icon.png */,
 				780E34B81C86984C00B1932A /* button_continue_click.png */,
 				780E34BD1C86984C00B1932A /* button_home_click.png */,
@@ -743,6 +754,7 @@
 				78FD4B791C7476D300905640 /* Default@2x.png in Resources */,
 				780E34AB1C8677AE00B1932A /* 8@2x.png in Resources */,
 				782B1F8D1AE35B450051D053 /* LaunchScreen.xib in Resources */,
+				78CE598C1C88408F0091EBE3 /* introduce_5s.png in Resources */,
 				7826986C1C7A1A3E00514B47 /* playing_background.png in Resources */,
 				780E34AC1C8677AE00B1932A /* 8@3x.png in Resources */,
 				780E34A51C8677AE00B1932A /* 5@2x.png in Resources */,
@@ -774,6 +786,7 @@
 				780E34AE1C8677AE00B1932A /* 9@3x.png in Resources */,
 				782698681C7A154F00514B47 /* button_continue.png in Resources */,
 				780E34B11C8677AE00B1932A /* 11@2x.png in Resources */,
+				78CE598B1C88408F0091EBE3 /* introduce_4s.png in Resources */,
 				780E34A71C8677AE00B1932A /* 6@2x.png in Resources */,
 				788343771C805CC900496BC3 /* pic_name_02.png in Resources */,
 				78EE81AD1C814C2D00CD33BD /* music_num_add.mp3 in Resources */,
@@ -816,6 +829,7 @@
 				7844B7091AEA9A05006DE282 /* CollectionViewControllerPlay.m in Sources */,
 				782B1F7F1AE35B450051D053 /* main.m in Sources */,
 				7844B71F1AEB3119006DE282 /* GameAlgorithm.m in Sources */,
+				78CE598F1C8841310091EBE3 /* IntroduceView.m in Sources */,
 				7835010F1B15C2CE00830DAE /* UIViewFinishPlayAlert.m in Sources */,
 				78EE81AA1C81495700CD33BD /* GameAudioPlay.m in Sources */,
 				781FA81B1AED17C50048B337 /* SpriteUIView.m in Sources */,
