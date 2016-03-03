@@ -54,9 +54,9 @@
 +(void)playClickBlockAudio:(BOOL)isError{
     NSString *audioFileName = @"";
     if (isError) {
-        audioFileName = @"correct.mp3";
+        audioFileName = @"music_click_correct.mp3";
     }else{
-        audioFileName = @"error.mp3";
+        audioFileName = @"music_click_error.mp3";
     }
     [[GameAudioPlay shareInstance] playAudioWithFileName:audioFileName];
 }
@@ -79,5 +79,16 @@
 
 +(void)playMainAudio{
     [[GameAudioPlay shareInstance] playMainAud];
+}
+
++(void)stopMainAudio{
+}
+
++(void)playViewChangeAudio{
+    [[GameAudioPlay shareInstance] playAudioWithFileName:@"music_level.mp3"];
+}
+
++(void)playViewSwitchAudio{
+    [[GameAudioPlay shareInstance] playAudioWithFileName:@"music_screen_switch.mp3"];
 }
 @end

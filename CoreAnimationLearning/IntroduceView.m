@@ -8,6 +8,7 @@
 
 #import "IntroduceView.h"
 #import <UIKit/UIKit.h>
+#import "GameAudioPlay.h"
 
 @implementation IntroduceView
 
@@ -42,6 +43,7 @@
         [self removeFromSuperview];
     }];
     
+    [GameAudioPlay playViewSwitchAudio];
 }
 
 @end

@@ -13,4 +13,6 @@
 +(void)playClickBlockAudio:(BOOL)isError;
 +(void)playNumAddingAudio;
 +(void)playMainAudio;
++(void)playViewChangeAudio;
++(void)playViewSwitchAudio;
 @end

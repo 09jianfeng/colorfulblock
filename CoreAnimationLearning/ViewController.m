@@ -161,6 +161,7 @@ extern NSString *playingViewExitNotification;
         [self beginAnimation:imageView];
     }];
     
+    
     UIButton *difficultyLevel1 = [self.view viewWithTag:10001];
     difficultyLevel1.frame = CGRectMake(-self.view.frame.size.width, CGRectGetHeight(self.view.frame)/2 + topOffset, buttonWidth, buttonHeight);
     [UIView animateWithDuration:animateTime animations:^{
@@ -231,6 +232,16 @@ extern NSString *playingViewExitNotification;
         buttonTutorial.frame = CGRectMake(leftOffset + 4.0 * unitWidth * 4.0, buttonFunctionY, buttonFunctionWidth, buttonFunctionWidth);
     } completion:^(BOOL isFinish){
     }];
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [GameAudioPlay playViewChangeAudio];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [GameAudioPlay playViewChangeAudio];
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [GameAudioPlay playViewChangeAudio];
+            });
+        });
+    });
 }
 
 
@@ -294,13 +305,16 @@ extern NSString *playingViewExitNotification;
     rankingView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.5];
     [rankingView showView];
     [self.view addSubview:rankingView];
+    [GameAudioPlay playViewSwitchAudio];
 }
 
 -(void)buttonPressedAssessment:(id)sender{
-    
+    [GameAudioPlay playClickBlockAudio:YES];
 }
 
 -(void)buttonPressedShare:(id)sender{
+    [GameAudioPlay playClickBlockAudio:YES];
+    
     //分享到朋友圈
     [WeiXinShare sendMessageAndImageToWebChat:1];
 }
@@ -313,10 +327,12 @@ extern NSString *playingViewExitNotification;
     } completion:^(BOOL finished) {
         
     }];
+    
+    [GameAudioPlay playViewSwitchAudio];
 }
 
 -(void)buttonPressedVoice:(id)sender{
-    
+    [GameAudioPlay playClickBlockAudio:YES];
 }
 
 

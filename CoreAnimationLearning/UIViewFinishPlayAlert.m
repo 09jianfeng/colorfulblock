@@ -166,6 +166,8 @@
         [self.collectionViewController contiuneTheGame];
         [self removeFromSuperview];
     }];
+    
+    [GameAudioPlay playViewSwitchAudio];
 }
 
 -(void)buttonReplayLevelPressed:(id)sender{
@@ -177,10 +179,12 @@
         [self.collectionViewController replayTheGame];
         [self removeFromSuperview];
     }];
+    [GameAudioPlay playViewSwitchAudio];
 }
 
 -(void)buttonMainManu:(id)sender{
     [self.collectionViewController exitTheGame];
+    [GameAudioPlay playViewSwitchAudio];
 }
 
 -(void)dealloc{

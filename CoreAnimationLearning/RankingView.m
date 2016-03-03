@@ -7,6 +7,7 @@
 //
 
 #import "RankingView.h"
+#import "GameAudioPlay.h"
 #import "GameResultData.h"
 
 extern NSString *GAMEBESTPOINTKEY;
@@ -15,6 +16,8 @@ extern NSString *GAMEPEFECTTIMESKET;
 @interface RankingView()<UIScrollViewDelegate>
 @property(nonatomic,retain) UIDynamicAnimator *ani;
 @property(nonatomic,retain) UIGravityBehavior *gravity;
+@property(nonatomic,retain) UIPageControl *pageControl;
+@property(nonatomic,assign) int currentPage;
 @end
 
 
@@ -32,6 +35,7 @@ extern NSString *GAMEPEFECTTIMESKET;
 -(void)dealloc{
     self.ani = nil;
     self.gravity = nil;
+    self.pageControl = nil;
 }
 
 -(void)showView{
@@ -54,6 +58,7 @@ extern NSString *GAMEPEFECTTIMESKET;
     float scrollViewHeigh = boardUnitHeigh *3.0;
     float scrollViewWidth = board.frame.size.width;
     UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, scrollViewWidth, scrollViewHeigh)];
+    scrollView.delegate = self;
     scrollView.pagingEnabled = YES;
     scrollView.contentSize = CGSizeMake(board.frame.size.width * 4.0, scrollViewHeigh);
     for (NSInteger  i = 0; i < 4; i++) {
@@ -65,10 +70,16 @@ extern NSString *GAMEPEFECTTIMESKET;
     scrollView.showsHorizontalScrollIndicator = NO;
     [board addSubview:scrollView];
     
+    self.pageControl= [[UIPageControl alloc] initWithFrame:CGRectMake(0, scrollViewHeigh-20, scrollViewWidth, 20)];
+    self.pageControl.backgroundColor = [UIColor clearColor];
+    self.pageControl.numberOfPages = 4;
+    [self.pageControl setCurrentPage:0];
+    [board addSubview:self.pageControl];
+    
     float buttonHeigh = boardUnitHeigh/2;
     UIButton *buttonBack = [UIButton buttonWithType:UIButtonTypeCustom];
     buttonBack.frame = CGRectMake(buttonHeigh,board.frame.size.height - buttonHeigh*1.5, buttonHeigh, buttonHeigh);
-    [buttonBack setTitle:@"<—" forState:UIControlStateNormal];
+    [buttonBack setImage:[UIImage imageNamed:@"image_back"] forState:UIControlStateNormal];
     [buttonBack addTarget:self action:@selector(buttonPressedBack:) forControlEvents:UIControlEventTouchUpInside];
     [board addSubview:buttonBack];
 }
@@ -100,21 +111,21 @@ extern NSString *GAMEPEFECTTIMESKET;
     UILabel *labelTitle = [[UILabel alloc] initWithFrame:CGRectMake(0, unitHeigh, textwidth, unitHeigh*4)];
     labelTitle.text = title;
     labelTitle.textAlignment = NSTextAlignmentCenter;
-    labelTitle.textColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:1.0];
-    labelTitle.font = [UIFont boldSystemFontOfSize:23];
+    labelTitle.textColor = [UIColor whiteColor];
+    labelTitle.font = [UIFont boldSystemFontOfSize:32];
     [subViewInScrollView addSubview:labelTitle];
     
     UILabel *labelBestPoint = [[UILabel alloc] initWithFrame:CGRectMake(0, unitHeigh * 6, textwidth, unitHeigh*4)];
     labelBestPoint.text = [NSString stringWithFormat:@"历史最高：%@",bestPoint];
     labelBestPoint.textAlignment = NSTextAlignmentCenter;
-    labelBestPoint.textColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:1.0];
+    labelBestPoint.textColor = [UIColor whiteColor];
     labelBestPoint.font = [UIFont boldSystemFontOfSize:23];
     [subViewInScrollView addSubview:labelBestPoint];
 
     UILabel *labelPerfect = [[UILabel alloc] initWithFrame:CGRectMake(0, unitHeigh * 11, textwidth, unitHeigh*4)];
     labelPerfect.text = [NSString stringWithFormat:@"完美拆除：%@",perfectTimes];
     labelPerfect.textAlignment = NSTextAlignmentCenter;
-    labelPerfect.textColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:1.0];
+    labelPerfect.textColor = [UIColor whiteColor];
     labelPerfect.font = [UIFont boldSystemFontOfSize:23];
     [subViewInScrollView addSubview:labelPerfect];
     return subViewInScrollView;
@@ -140,12 +151,24 @@ extern NSString *GAMEPEFECTTIMESKET;
     } completion:^(BOOL finished) {
         [self removeFromSuperview];
     }];
+    
+    [GameAudioPlay playViewSwitchAudio];
 }
 
 #pragma mark - UIScrollView delegate
--(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
-    
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    CGFloat pageWidth = scrollView.frame.size.width;
+    int page = floor((scrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
+    self.currentPage = page;
 }
 
+-(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
+    [scrollView setContentOffset:CGPointMake(scrollView.frame.size.width*self.currentPage, 0) animated:YES];
+    [self.pageControl setCurrentPage:self.currentPage];
+    [GameAudioPlay playViewChangeAudio];
+}
+
+-(void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
+}
 
 @end

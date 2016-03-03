@@ -166,6 +166,8 @@ static NSString * const reuseIdentifier = @"Cell";
     [self.view addSubview:finish];
     finish.collectionViewController = self;
     [finish showView];
+    
+    [GameAudioPlay playViewSwitchAudio];
 }
 
 #pragma mark -
