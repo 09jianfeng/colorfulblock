@@ -10,6 +10,6 @@
 
 @implementation GameToolKit
 +(NSString *)gameAppURLInAppStore{
-    return nil;
+    return @"http://www.baidu.com";
 }
 @end

@@ -85,6 +85,7 @@
 		78CE59831C8821CA0091EBE3 /* NSDataAES256.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CE597E1C8821CA0091EBE3 /* NSDataAES256.m */; };
 		78CE59841C8821CA0091EBE3 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CE59801C8821CA0091EBE3 /* Reachability.m */; };
 		78CE59861C8821DC0091EBE3 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78CE59851C8821DC0091EBE3 /* Security.framework */; };
+		78CE59881C88366E0091EBE3 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 78CE59871C88366E0091EBE3 /* icon.png */; };
 		78E260931B1AEBA600EB9F3E /* GameResultData.m in Sources */ = {isa = PBXBuildFile; fileRef = 78E260921B1AEBA600EB9F3E /* GameResultData.m */; };
 		78EE81971C812D4200CD33BD /* bg_progress_02.png in Resources */ = {isa = PBXBuildFile; fileRef = 78EE81961C812D4200CD33BD /* bg_progress_02.png */; };
 		78EE819B1C81302700CD33BD /* btn_stop.png in Resources */ = {isa = PBXBuildFile; fileRef = 78EE819A1C81302700CD33BD /* btn_stop.png */; };
@@ -229,6 +230,7 @@
 		78CE597F1C8821CA0091EBE3 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Reachability.h; path = "thirdPard/GC Manager/Reachability.h"; sourceTree = SOURCE_ROOT; };
 		78CE59801C8821CA0091EBE3 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Reachability.m; path = "thirdPard/GC Manager/Reachability.m"; sourceTree = SOURCE_ROOT; };
 		78CE59851C8821DC0091EBE3 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		78CE59871C88366E0091EBE3 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon.png; path = image/icon.png; sourceTree = SOURCE_ROOT; };
 		78E260901B1ACB5D00EB9F3E /* macro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = macro.h; sourceTree = "<group>"; };
 		78E260911B1AEBA600EB9F3E /* GameResultData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameResultData.h; sourceTree = "<group>"; };
 		78E260921B1AEBA600EB9F3E /* GameResultData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameResultData.m; sourceTree = "<group>"; };
@@ -556,6 +558,7 @@
 		78FD4B331C7476C400905640 /* image */ = {
 			isa = PBXGroup;
 			children = (
+				78CE59871C88366E0091EBE3 /* icon.png */,
 				780E34B81C86984C00B1932A /* button_continue_click.png */,
 				780E34BD1C86984C00B1932A /* button_home_click.png */,
 				780E34BE1C86984C00B1932A /* button_reflesh_click.png */,
@@ -781,6 +784,7 @@
 				7878D01B1C809BF700BC37BF /* btn_share.png in Resources */,
 				78FD4B6E1C7476D300905640 /* backgroundwhite.png in Resources */,
 				78FD4B601C7476D300905640 /* 1.png in Resources */,
+				78CE59881C88366E0091EBE3 /* icon.png in Resources */,
 				7878D0151C809B1700BC37BF /* btn_normal.png in Resources */,
 				780E34A31C8677AE00B1932A /* 4@2x.png in Resources */,
 				78FD4B801C7476D300905640 /* image_title.png in Resources */,

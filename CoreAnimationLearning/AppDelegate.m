@@ -21,7 +21,11 @@
     // Override point for customization after application launch.
     
     //    [XiaoZSinitialization sharedInstance];
-    [WXApi registerApp:weixinAppid];
+    BOOL isValid = [WXApi registerApp:weixinAppid];
+    if (!isValid) {
+        NSLog(@"微信registerApp 失败");
+    }
+    
     [[GameCenterManager sharedManager] setupManager];
     //加密数据的秘钥，这个秘钥升级的时候不能变。否则会崩溃
     [[GameCenterManager sharedManager] setupManagerAndSetShouldCryptWithKey:@"3ufdekid"];

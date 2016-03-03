@@ -53,6 +53,16 @@
       "scale" : "2x"
     },
     {
+      "idiom" : "ipad",
+      "size" : "50x50",
+      "scale" : "1x"
+    },
+    {
+      "idiom" : "ipad",
+      "size" : "50x50",
+      "scale" : "2x"
+    },
+    {
       "size" : "72x72",
       "idiom" : "ipad",
       "filename" : "72.png",
@@ -84,6 +94,11 @@
       "idiom" : "mac",
       "filename" : "512.png",
       "scale" : "1x"
+    },
+    {
+      "idiom" : "mac",
+      "size" : "512x512",
+      "scale" : "2x"
     }
   ],
   "info" : {

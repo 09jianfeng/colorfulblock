@@ -62,7 +62,7 @@
     WXMediaMessage *message = [WXMediaMessage message];
     message.title = @"colorful block";
     message.description = @"很简陋朴素的消除类游戏，十字消除的玩法，比手速";
-    [message setThumbImage:[UIImage imageNamed:@"Icon.png"]];
+    [message setThumbImage:[UIImage imageNamed:@"icon.png"]];
     
     WXWebpageObject *ext = [WXWebpageObject object];
     ext.webpageUrl = [GameToolKit gameAppURLInAppStore];
