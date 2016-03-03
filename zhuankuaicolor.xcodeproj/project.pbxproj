@@ -71,6 +71,20 @@
 		7883437B1C8064ED00496BC3 /* playing_ground.png in Resources */ = {isa = PBXBuildFile; fileRef = 7883437A1C8064ED00496BC3 /* playing_ground.png */; };
 		78959C161C7B649600797EC2 /* button_paiming.png in Resources */ = {isa = PBXBuildFile; fileRef = 78959C151C7B649600797EC2 /* button_paiming.png */; };
 		78CC36301AF673AA00033213 /* GameKeyValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CC362F1AF673AA00033213 /* GameKeyValue.m */; };
+		78CE595B1C880CBB0091EBE3 /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 78CE59571C880CBB0091EBE3 /* libWeChatSDK.a */; };
+		78CE595C1C880CBB0091EBE3 /* read_me.txt in Resources */ = {isa = PBXBuildFile; fileRef = 78CE59581C880CBB0091EBE3 /* read_me.txt */; };
+		78CE59621C880D030091EBE3 /* WeiXinShare.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CE59601C880D030091EBE3 /* WeiXinShare.m */; };
+		78CE59661C880DB60091EBE3 /* GameToolKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CE59651C880DB60091EBE3 /* GameToolKit.m */; };
+		78CE59681C880E6B0091EBE3 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78CE59671C880E6B0091EBE3 /* SystemConfiguration.framework */; };
+		78CE596A1C880E710091EBE3 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 78CE59691C880E710091EBE3 /* libz.tbd */; };
+		78CE596E1C880E8B0091EBE3 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 78CE596D1C880E8B0091EBE3 /* libsqlite3.0.tbd */; };
+		78CE59701C880EC80091EBE3 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 78CE596F1C880EC80091EBE3 /* libc++.tbd */; };
+		78CE59721C88100F0091EBE3 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78CE59711C88100F0091EBE3 /* GameKit.framework */; };
+		78CE59811C8821CA0091EBE3 /* GameCenterManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CE59791C8821CA0091EBE3 /* GameCenterManager.m */; };
+		78CE59821C8821CA0091EBE3 /* GCMMultiplayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CE597C1C8821CA0091EBE3 /* GCMMultiplayer.m */; };
+		78CE59831C8821CA0091EBE3 /* NSDataAES256.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CE597E1C8821CA0091EBE3 /* NSDataAES256.m */; };
+		78CE59841C8821CA0091EBE3 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CE59801C8821CA0091EBE3 /* Reachability.m */; };
+		78CE59861C8821DC0091EBE3 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78CE59851C8821DC0091EBE3 /* Security.framework */; };
 		78E260931B1AEBA600EB9F3E /* GameResultData.m in Sources */ = {isa = PBXBuildFile; fileRef = 78E260921B1AEBA600EB9F3E /* GameResultData.m */; };
 		78EE81971C812D4200CD33BD /* bg_progress_02.png in Resources */ = {isa = PBXBuildFile; fileRef = 78EE81961C812D4200CD33BD /* bg_progress_02.png */; };
 		78EE819B1C81302700CD33BD /* btn_stop.png in Resources */ = {isa = PBXBuildFile; fileRef = 78EE819A1C81302700CD33BD /* btn_stop.png */; };
@@ -191,6 +205,30 @@
 		78959C151C7B649600797EC2 /* button_paiming.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = button_paiming.png; path = image/button_paiming.png; sourceTree = SOURCE_ROOT; };
 		78CC362E1AF673AA00033213 /* GameKeyValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameKeyValue.h; sourceTree = "<group>"; };
 		78CC362F1AF673AA00033213 /* GameKeyValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameKeyValue.m; sourceTree = "<group>"; };
+		78CE59571C880CBB0091EBE3 /* libWeChatSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libWeChatSDK.a; path = thirdPard/WeChatSDK_1.5/libWeChatSDK.a; sourceTree = SOURCE_ROOT; };
+		78CE59581C880CBB0091EBE3 /* read_me.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = read_me.txt; path = thirdPard/WeChatSDK_1.5/read_me.txt; sourceTree = SOURCE_ROOT; };
+		78CE59591C880CBB0091EBE3 /* WXApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WXApi.h; path = thirdPard/WeChatSDK_1.5/WXApi.h; sourceTree = SOURCE_ROOT; };
+		78CE595A1C880CBB0091EBE3 /* WXApiObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WXApiObject.h; path = thirdPard/WeChatSDK_1.5/WXApiObject.h; sourceTree = SOURCE_ROOT; };
+		78CE595F1C880D030091EBE3 /* WeiXinShare.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeiXinShare.h; sourceTree = "<group>"; };
+		78CE59601C880D030091EBE3 /* WeiXinShare.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeiXinShare.m; sourceTree = "<group>"; };
+		78CE59641C880DB60091EBE3 /* GameToolKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameToolKit.h; sourceTree = "<group>"; };
+		78CE59651C880DB60091EBE3 /* GameToolKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameToolKit.m; sourceTree = "<group>"; };
+		78CE59671C880E6B0091EBE3 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		78CE59691C880E710091EBE3 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		78CE596B1C880E790091EBE3 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		78CE596D1C880E8B0091EBE3 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
+		78CE596F1C880EC80091EBE3 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
+		78CE59711C88100F0091EBE3 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
+		78CE59781C8821CA0091EBE3 /* GameCenterManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GameCenterManager.h; path = "thirdPard/GC Manager/GameCenterManager.h"; sourceTree = SOURCE_ROOT; };
+		78CE59791C8821CA0091EBE3 /* GameCenterManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GameCenterManager.m; path = "thirdPard/GC Manager/GameCenterManager.m"; sourceTree = SOURCE_ROOT; };
+		78CE597A1C8821CA0091EBE3 /* GCMConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GCMConstants.h; path = "thirdPard/GC Manager/GCMConstants.h"; sourceTree = SOURCE_ROOT; };
+		78CE597B1C8821CA0091EBE3 /* GCMMultiplayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GCMMultiplayer.h; path = "thirdPard/GC Manager/GCMMultiplayer.h"; sourceTree = SOURCE_ROOT; };
+		78CE597C1C8821CA0091EBE3 /* GCMMultiplayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GCMMultiplayer.m; path = "thirdPard/GC Manager/GCMMultiplayer.m"; sourceTree = SOURCE_ROOT; };
+		78CE597D1C8821CA0091EBE3 /* NSDataAES256.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NSDataAES256.h; path = "thirdPard/GC Manager/NSDataAES256.h"; sourceTree = SOURCE_ROOT; };
+		78CE597E1C8821CA0091EBE3 /* NSDataAES256.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NSDataAES256.m; path = "thirdPard/GC Manager/NSDataAES256.m"; sourceTree = SOURCE_ROOT; };
+		78CE597F1C8821CA0091EBE3 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Reachability.h; path = "thirdPard/GC Manager/Reachability.h"; sourceTree = SOURCE_ROOT; };
+		78CE59801C8821CA0091EBE3 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Reachability.m; path = "thirdPard/GC Manager/Reachability.m"; sourceTree = SOURCE_ROOT; };
+		78CE59851C8821DC0091EBE3 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		78E260901B1ACB5D00EB9F3E /* macro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = macro.h; sourceTree = "<group>"; };
 		78E260911B1AEBA600EB9F3E /* GameResultData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameResultData.h; sourceTree = "<group>"; };
 		78E260921B1AEBA600EB9F3E /* GameResultData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameResultData.m; sourceTree = "<group>"; };
@@ -228,8 +266,15 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				78CE59861C8821DC0091EBE3 /* Security.framework in Frameworks */,
+				78CE59721C88100F0091EBE3 /* GameKit.framework in Frameworks */,
+				78CE59701C880EC80091EBE3 /* libc++.tbd in Frameworks */,
+				78CE596E1C880E8B0091EBE3 /* libsqlite3.0.tbd in Frameworks */,
+				78CE596A1C880E710091EBE3 /* libz.tbd in Frameworks */,
+				78CE59681C880E6B0091EBE3 /* SystemConfiguration.framework in Frameworks */,
 				7836C7DD1AF3CE8D00E4AFAB /* Accelerate.framework in Frameworks */,
 				780E17651AEE7DDB007A4A88 /* UIKit.framework in Frameworks */,
+				78CE595B1C880CBB0091EBE3 /* libWeChatSDK.a in Frameworks */,
 				7844B71A1AEB29B0006DE282 /* AVFoundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -263,18 +308,25 @@
 			name = shareAndgameCenter;
 			sourceTree = "<group>";
 		};
-		781FA81C1AED21510048B337 /* playing */ = {
+		781FA81C1AED21510048B337 /* subscene_playing */ = {
 			isa = PBXGroup;
 			children = (
 				7835010C1B15C27500830DAE /* view */,
 				7844B7201AEB313C006DE282 /* model */,
 			);
-			name = playing;
+			name = subscene_playing;
 			sourceTree = "<group>";
 		};
 		782B1F701AE35B450051D053 = {
 			isa = PBXGroup;
 			children = (
+				78CE59851C8821DC0091EBE3 /* Security.framework */,
+				78CE59711C88100F0091EBE3 /* GameKit.framework */,
+				78CE596F1C880EC80091EBE3 /* libc++.tbd */,
+				78CE596D1C880E8B0091EBE3 /* libsqlite3.0.tbd */,
+				78CE596B1C880E790091EBE3 /* libsqlite3.tbd */,
+				78CE59691C880E710091EBE3 /* libz.tbd */,
+				78CE59671C880E6B0091EBE3 /* SystemConfiguration.framework */,
 				7836C7DC1AF3CE8D00E4AFAB /* Accelerate.framework */,
 				780E17641AEE7DDB007A4A88 /* UIKit.framework */,
 				7844B7191AEB29B0006DE282 /* AVFoundation.framework */,
@@ -297,11 +349,11 @@
 		782B1F7B1AE35B450051D053 /* CoreAnimationLearning */ = {
 			isa = PBXGroup;
 			children = (
+				78CE59551C880C8C0091EBE3 /* thirdPard */,
 				78EE81AB1C814C0F00CD33BD /* audio */,
 				78FD4B331C7476C400905640 /* image */,
 				780E17631AEE7D64007A4A88 /* common */,
-				7844B7211AEB3154006DE282 /* manu */,
-				781FA81C1AED21510048B337 /* playing */,
+				7844B7211AEB3154006DE282 /* scenes */,
 				782B1F801AE35B450051D053 /* AppDelegate.h */,
 				782B1F811AE35B450051D053 /* AppDelegate.m */,
 				782B1F861AE35B450051D053 /* Main.storyboard */,
@@ -362,18 +414,76 @@
 			name = model;
 			sourceTree = "<group>";
 		};
-		7844B7211AEB3154006DE282 /* manu */ = {
+		7844B7211AEB3154006DE282 /* scenes */ = {
 			isa = PBXGroup;
 			children = (
+				78CE59631C880D7D0091EBE3 /* sceneCommon */,
+				781FA81C1AED21510048B337 /* subscene_playing */,
 				78E2608F1B1A948B00EB9F3E /* controller */,
-				78E582511B15AB47000BD23C /* mainscene */,
+				78E2608E1B1A946C00EB9F3E /* view */,
+				78E2608D1B1A946500EB9F3E /* model */,
 			);
-			name = manu;
+			name = scenes;
+			sourceTree = "<group>";
+		};
+		78CE59551C880C8C0091EBE3 /* thirdPard */ = {
+			isa = PBXGroup;
+			children = (
+				78CE59561C880C9E0091EBE3 /* webchat */,
+			);
+			name = thirdPard;
+			sourceTree = "<group>";
+		};
+		78CE59561C880C9E0091EBE3 /* webchat */ = {
+			isa = PBXGroup;
+			children = (
+				78CE59571C880CBB0091EBE3 /* libWeChatSDK.a */,
+				78CE59581C880CBB0091EBE3 /* read_me.txt */,
+				78CE59591C880CBB0091EBE3 /* WXApi.h */,
+				78CE595A1C880CBB0091EBE3 /* WXApiObject.h */,
+			);
+			name = webchat;
+			sourceTree = "<group>";
+		};
+		78CE59631C880D7D0091EBE3 /* sceneCommon */ = {
+			isa = PBXGroup;
+			children = (
+				78CE59641C880DB60091EBE3 /* GameToolKit.h */,
+				78CE59651C880DB60091EBE3 /* GameToolKit.m */,
+			);
+			name = sceneCommon;
+			sourceTree = "<group>";
+		};
+		78CE59761C8813410091EBE3 /* gameCenter */ = {
+			isa = PBXGroup;
+			children = (
+				78CE59781C8821CA0091EBE3 /* GameCenterManager.h */,
+				78CE59791C8821CA0091EBE3 /* GameCenterManager.m */,
+				78CE597A1C8821CA0091EBE3 /* GCMConstants.h */,
+				78CE597B1C8821CA0091EBE3 /* GCMMultiplayer.h */,
+				78CE597C1C8821CA0091EBE3 /* GCMMultiplayer.m */,
+				78CE597D1C8821CA0091EBE3 /* NSDataAES256.h */,
+				78CE597E1C8821CA0091EBE3 /* NSDataAES256.m */,
+				78CE597F1C8821CA0091EBE3 /* Reachability.h */,
+				78CE59801C8821CA0091EBE3 /* Reachability.m */,
+			);
+			name = gameCenter;
+			sourceTree = "<group>";
+		};
+		78CE59771C88135A0091EBE3 /* weixinshare */ = {
+			isa = PBXGroup;
+			children = (
+				78CE595F1C880D030091EBE3 /* WeiXinShare.h */,
+				78CE59601C880D030091EBE3 /* WeiXinShare.m */,
+			);
+			name = weixinshare;
 			sourceTree = "<group>";
 		};
 		78E2608D1B1A946500EB9F3E /* model */ = {
 			isa = PBXGroup;
 			children = (
+				78CE59771C88135A0091EBE3 /* weixinshare */,
+				78CE59761C8813410091EBE3 /* gameCenter */,
 				78E260911B1AEBA600EB9F3E /* GameResultData.h */,
 				78E260921B1AEBA600EB9F3E /* GameResultData.m */,
 			);
@@ -398,15 +508,6 @@
 				782B1F841AE35B450051D053 /* ViewController.m */,
 			);
 			name = controller;
-			sourceTree = "<group>";
-		};
-		78E582511B15AB47000BD23C /* mainscene */ = {
-			isa = PBXGroup;
-			children = (
-				78E2608E1B1A946C00EB9F3E /* view */,
-				78E2608D1B1A946500EB9F3E /* model */,
-			);
-			name = mainscene;
 			sourceTree = "<group>";
 		};
 		78EE81A41C81490400CD33BD /* fileStorage */ = {
@@ -623,6 +724,7 @@
 				78FD4B781C7476D300905640 /* Default.png in Resources */,
 				780E349F1C8677AE00B1932A /* 2@2x.png in Resources */,
 				7878D0131C809B1700BC37BF /* btn_easy.png in Resources */,
+				78CE595C1C880CBB0091EBE3 /* read_me.txt in Resources */,
 				780E34A21C8677AE00B1932A /* 3@3x.png in Resources */,
 				788343711C80549300496BC3 /* bg_stop.png in Resources */,
 				780E34A11C8677AE00B1932A /* 3@2x.png in Resources */,
@@ -701,6 +803,7 @@
 			files = (
 				780E17621AEE7D52007A4A88 /* SystemInfo.m in Sources */,
 				782B1F851AE35B450051D053 /* ViewController.m in Sources */,
+				78CE59661C880DB60091EBE3 /* GameToolKit.m in Sources */,
 				78CC36301AF673AA00033213 /* GameKeyValue.m in Sources */,
 				780E17681AEE95CA007A4A88 /* BallView.m in Sources */,
 				781FA81F1AED2FB60048B337 /* ProGressView.m in Sources */,
@@ -712,7 +815,12 @@
 				7835010F1B15C2CE00830DAE /* UIViewFinishPlayAlert.m in Sources */,
 				78EE81AA1C81495700CD33BD /* GameAudioPlay.m in Sources */,
 				781FA81B1AED17C50048B337 /* SpriteUIView.m in Sources */,
+				78CE59841C8821CA0091EBE3 /* Reachability.m in Sources */,
 				78E260931B1AEBA600EB9F3E /* GameResultData.m in Sources */,
+				78CE59621C880D030091EBE3 /* WeiXinShare.m in Sources */,
+				78CE59821C8821CA0091EBE3 /* GCMMultiplayer.m in Sources */,
+				78CE59811C8821CA0091EBE3 /* GameCenterManager.m in Sources */,
+				78CE59831C8821CA0091EBE3 /* NSDataAES256.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -842,9 +950,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = CoreAnimationLearning/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/thirdPard/WeChatSDK_1.5",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.hehele.colorfulblock;
 				PRODUCT_NAME = zhuankuaicolor;
 				PROVISIONING_PROFILE = "";
@@ -858,9 +971,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = CoreAnimationLearning/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/thirdPard/WeChatSDK_1.5",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.hehele.colorfulblock;
 				PRODUCT_NAME = zhuankuaicolor;
 				PROVISIONING_PROFILE = "";

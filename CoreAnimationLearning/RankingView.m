@@ -66,11 +66,11 @@ extern NSString *GAMEPEFECTTIMESKET;
     [board addSubview:scrollView];
     
     float buttonHeigh = boardUnitHeigh/2;
-    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-    button.frame = CGRectMake(buttonHeigh,board.frame.size.height - buttonHeigh*1.5, buttonHeigh, buttonHeigh);
-    button.backgroundColor = [UIColor grayColor];
-    [button addTarget:self action:@selector(buttonPressedBack:) forControlEvents:UIControlEventTouchUpInside];
-    [board addSubview:button];
+    UIButton *buttonBack = [UIButton buttonWithType:UIButtonTypeCustom];
+    buttonBack.frame = CGRectMake(buttonHeigh,board.frame.size.height - buttonHeigh*1.5, buttonHeigh, buttonHeigh);
+    [buttonBack setTitle:@"<—" forState:UIControlStateNormal];
+    [buttonBack addTarget:self action:@selector(buttonPressedBack:) forControlEvents:UIControlEventTouchUpInside];
+    [board addSubview:buttonBack];
 }
 
 -(UIView *)subViewForScrollView:(GameDifficultyLevel)difLevel bestPoint:(NSString *)bestPoint perfectTimes:(NSString *)perfectTimes viewFrame:(CGRect)viewFrame{

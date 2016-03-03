@@ -15,10 +15,12 @@
 #import "SystemInfo.h"
 #import "GameResultData.h"
 #import "RankingView.h"
+#import "WeiXinShare.h"
+#import "GameCenterManager.h"
 
 extern NSString *playingViewExitNotification;
 
-@interface ViewController (){
+@interface ViewController () <GameCenterManagerDelegate>{
     float radius;
 }
 
@@ -43,9 +45,14 @@ extern NSString *playingViewExitNotification;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     self.arrayButtons = [[NSMutableArray alloc] initWithCapacity:6];
     radius = self.view.frame.size.width/8.0;
     [self addSubViews];
+    
+    // Set GameCenter Manager Delegate
+    [[GameCenterManager sharedManager] setDelegate:self];
+    [[GameCenterManager sharedManager] checkGameCenterAvailability:YES];
 }
 
 -(void)addSubViews{
@@ -99,19 +106,19 @@ extern NSString *playingViewExitNotification;
     [buttonRanking addTarget:self action:@selector(buttonPressedRanking:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:buttonRanking];
     
-    UIButton *buttonShare = [[UIButton alloc] initWithFrame:CGRectZero];
-    buttonShare.tag = 10006;
-    buttonShare.backgroundColor = [UIColor clearColor];
-    [buttonShare setImage:[UIImage imageNamed:@"btn_praise"] forState:UIControlStateNormal];
-    [buttonShare addTarget:self action:@selector(buttonPressedAssessment:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:buttonShare];
-    
     UIButton *buttonStar = [[UIButton alloc] initWithFrame:CGRectZero];
-    buttonStar.tag = 10007;
+    buttonStar.tag = 10006;
     buttonStar.backgroundColor = [UIColor clearColor];
-    [buttonStar setImage:[UIImage imageNamed:@"btn_share"] forState:UIControlStateNormal];
-    [buttonShare addTarget:self action:@selector(buttonPressedShare:) forControlEvents:UIControlEventTouchUpInside];
+    [buttonStar setImage:[UIImage imageNamed:@"btn_praise"] forState:UIControlStateNormal];
+    [buttonStar addTarget:self action:@selector(buttonPressedAssessment:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:buttonStar];
+    
+    UIButton *buttonShare = [[UIButton alloc] initWithFrame:CGRectZero];
+    buttonShare.tag = 10007;
+    buttonShare.backgroundColor = [UIColor clearColor];
+    [buttonShare setImage:[UIImage imageNamed:@"btn_share"] forState:UIControlStateNormal];
+    [buttonShare addTarget:self action:@selector(buttonPressedShare:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:buttonShare];
     
     UIButton *buttonVoice = [[UIButton alloc] initWithFrame:CGRectZero];
     buttonVoice.tag = 10008;
@@ -278,19 +285,25 @@ extern NSString *playingViewExitNotification;
 }
 
 -(void)buttonPressedShare:(id)sender{
-    
+    //分享到朋友圈
+    [WeiXinShare sendMessageAndImageToWebChat:1];
 }
 
 -(void)buttonPressedTutorial:(id)sender{
+    // If you have one leaderboard, present the leaderboard
+    // If you have more than one, shows all leaderboards and allows player to choose which one to show
+    [[GameCenterManager sharedManager] presentLeaderboardsOnViewController:self withLeaderboard:nil];
     
+    // Presents the leaderboard with the ID of LeaderboardID
+    [[GameCenterManager sharedManager] presentLeaderboardsOnViewController:self withLeaderboard:@"LeaderboardID"];
 }
 
 -(void)buttonPressedVoice:(id)sender{
     
 }
 
-#pragma mark -
-#pragma mark 一直循环执行的动画效果
+
+#pragma mark - 一直循环执行的动画效果
 -(void)alwaysMove:(UIView *)view timeInterval:(int)timeInterval{
     [UIView animateWithDuration:timeInterval animations:^{
         view.frame = CGRectMake(-view.frame.size.width, view.frame.origin.y, view.frame.size.width, view.frame.size.height);
@@ -300,8 +313,7 @@ extern NSString *playingViewExitNotification;
     }];
 }
 
-#pragma mark -
-#pragma mark 动画
+#pragma mark - 动画
 //左右摇动变大变小的动画
 -(void)beginAnimation:(UIView *)bt{
     //1.绕中心圆移动 Circle move   没添加进去先
@@ -345,5 +357,95 @@ extern NSString *playingViewExitNotification;
     groupAnnimation.repeatCount = MAXFLOAT;
     //开演
     [bt.layer addAnimation:groupAnnimation forKey:@"groupAnnimation"];
+}
+
+
+
+//------------------------------------------------------------------------------------------------------------//
+//------- GameKit Delegate -----------------------------------------------------------------------------------//
+//------------------------------------------------------------------------------------------------------------//
+#pragma mark - GameKit Delegate
+
+- (void)gameCenterViewControllerDidFinish:(GKGameCenterViewController *)gameCenterViewController {
+    [self dismissViewControllerAnimated:YES completion:nil];
+    if (gameCenterViewController.viewState == GKGameCenterViewControllerStateAchievements) {
+        NSLog(@"Displayed GameCenter achievements.");
+    } else if (gameCenterViewController.viewState == GKGameCenterViewControllerStateLeaderboards) {
+        NSLog(@"Displayed GameCenter leaderboard.");
+    } else {
+        NSLog(@"Displayed GameCenter controller.");
+    }
+}
+
+//------------------------------------------------------------------------------------------------------------//
+//------- GameCenter Manager Delegate ------------------------------------------------------------------------//
+//------------------------------------------------------------------------------------------------------------//
+#pragma mark - GameCenter Manager Delegate
+
+- (void)gameCenterManager:(GameCenterManager *)manager authenticateUser:(UIViewController *)gameCenterLoginController {
+    [self presentViewController:gameCenterLoginController animated:YES completion:^{
+        NSLog(@"Finished Presenting Authentication Controller");
+    }];
+}
+
+- (void)gameCenterManager:(GameCenterManager *)manager availabilityChanged:(NSDictionary *)availabilityInformation {
+    NSLog(@"GC Availabilty: %@", availabilityInformation);
+    if ([[availabilityInformation objectForKey:@"status"] isEqualToString:@"GameCenter Available"]) {
+        [self.navigationController.navigationBar setValue:@"GameCenter Available" forKeyPath:@"prompt"];
+        NSLog(@"Game Center is online, the current player is logged in, and this app is setup.");
+    } else {
+        [self.navigationController.navigationBar setValue:@"GameCenter Unavailable" forKeyPath:@"prompt"];
+        NSLog(@"%@",[availabilityInformation objectForKey:@"error"]);
+    }
+    
+    GKLocalPlayer *player = [[GameCenterManager sharedManager] localPlayerData];
+    if (player) {
+        if ([player isUnderage] == NO) {
+            NSLog(@"%@",[NSString stringWithFormat:@"%@ signed in.", player.displayName]);
+            NSLog(@"%@",player.displayName);
+            NSLog(@"%@",@"Player is not underage and is signed-in");
+            [[GameCenterManager sharedManager] localPlayerPhoto:^(UIImage *playerPhoto) {
+            }];
+        } else {
+            NSLog(@"%@",player.displayName);
+            NSLog(@"%@",@"Player is underage");
+            NSLog(@"%@",[NSString stringWithFormat:@"Underage player, %@, signed in.", player.displayName]);
+        }
+    } else {
+        NSLog(@"%@",[NSString stringWithFormat:@"No GameCenter player found."]);
+    }
+}
+
+- (void)gameCenterManager:(GameCenterManager *)manager error:(NSError *)error {
+    NSLog(@"GCM Error: %@", error);
+    NSLog(@"%@",error.domain);
+}
+
+- (void)gameCenterManager:(GameCenterManager *)manager reportedAchievement:(GKAchievement *)achievement withError:(NSError *)error {
+    if (!error) {
+        NSLog(@"GCM Reported Achievement: %@", achievement);
+        NSLog(@"%@",[NSString stringWithFormat:@"Reported achievement with %.1f percent completed", achievement.percentComplete]);
+    } else {
+        NSLog(@"GCM Error while reporting achievement: %@", error);
+    }
+}
+
+- (void)gameCenterManager:(GameCenterManager *)manager reportedScore:(GKScore *)score withError:(NSError *)error {
+    if (!error) {
+        NSLog(@"GCM Reported Score: %@", score);
+        NSLog(@"%@",[NSString stringWithFormat:@"Reported leaderboard score: %lld", score.value]);
+    } else {
+        NSLog(@"GCM Error while reporting score: %@", error);
+    }
+}
+
+- (void)gameCenterManager:(GameCenterManager *)manager didSaveScore:(GKScore *)score {
+    NSLog(@"Saved GCM Score with value: %lld", score.value);
+    NSLog(@"%@",[NSString stringWithFormat:@"Score saved for upload to GameCenter."]);
+}
+
+- (void)gameCenterManager:(GameCenterManager *)manager didSaveAchievement:(GKAchievement *)achievement {
+    NSLog(@"Saved GCM Achievement: %@", achievement);
+    NSLog(@"%@",[NSString stringWithFormat:@"Achievement saved for upload to GameCenter."]);
 }
 @end

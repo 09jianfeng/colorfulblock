@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "WeiXinShare.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
