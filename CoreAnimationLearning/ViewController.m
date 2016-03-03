@@ -192,30 +192,42 @@ extern NSString *playingViewExitNotification;
     float leftOffset = unitWidth;
     float buttonFunctionWidth = unitWidth*3;
     float buttonFunctionY = CGRectGetHeight(self.view.frame) - buttonFunctionWidth * 2;
+    float buttonFunctionOringY = CGRectGetHeight(self.view.frame)*1.2;
     
     UIButton *buttonRanking = [self.view viewWithTag:10005];
-    buttonRanking.frame = CGRectMake(-leftOffset, buttonFunctionY, buttonFunctionWidth, buttonFunctionWidth);
-    [UIView animateWithDuration:1.0 animations:^{
+    buttonRanking.frame = CGRectMake(leftOffset, buttonFunctionOringY, buttonFunctionWidth, buttonFunctionWidth);
+    [UIView animateWithDuration:1 delay:0 usingSpringWithDamping:0.4 initialSpringVelocity:10 options:UIViewAnimationOptionCurveEaseIn animations:^{
         buttonRanking.frame = CGRectMake(leftOffset, buttonFunctionY, buttonFunctionWidth, buttonFunctionWidth);
-    } completion:^(BOOL finished) {
+    } completion:^(BOOL isFinish){
     }];
     
     UIButton *buttonShare = [self.view viewWithTag:10006];
-    buttonShare.frame = CGRectMake(leftOffset + 4.0 * unitWidth, buttonFunctionY, buttonFunctionWidth, buttonFunctionWidth);
+    buttonShare.frame = CGRectMake(leftOffset + 4.0 * unitWidth, buttonFunctionOringY, buttonFunctionWidth, buttonFunctionWidth);
+    [UIView animateWithDuration:1 delay:0 usingSpringWithDamping:0.4 initialSpringVelocity:10 options:UIViewAnimationOptionCurveEaseIn animations:^{
+        buttonShare.frame = CGRectMake(leftOffset + 4.0 * unitWidth, buttonFunctionY, buttonFunctionWidth, buttonFunctionWidth);
+    } completion:^(BOOL isFinish){
+    }];
     
     UIButton *buttonStar = [self.view viewWithTag:10007];
-    buttonStar.frame = CGRectMake(self.view.frame.size.width, buttonFunctionY, buttonFunctionWidth, buttonFunctionWidth);
-    [UIView animateWithDuration:1.0 animations:^{
+    buttonStar.frame = CGRectMake(leftOffset + 4.0 * unitWidth * 2.0, buttonFunctionOringY, buttonFunctionWidth, buttonFunctionWidth);
+    [UIView animateWithDuration:1 delay:0 usingSpringWithDamping:0.4 initialSpringVelocity:10 options:UIViewAnimationOptionCurveEaseIn animations:^{
         buttonStar.frame = CGRectMake(leftOffset + 4.0 * unitWidth * 2.0, buttonFunctionY, buttonFunctionWidth, buttonFunctionWidth);
-    } completion:^(BOOL finished) {
+    } completion:^(BOOL isFinish){
     }];
     
     UIButton *buttonVoice = [self.view viewWithTag:10008];
-    buttonVoice.frame = CGRectMake(leftOffset + 4.0 * unitWidth * 3.0, buttonFunctionY, buttonFunctionWidth, buttonFunctionWidth);
+    buttonVoice.frame = CGRectMake(leftOffset + 4.0 * unitWidth * 3.0, buttonFunctionOringY, buttonFunctionWidth, buttonFunctionWidth);
+    [UIView animateWithDuration:1 delay:0 usingSpringWithDamping:0.4 initialSpringVelocity:10 options:UIViewAnimationOptionCurveEaseIn animations:^{
+        buttonVoice.frame = CGRectMake(leftOffset + 4.0 * unitWidth * 3.0, buttonFunctionY, buttonFunctionWidth, buttonFunctionWidth);
+    } completion:^(BOOL isFinish){
+    }];
     
     UIButton *buttonTutorial = [self.view viewWithTag:10009];
-    buttonTutorial.frame = CGRectMake(leftOffset + 4.0 * unitWidth * 4.0, buttonFunctionY, buttonFunctionWidth, buttonFunctionWidth);
-    
+    buttonTutorial.frame = CGRectMake(leftOffset + 4.0 * unitWidth * 4.0, buttonFunctionOringY, buttonFunctionWidth, buttonFunctionWidth);
+    [UIView animateWithDuration:1 delay:0 usingSpringWithDamping:0.4 initialSpringVelocity:10 options:UIViewAnimationOptionCurveEaseIn animations:^{
+        buttonTutorial.frame = CGRectMake(leftOffset + 4.0 * unitWidth * 4.0, buttonFunctionY, buttonFunctionWidth, buttonFunctionWidth);
+    } completion:^(BOOL isFinish){
+    }];
 }
 
 
@@ -334,7 +346,7 @@ extern NSString *playingViewExitNotification;
     
     //x方向伸缩
     CAKeyframeAnimation *scaleX = [CAKeyframeAnimation animationWithKeyPath:@"transform.scale.x"];
-    scaleX.values = @[@1.0,@1.02,@1.0];
+    scaleX.values = @[@1.0,@1.06,@1.0];
     scaleX.keyTimes = @[@0.0,@0.5,@1.0];
     scaleX.repeatCount = MAXFLOAT;
     scaleX.autoreverses = YES;
