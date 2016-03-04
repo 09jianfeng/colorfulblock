@@ -9,6 +9,7 @@
 #import "UIViewFinishPlayAlert.h"
 #import "GameAudioPlay.h"
 #import "GameResultData.h"
+#import "WeiXinShare.h"
 
 @interface UIViewFinishPlayAlert()
 @property(nonatomic,retain) UIDynamicAnimator *ani;
@@ -159,7 +160,37 @@
 
 #pragma mark - 按钮事件
 -(void)buttonShare:(id)sender{
+    NSString *difLevelString = @"";
+    switch (self.collectionViewController.gameDifficultyLevel) {
+        case GameDifficultyLevel1:
+            difLevelString = @"简单模式";
+            break;
+            
+        case GameDifficultyLevel2:
+            difLevelString = @"普通模式";
+            break;
+        
+        case GameDifficultyLevel3:
+            difLevelString = @"困难模式";
+            break;
+            
+        case GameDifficultyLevel4:
+            difLevelString = @"疯狂模式";
+            break;
+            
+        default:
+            break;
+    }
     
+    NSString *message = @"";
+    if (self.isPerfectPlay) {
+        message = [NSString stringWithFormat:@"我刚刚在%@下获得“完美拆除”",difLevelString];
+    }else{
+        message = [NSString stringWithFormat:@"我在%@玩到了%d分,不服来战",difLevelString,self.gameCurrentPoints];
+    }
+    
+    //分享到朋友圈
+    [WeiXinShare sendMessageAndImageToWebChat:1 title:message];
 }
 
 -(void)buttonContinuePressed:(id)sender{

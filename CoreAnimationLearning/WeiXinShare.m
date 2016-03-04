@@ -25,8 +25,8 @@
     return weinXinShare;
 }
 
-+(void)sendMessageAndImageToWebChat:(enum WXScene)scene{
-    [[WeiXinShare shareInstance] sendLinkContent:scene];
++(void)sendMessageAndImageToWebChat:(enum WXScene)scene title:(NSString *)title{
+    [[WeiXinShare shareInstance] sendLinkContent:scene title:title];
 }
 
 //分享图片
@@ -57,10 +57,10 @@
 }
 
 
-- (void) sendLinkContent:(enum WXScene)scene
+-(void)sendLinkContent:(enum WXScene)scene title:(NSString *)title
 {
     WXMediaMessage *message = [WXMediaMessage message];
-    message.title = @"colorful block";
+    message.title = title;
     message.description = @"很简陋朴素的消除类游戏，十字消除的玩法，比手速";
     [message setThumbImage:[UIImage imageNamed:@"icon.png"]];
     
@@ -78,7 +78,7 @@
 }
 
 #pragma mark - 微信接口回调
--(void) onReq:(BaseReq*)req{
+-(void)onReq:(BaseReq*)req{
     if([req isKindOfClass:[GetMessageFromWXReq class]])
     {
         GetMessageFromWXReq *temp = (GetMessageFromWXReq *)req;

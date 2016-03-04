@@ -320,7 +320,7 @@ extern NSString *playingViewExitNotification;
     [GameAudioPlay playClickBlockAudio:YES];
     
     //分享到朋友圈
-    [WeiXinShare sendMessageAndImageToWebChat:1];
+    [WeiXinShare sendMessageAndImageToWebChat:1 title:@"下载试玩，感觉得了手癌。。。"];
 }
 
 -(void)buttonPressedTutorial:(id)sender{

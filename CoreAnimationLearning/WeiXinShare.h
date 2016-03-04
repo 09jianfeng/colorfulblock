@@ -18,7 +18,7 @@
 +(id)shareInstance;
 
 //分享图片链接
-+(void)sendMessageAndImageToWebChat:(enum WXScene)scene;
++(void)sendMessageAndImageToWebChat:(enum WXScene)scene title:(NSString *)title;
 //分享图片
 +(void)sendImageShare:(UIImage*)image;
 

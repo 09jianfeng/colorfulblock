@@ -9,6 +9,7 @@
 #import "RankingView.h"
 #import "GameAudioPlay.h"
 #import "GameResultData.h"
+#import "WeiXinShare.h"
 
 extern NSString *GAMEBESTPOINTKEY;
 extern NSString *GAMEPEFECTTIMESKET;
@@ -61,7 +62,7 @@ extern NSString *GAMEPEFECTTIMESKET;
     scrollView.delegate = self;
     scrollView.pagingEnabled = YES;
     scrollView.contentSize = CGSizeMake(board.frame.size.width * 4.0, scrollViewHeigh);
-    for (NSInteger  i = 0; i < 4; i++) {
+    for (int i = 0; i < 4; i++) {
         NSDictionary *levelDicInfo = [[GameResultData getDictionaryOfGameResult] objectAtIndex:i];
         UIView *subView = [self subViewForScrollView:i+1 bestPoint:[levelDicInfo objectForKey:GAMEBESTPOINTKEY] perfectTimes:[levelDicInfo objectForKey:GAMEPEFECTTIMESKET] viewFrame:CGRectMake(scrollViewWidth * i, 0, scrollViewWidth, scrollViewHeigh)];
         [scrollView addSubview:subView];
@@ -82,6 +83,12 @@ extern NSString *GAMEPEFECTTIMESKET;
     [buttonBack setImage:[UIImage imageNamed:@"image_back"] forState:UIControlStateNormal];
     [buttonBack addTarget:self action:@selector(buttonPressedBack:) forControlEvents:UIControlEventTouchUpInside];
     [board addSubview:buttonBack];
+    
+    UIButton *buttonShare = [UIButton buttonWithType:UIButtonTypeCustom];
+    buttonShare.frame = CGRectMake(board.frame.size.width - buttonHeigh*2.0, board.frame.size.height - buttonHeigh*1.5, buttonHeigh, buttonHeigh);
+    [buttonShare setImage:[UIImage imageNamed:@"btn_icon_share_main"] forState:UIControlStateNormal];
+    [buttonShare addTarget:self action:@selector(buttonPressShare:) forControlEvents:UIControlEventTouchUpInside];
+    [board addSubview:buttonShare];
 }
 
 -(UIView *)subViewForScrollView:(GameDifficultyLevel)difLevel bestPoint:(NSString *)bestPoint perfectTimes:(NSString *)perfectTimes viewFrame:(CGRect)viewFrame{
@@ -153,6 +160,33 @@ extern NSString *GAMEPEFECTTIMESKET;
     }];
     
     [GameAudioPlay playViewSwitchAudio];
+}
+
+-(void)buttonPressShare:(id)sender{
+    NSString *title = @"简单模式";
+    switch (self.currentPage) {
+        case GameDifficultyLevel1:
+            title = @"简单模式";
+            break;
+        case GameDifficultyLevel2:
+            title = @"普通模式";
+            break;
+        case GameDifficultyLevel3:
+            title = @"困难模式";
+            break;
+        case GameDifficultyLevel4:
+            title = @"疯狂模式";
+            break;
+            
+        default:
+            break;
+    }
+    
+    int bestPoint = [GameResultData getBestPointsForDifLevel:self.currentPage+1];
+    int perfectTimes = [GameResultData getPerfectTimesForDifLevel:self.currentPage+1];
+    NSString *message = [NSString stringWithFormat:@"%@——历史最高分：%d,完美拆除：%d次",title,bestPoint,perfectTimes];
+    //分享到朋友圈
+    [WeiXinShare sendMessageAndImageToWebChat:1 title:message];
 }
 
 #pragma mark - UIScrollView delegate
