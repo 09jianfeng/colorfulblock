@@ -26,10 +26,6 @@
     return self;
 }
 
--(void)continueGame{
-    
-}
-
 -(void)showView{
     [GameResultData setGameResultForDifLevel:self.collectionViewController.gameDifficultyLevel bestPoints:self.gameCurrentPoints isPerfectPlay:self.isPerfectPlay];
     
@@ -69,7 +65,7 @@
             [GameAudioPlay playNumAddingAudio];
             labelPoints.text = [NSString stringWithFormat:@"%d",points];
             points++;
-            if (points >= gameCurrentPoints) {
+            if (points > gameCurrentPoints) {
                 dispatch_source_cancel(timer);
             }
         });
@@ -84,8 +80,13 @@
     
     UIButton *buttonContinue = [[UIButton alloc] initWithFrame:CGRectMake(boardWidth/2 - buttonFunctionWidth/2 - buttonFunctionWidth, buttonFunctionY, buttonFunctionWidth, buttonFunctionWidth)];
     buttonContinue.backgroundColor = [UIColor clearColor];
-    [buttonContinue setImage:[UIImage imageNamed:@"button_continue"] forState:UIControlStateNormal];
-    [buttonContinue addTarget:self action:@selector(buttonContinuePressed:) forControlEvents:UIControlEventTouchUpInside];
+    if (self.isGameEnd) {
+        [buttonContinue setImage:[UIImage imageNamed:@"btn_icon_share"] forState:UIControlStateNormal];
+        [buttonContinue addTarget:self action:@selector(buttonShare:) forControlEvents:UIControlEventTouchUpInside];
+    }else{
+        [buttonContinue setImage:[UIImage imageNamed:@"button_continue"] forState:UIControlStateNormal];
+        [buttonContinue addTarget:self action:@selector(buttonContinuePressed:) forControlEvents:UIControlEventTouchUpInside];
+    }
     [board addSubview:buttonContinue];
     
     UIButton *buttonMainManu = [[UIButton alloc] initWithFrame:CGRectMake(boardWidth/2 + buttonFunctionWidth/2 , buttonFunctionY, buttonFunctionWidth, buttonFunctionWidth)];
@@ -157,6 +158,10 @@
 }
 
 #pragma mark - 按钮事件
+-(void)buttonShare:(id)sender{
+    
+}
+
 -(void)buttonContinuePressed:(id)sender{
     UIView *board = [self viewWithTag:20000];
     [self.ani removeAllBehaviors];

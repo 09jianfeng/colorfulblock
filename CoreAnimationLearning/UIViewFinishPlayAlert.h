@@ -13,7 +13,7 @@
 @property(nonatomic,assign) CollectionViewControllerPlay *collectionViewController;
 @property(nonatomic,assign) int gameCurrentPoints;
 @property(nonatomic,assign) BOOL isPerfectPlay;
+@property(nonatomic,assign) BOOL isGameEnd;
 
--(void)continueGame;
 -(void)showView;
 @end

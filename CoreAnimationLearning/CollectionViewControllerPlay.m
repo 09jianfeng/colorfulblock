@@ -165,6 +165,9 @@ static NSString * const reuseIdentifier = @"Cell";
     finish.gameCurrentPoints = self.Allpoints;
     [self.view addSubview:finish];
     finish.collectionViewController = self;
+    if (!sender) {
+        finish.isGameEnd = YES;
+    }
     [finish showView];
     
     [GameAudioPlay playViewSwitchAudio];
