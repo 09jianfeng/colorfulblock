@@ -64,7 +64,7 @@ extern NSString *GAMEPEFECTTIMESKET;
     scrollView.contentSize = CGSizeMake(board.frame.size.width * 4.0, scrollViewHeigh);
     for (int i = 0; i < 4; i++) {
         NSDictionary *levelDicInfo = [[GameResultData getDictionaryOfGameResult] objectAtIndex:i];
-        UIView *subView = [self subViewForScrollView:i+1 bestPoint:[levelDicInfo objectForKey:GAMEBESTPOINTKEY] perfectTimes:[levelDicInfo objectForKey:GAMEPEFECTTIMESKET] viewFrame:CGRectMake(scrollViewWidth * i, 0, scrollViewWidth, scrollViewHeigh)];
+        UIView *subView = [self subViewForScrollView:i bestPoint:[levelDicInfo objectForKey:GAMEBESTPOINTKEY] perfectTimes:[levelDicInfo objectForKey:GAMEPEFECTTIMESKET] viewFrame:CGRectMake(scrollViewWidth * i, 0, scrollViewWidth, scrollViewHeigh)];
         [scrollView addSubview:subView];
     }
     scrollView.contentOffset = CGPointMake(0, 0);
@@ -182,8 +182,8 @@ extern NSString *GAMEPEFECTTIMESKET;
             break;
     }
     
-    int bestPoint = [GameResultData getBestPointsForDifLevel:self.currentPage+1];
-    int perfectTimes = [GameResultData getPerfectTimesForDifLevel:self.currentPage+1];
+    int bestPoint = [GameResultData getBestPointsForDifLevel:self.currentPage];
+    int perfectTimes = [GameResultData getPerfectTimesForDifLevel:self.currentPage];
     NSString *message = [NSString stringWithFormat:@"%@——历史最高分：%d,完美拆除：%d次",title,bestPoint,perfectTimes];
     //分享到朋友圈
     [WeiXinShare sendMessageAndImageToWebChat:1 title:message];

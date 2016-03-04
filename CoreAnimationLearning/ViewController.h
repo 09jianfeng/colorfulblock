@@ -8,12 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-typedef enum:int {
-    GameDifficultyLevel1=1,
+typedef NS_ENUM(int,GameDifficultyLevel){
+    GameDifficultyLevel1=0,
     GameDifficultyLevel2,
     GameDifficultyLevel3,
     GameDifficultyLevel4
-}GameDifficultyLevel;
+};
 
 @interface ViewController : UIViewController
 
