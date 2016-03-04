@@ -8,7 +8,7 @@
 
 #import "WeiXinShare.h"
 #import "WXApi.h"
-#import "GameToolKit.h"
+#import "GameSetting.h"
 
 @interface WeiXinShare()<WXApiDelegate>
 
@@ -65,7 +65,7 @@
     [message setThumbImage:[UIImage imageNamed:@"icon.png"]];
     
     WXWebpageObject *ext = [WXWebpageObject object];
-    ext.webpageUrl = [GameToolKit gameAppURLInAppStore];
+    ext.webpageUrl = [GameSetting gameAppURLInAppStore];
     
     message.mediaObject = ext;
     message.mediaTagName = @"WECHAT_TAG_JUMP_SHOWRANK";

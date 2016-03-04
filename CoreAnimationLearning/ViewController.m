@@ -19,6 +19,7 @@
 #import "GameCenterManager.h"
 #import "IntroduceView.h"
 #import "GameAudioPlay.h"
+#import "GameSetting.h"
 
 extern NSString *playingViewExitNotification;
 
@@ -56,7 +57,10 @@ extern NSString *playingViewExitNotification;
     [[GameCenterManager sharedManager] setDelegate:self];
     [[GameCenterManager sharedManager] checkGameCenterAvailability:YES];
     
-    [GameAudioPlay playMainAudio];
+    BOOL isVoiceOpen = [GameSetting gameIsVoiceOpen];
+    if (isVoiceOpen) {
+        [GameAudioPlay playMainAudio];
+    }
 }
 
 -(void)addSubViews{
@@ -127,7 +131,7 @@ extern NSString *playingViewExitNotification;
     UIButton *buttonVoice = [[UIButton alloc] initWithFrame:CGRectZero];
     buttonVoice.tag = 10008;
     buttonVoice.backgroundColor = [UIColor clearColor];
-    [buttonVoice setImage:[UIImage imageNamed:@"btn_share"] forState:UIControlStateNormal];
+    [buttonVoice setImage:[UIImage imageNamed:@"btn_sound"] forState:UIControlStateNormal];
     [buttonVoice addTarget:self action:@selector(buttonPressedVoice:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:buttonVoice];
     
@@ -333,6 +337,15 @@ extern NSString *playingViewExitNotification;
 
 -(void)buttonPressedVoice:(id)sender{
     [GameAudioPlay playClickBlockAudio:YES];
+    
+    BOOL isVoiceOpen = [GameSetting gameIsVoiceOpen];
+    if (isVoiceOpen) {
+        [GameAudioPlay stopMainAudio];
+        [GameSetting setGameVoiceOpen:NO];
+    }else{
+        [GameAudioPlay playMainAudio];
+        [GameSetting setGameVoiceOpen:YES];
+    }
 }
 
 

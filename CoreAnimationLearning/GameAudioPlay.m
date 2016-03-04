@@ -82,6 +82,7 @@
 }
 
 +(void)stopMainAudio{
+    [[[GameAudioPlay shareInstance] audioMain] stop];
 }
 
 +(void)playViewChangeAudio{

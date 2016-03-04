@@ -1,5 +1,5 @@
 //
-//  GameToolKit.h
+//  GameSetting.h
 //  zhuankuaicolor
 //
 //  Created by JFChen on 16/3/3.
@@ -8,6 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
-@interface GameToolKit : NSObject
+@interface GameSetting : NSObject
 +(NSString *)gameAppURLInAppStore;
+
++(BOOL)gameIsFirstInstall;
+
++(BOOL)gameIsVoiceOpen;
++(void)setGameVoiceOpen:(BOOL)isOpen;
 @end

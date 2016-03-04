@@ -57,6 +57,7 @@
 		7844B71A1AEB29B0006DE282 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7844B7191AEB29B0006DE282 /* AVFoundation.framework */; };
 		7844B71F1AEB3119006DE282 /* GameAlgorithm.m in Sources */ = {isa = PBXBuildFile; fileRef = 7844B71E1AEB3119006DE282 /* GameAlgorithm.m */; };
 		7860A7B21C89212500D0CC3B /* btn_close.png in Resources */ = {isa = PBXBuildFile; fileRef = 7860A7B11C89212500D0CC3B /* btn_close.png */; };
+		7860A7B71C892C3400D0CC3B /* btn_sound.png in Resources */ = {isa = PBXBuildFile; fileRef = 7860A7B61C892C3400D0CC3B /* btn_sound.png */; };
 		7878D0121C809B1700BC37BF /* btn_crazy.png in Resources */ = {isa = PBXBuildFile; fileRef = 7878D00E1C809B1700BC37BF /* btn_crazy.png */; };
 		7878D0131C809B1700BC37BF /* btn_easy.png in Resources */ = {isa = PBXBuildFile; fileRef = 7878D00F1C809B1700BC37BF /* btn_easy.png */; };
 		7878D0141C809B1700BC37BF /* btn_hard.png in Resources */ = {isa = PBXBuildFile; fileRef = 7878D0101C809B1700BC37BF /* btn_hard.png */; };
@@ -75,7 +76,7 @@
 		78CE595B1C880CBB0091EBE3 /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 78CE59571C880CBB0091EBE3 /* libWeChatSDK.a */; };
 		78CE595C1C880CBB0091EBE3 /* read_me.txt in Resources */ = {isa = PBXBuildFile; fileRef = 78CE59581C880CBB0091EBE3 /* read_me.txt */; };
 		78CE59621C880D030091EBE3 /* WeiXinShare.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CE59601C880D030091EBE3 /* WeiXinShare.m */; };
-		78CE59661C880DB60091EBE3 /* GameToolKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CE59651C880DB60091EBE3 /* GameToolKit.m */; };
+		78CE59661C880DB60091EBE3 /* GameSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CE59651C880DB60091EBE3 /* GameSetting.m */; };
 		78CE59681C880E6B0091EBE3 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78CE59671C880E6B0091EBE3 /* SystemConfiguration.framework */; };
 		78CE596A1C880E710091EBE3 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 78CE59691C880E710091EBE3 /* libz.tbd */; };
 		78CE596E1C880E8B0091EBE3 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 78CE596D1C880E8B0091EBE3 /* libsqlite3.0.tbd */; };
@@ -201,6 +202,7 @@
 		7844B71D1AEB3119006DE282 /* GameAlgorithm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameAlgorithm.h; sourceTree = "<group>"; };
 		7844B71E1AEB3119006DE282 /* GameAlgorithm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameAlgorithm.m; sourceTree = "<group>"; };
 		7860A7B11C89212500D0CC3B /* btn_close.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = btn_close.png; path = image/btn_close.png; sourceTree = SOURCE_ROOT; };
+		7860A7B61C892C3400D0CC3B /* btn_sound.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = btn_sound.png; path = image/btn_sound.png; sourceTree = SOURCE_ROOT; };
 		7878D00E1C809B1700BC37BF /* btn_crazy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = btn_crazy.png; path = image/btn_crazy.png; sourceTree = SOURCE_ROOT; };
 		7878D00F1C809B1700BC37BF /* btn_easy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = btn_easy.png; path = image/btn_easy.png; sourceTree = SOURCE_ROOT; };
 		7878D0101C809B1700BC37BF /* btn_hard.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = btn_hard.png; path = image/btn_hard.png; sourceTree = SOURCE_ROOT; };
@@ -223,8 +225,8 @@
 		78CE595A1C880CBB0091EBE3 /* WXApiObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WXApiObject.h; path = thirdPard/WeChatSDK_1.5/WXApiObject.h; sourceTree = SOURCE_ROOT; };
 		78CE595F1C880D030091EBE3 /* WeiXinShare.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeiXinShare.h; sourceTree = "<group>"; };
 		78CE59601C880D030091EBE3 /* WeiXinShare.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeiXinShare.m; sourceTree = "<group>"; };
-		78CE59641C880DB60091EBE3 /* GameToolKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameToolKit.h; sourceTree = "<group>"; };
-		78CE59651C880DB60091EBE3 /* GameToolKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameToolKit.m; sourceTree = "<group>"; };
+		78CE59641C880DB60091EBE3 /* GameSetting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameSetting.h; sourceTree = "<group>"; };
+		78CE59651C880DB60091EBE3 /* GameSetting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameSetting.m; sourceTree = "<group>"; };
 		78CE59671C880E6B0091EBE3 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		78CE59691C880E710091EBE3 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		78CE596B1C880E790091EBE3 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
@@ -470,8 +472,8 @@
 		78CE59631C880D7D0091EBE3 /* sceneCommon */ = {
 			isa = PBXGroup;
 			children = (
-				78CE59641C880DB60091EBE3 /* GameToolKit.h */,
-				78CE59651C880DB60091EBE3 /* GameToolKit.m */,
+				78CE59641C880DB60091EBE3 /* GameSetting.h */,
+				78CE59651C880DB60091EBE3 /* GameSetting.m */,
 			);
 			name = sceneCommon;
 			sourceTree = "<group>";
@@ -594,6 +596,7 @@
 		78FD4B331C7476C400905640 /* image */ = {
 			isa = PBXGroup;
 			children = (
+				7860A7B61C892C3400D0CC3B /* btn_sound.png */,
 				7860A7B11C89212500D0CC3B /* btn_close.png */,
 				78DFE1661C88953400DDC12B /* image_back.png */,
 				78CE59891C88408F0091EBE3 /* introduce_4s.png */,
@@ -789,6 +792,7 @@
 				7826986C1C7A1A3E00514B47 /* playing_background.png in Resources */,
 				780E34AC1C8677AE00B1932A /* 8@3x.png in Resources */,
 				780E34A51C8677AE00B1932A /* 5@2x.png in Resources */,
+				7860A7B71C892C3400D0CC3B /* btn_sound.png in Resources */,
 				788343791C805CC900496BC3 /* pic_name_04.png in Resources */,
 				780E34BF1C86984C00B1932A /* button_continue_click.png in Resources */,
 				78FD4B8A1C7476D300905640 /* snow1.png in Resources */,
@@ -856,7 +860,7 @@
 			files = (
 				780E17621AEE7D52007A4A88 /* SystemInfo.m in Sources */,
 				782B1F851AE35B450051D053 /* ViewController.m in Sources */,
-				78CE59661C880DB60091EBE3 /* GameToolKit.m in Sources */,
+				78CE59661C880DB60091EBE3 /* GameSetting.m in Sources */,
 				78CC36301AF673AA00033213 /* GameKeyValue.m in Sources */,
 				780E17681AEE95CA007A4A88 /* BallView.m in Sources */,
 				781FA81F1AED2FB60048B337 /* ProGressView.m in Sources */,
