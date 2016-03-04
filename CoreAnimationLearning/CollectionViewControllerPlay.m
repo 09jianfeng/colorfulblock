@@ -154,7 +154,7 @@ static NSString * const reuseIdentifier = @"Cell";
     [self.processView setprocess:seconde/_timeLimit];
     
     if (seconde > _timeLimit) {
-        [self endTheGame];
+        [self endTheGame:NO];
     }
 }
 
@@ -165,9 +165,6 @@ static NSString * const reuseIdentifier = @"Cell";
     finish.gameCurrentPoints = self.Allpoints;
     [self.view addSubview:finish];
     finish.collectionViewController = self;
-    if (!sender) {
-        finish.isGameEnd = YES;
-    }
     [finish showView];
     
     [GameAudioPlay playViewSwitchAudio];
@@ -175,9 +172,20 @@ static NSString * const reuseIdentifier = @"Cell";
 
 #pragma mark -
 #pragma mark logic
--(void)endTheGame{
+-(void)endTheGame:(BOOL)isPerfectPlay{
     [self.timer invalidate];
-    [self buttonStopPressed:nil];
+    
+    UIViewFinishPlayAlert *finish = [[UIViewFinishPlayAlert alloc] initWithFrame:self.view.bounds];
+    finish.tag = 3000;
+    finish.gameCurrentPoints = self.Allpoints;
+    [self.view addSubview:finish];
+    finish.collectionViewController = self;
+    finish.isGameEnd = YES;
+    finish.isPerfectPlay = isPerfectPlay;
+    [finish showView];
+    
+    [GameAudioPlay playViewSwitchAudio];
+
 }
 
 -(void)replayGame{
@@ -403,7 +411,7 @@ static NSString * const reuseIdentifier = @"Cell";
                 [GameResultData setGameResultForDifLevel:self.gameDifficultyLevel bestPoints:self.Allpoints isPerfectPlay:YES];
             }
             dispatch_async(dispatch_get_main_queue(), ^{
-                [self endTheGame];
+                [self endTheGame:isPerfectPlay];
             });
         }
     }];

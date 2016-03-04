@@ -58,6 +58,7 @@
     [board addSubview:labelPoints];
     __block int points = 0;
     int gameCurrentPoints = self.gameCurrentPoints;
+    BOOL isPerfect = self.isPerfectPlay;
     //数字增加动画以及音效
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.8 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         dispatch_source_t timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, dispatch_get_main_queue());
@@ -68,6 +69,12 @@
             points++;
             if (points > gameCurrentPoints) {
                 dispatch_source_cancel(timer);
+                if (isPerfect) {
+                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                        [GameAudioPlay playPerfectAudio];
+                        labelPoints.text = [NSString stringWithFormat:@"完美拆除"];
+                    });
+                }
             }
         });
         dispatch_resume(timer);

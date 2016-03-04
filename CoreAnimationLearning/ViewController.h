@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-typedef enum {
+typedef enum:int {
     GameDifficultyLevel1=1,
     GameDifficultyLevel2,
     GameDifficultyLevel3,

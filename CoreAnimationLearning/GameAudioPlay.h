@@ -12,9 +12,9 @@
 @interface GameAudioPlay : NSObject
 +(void)playClickBlockAudio:(BOOL)isError;
 +(void)playNumAddingAudio;
++(void)playPerfectAudio;
 +(void)playMainAudio;
 +(void)stopMainAudio;
-
 +(void)playViewChangeAudio;
 +(void)playViewSwitchAudio;
 @end
