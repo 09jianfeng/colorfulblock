@@ -175,17 +175,20 @@ static NSString * const reuseIdentifier = @"Cell";
 -(void)endTheGame:(BOOL)isPerfectPlay{
     [self.timer invalidate];
     
+    //更新历史最高
+    BOOL isUpdateBestPoint = [GameResultData setGameResultForDifLevel:self.gameDifficultyLevel bestPoints:self.Allpoints isPerfectPlay:NO];
+    
     UIViewFinishPlayAlert *finish = [[UIViewFinishPlayAlert alloc] initWithFrame:self.view.bounds];
     finish.tag = 3000;
     finish.gameCurrentPoints = self.Allpoints;
     [self.view addSubview:finish];
     finish.collectionViewController = self;
     finish.isGameEnd = YES;
+    finish.isHistoryBest = isUpdateBestPoint;
     finish.isPerfectPlay = isPerfectPlay;
     [finish showView];
     
     [GameAudioPlay playViewSwitchAudio];
-
 }
 
 -(void)replayGame{
@@ -407,9 +410,6 @@ static NSString * const reuseIdentifier = @"Cell";
     
     [_gameAlgorithm isHaveBlockToDestroy:^(BOOL isHave,BOOL isPerfectPlay){
         if (!isHave) {
-            if (isPerfectPlay) {
-                [GameResultData setGameResultForDifLevel:self.gameDifficultyLevel bestPoints:self.Allpoints isPerfectPlay:YES];
-            }
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self endTheGame:isPerfectPlay];
             });

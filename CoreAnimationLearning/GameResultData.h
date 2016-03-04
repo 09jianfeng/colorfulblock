@@ -10,7 +10,8 @@
 #import "ViewController.h"
 
 @interface GameResultData : NSObject
-+(void)setGameResultForDifLevel:(GameDifficultyLevel)difLevel bestPoints:(int)bestPoints isPerfectPlay:(BOOL)isPerfectPlay;
+//如果有更新bestPoints值，则返回true
++(BOOL)setGameResultForDifLevel:(GameDifficultyLevel)difLevel bestPoints:(int)bestPoints isPerfectPlay:(BOOL)isPerfectPlay;
 +(int)getBestPointsForDifLevel:(GameDifficultyLevel)difLevel;
 +(int)getPerfectTimesForDifLevel:(GameDifficultyLevel)difLevel;
 +(NSArray *)getDictionaryOfGameResult;

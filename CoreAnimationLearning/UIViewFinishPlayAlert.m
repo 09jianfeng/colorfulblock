@@ -14,9 +14,16 @@
 @interface UIViewFinishPlayAlert()
 @property(nonatomic,retain) UIDynamicAnimator *ani;
 @property(nonatomic,retain) UIGravityBehavior *gravity;
+@property(nonatomic,assign) BOOL isPlayingAnimation;
 @end
 
 @implementation UIViewFinishPlayAlert
+-(void)dealloc{
+    self.ani = nil;
+    self.gravity = nil;
+    NSLog(@"UIViewFinishPlayAlert dealloc");
+}
+
 -(id)initWithFrame:(CGRect)frame{
     self = [super initWithFrame:frame];
     if (self) {
@@ -45,20 +52,23 @@
     float buttonFunctionY = CGRectGetHeight(board.frame) - unitHeigh/2.0 -  buttonFunctionWidth;
     
     UIImageView *labelDifficultyLevel = [[UIImageView alloc] initWithFrame:CGRectMake(boardWidth/2.0 - unitHeigh*2.0, unitHeigh, unitHeigh*4.0, unitHeigh)];
-    NSString *diffLev = [NSString stringWithFormat:@"pic_name_0%d",self.collectionViewController.gameDifficultyLevel];
+    NSString *diffLev = [NSString stringWithFormat:@"pic_name_0%d",self.collectionViewController.gameDifficultyLevel+1];
     labelDifficultyLevel.image = [UIImage imageNamed:diffLev];
     [board addSubview:labelDifficultyLevel];
 
     UILabel *labelPoints = [[UILabel alloc] initWithFrame:CGRectMake(0, unitHeigh, boardWidth, unitHeigh)];
     labelPoints.textAlignment = NSTextAlignmentCenter;
     labelPoints.textColor = [UIColor colorWithRed:160.0/255.0 green:52.0/255.0 blue:15.0/255.0 alpha:1.0];
-    labelPoints.font = [UIFont fontWithName:@"AmericanTypewriter-bold" size:30.0];
+    labelPoints.font = [UIFont fontWithName:@"AmericanTypewriter-bold" size:24.0];
     labelPoints.text = [NSString stringWithFormat:@"0"];
     labelPoints.center = CGPointMake(boardWidth/2, boardHeigh/2);
     [board addSubview:labelPoints];
+    
     __block int points = 0;
     int gameCurrentPoints = self.gameCurrentPoints;
     BOOL isPerfect = self.isPerfectPlay;
+    BOOL isHistoryBest = self.isHistoryBest;
+    self.isPlayingAnimation = YES;
     //数字增加动画以及音效
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.8 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         dispatch_source_t timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, dispatch_get_main_queue());
@@ -69,10 +79,16 @@
             points++;
             if (points > gameCurrentPoints) {
                 dispatch_source_cancel(timer);
+                self.isPlayingAnimation = NO;
                 if (isPerfect) {
                     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                         [GameAudioPlay playPerfectAudio];
                         labelPoints.text = [NSString stringWithFormat:@"完美拆除"];
+                    });
+                }else if (isHistoryBest){
+                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                        [GameAudioPlay playPerfectAudio];
+                        labelPoints.text = [NSString stringWithFormat:@"历史最高：%d",gameCurrentPoints];
                     });
                 }
             }
@@ -167,6 +183,10 @@
 
 #pragma mark - 按钮事件
 -(void)buttonShare:(id)sender{
+    if (self.isPlayingAnimation) {
+        return;
+    }
+    
     NSString *difLevelString = @"";
     switch (self.collectionViewController.gameDifficultyLevel) {
         case GameDifficultyLevel1:
@@ -201,6 +221,10 @@
 }
 
 -(void)buttonContinuePressed:(id)sender{
+    if (self.isPlayingAnimation) {
+        return;
+    }
+    
     UIView *board = [self viewWithTag:20000];
     [self.ani removeAllBehaviors];
     [UIView animateWithDuration:0.5 animations:^{
@@ -214,6 +238,10 @@
 }
 
 -(void)buttonReplayLevelPressed:(id)sender{
+    if (self.isPlayingAnimation) {
+        return;
+    }
+    
     UIView *board = [self viewWithTag:20000];
     [self.ani removeAllBehaviors];
     [UIView animateWithDuration:0.5 animations:^{
@@ -226,12 +254,11 @@
 }
 
 -(void)buttonMainManu:(id)sender{
+    if (self.isPlayingAnimation) {
+        return;
+    }
+    
     [self.collectionViewController exitTheGame];
     [GameAudioPlay playViewSwitchAudio];
-}
-
--(void)dealloc{
-    self.ani = nil;
-    self.gravity = nil;
 }
 @end

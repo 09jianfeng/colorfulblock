@@ -102,7 +102,7 @@
 }
 
 -(void)dealloc{
-    HNLOGINFO(@"shifang");
+    HNLOGINFO(@"block dealloc");
     [self.timer invalidate];
     self.timer = nil;
     self.pushBehavior = nil;

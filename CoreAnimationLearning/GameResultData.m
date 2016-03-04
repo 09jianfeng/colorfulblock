@@ -47,16 +47,21 @@ NSString *GAMEPEFECTTIMESKET = @"GAMEPEFECTTIMESKET";
     return [[GameResultData shareInstance] mutableArrayGameResult];
 }
 
-+(void)setGameResultForDifLevel:(GameDifficultyLevel)difLevel bestPoints:(int)bestPoints isPerfectPlay:(BOOL)isPerfectPlay{
++(BOOL)setGameResultForDifLevel:(GameDifficultyLevel)difLevel bestPoints:(int)bestPoints isPerfectPlay:(BOOL)isPerfectPlay{
+    
+    BOOL isUpdateBestPoints = NO;
     NSDictionary *dicDifLevel = [[[GameResultData shareInstance] mutableArrayGameResult] objectAtIndex:difLevel];
     
     int bestPointsOld = [[dicDifLevel objectForKey:GAMEBESTPOINTKEY] intValue];
     if (bestPoints - bestPointsOld > 0) {
         [dicDifLevel setValue:[NSString stringWithFormat:@"%d",bestPoints] forKey:GAMEBESTPOINTKEY];
+        isUpdateBestPoints = YES;
     }
     
     int perfectTimesOld = [[dicDifLevel objectForKey:GAMEPEFECTTIMESKET] intValue];
     [dicDifLevel setValue:[NSString stringWithFormat:@"%d",perfectTimesOld+isPerfectPlay] forKey:GAMEPEFECTTIMESKET];
+    
+    return isUpdateBestPoints;
 }
 
 +(int)getBestPointsForDifLevel:(GameDifficultyLevel)difLevel{

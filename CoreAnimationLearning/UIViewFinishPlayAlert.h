@@ -10,10 +10,11 @@
 #import "CollectionViewControllerPlay.h"
 
 @interface UIViewFinishPlayAlert : UIView
-@property(nonatomic,assign) CollectionViewControllerPlay *collectionViewController;
-@property(nonatomic,assign) int gameCurrentPoints;
-@property(nonatomic,assign) BOOL isPerfectPlay;
-@property(nonatomic,assign) BOOL isGameEnd;
+@property(nonatomic, assign) CollectionViewControllerPlay *collectionViewController;
+@property(nonatomic, assign) int gameCurrentPoints;
+@property(nonatomic, assign) BOOL isPerfectPlay;
+@property(nonatomic, assign) BOOL isGameEnd;
+@property(nonatomic, assign) BOOL isHistoryBest;
 
 -(void)showView;
 @end
