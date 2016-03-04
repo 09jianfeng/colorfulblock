@@ -148,7 +148,7 @@ extern NSString *playingViewExitNotification;
     
     int unitHeight = CGRectGetHeight(self.view.frame)/36;
     int buttonHeight = unitHeight*3;
-    int buttonWidth = buttonHeight*2.6;
+    int buttonWidth = buttonHeight*2.3;
     int topOffset = -unitHeight*4;
     int buttonInsert = unitHeight;
     float animateTime = 0.5;
@@ -156,7 +156,7 @@ extern NSString *playingViewExitNotification;
     UIImageView *imageView = [self.view viewWithTag:10000];
     imageView.frame = CGRectMake(self.view.frame.size.width/2.0-radius*5.5/2.5, -self.view.frame.size.height, radius*5.5, radius*3.5);
     [UIView animateWithDuration:animateTime animations:^{
-        imageView.frame = CGRectMake(self.view.frame.size.width/2.0-radius*5.5/2.0, 50.0, radius*5.5, radius*3.5);
+        imageView.frame = CGRectMake(self.view.frame.size.width/2.0-radius*5.5/2.0, 30.0, radius*5.5, radius*3.5);
     }completion:^(BOOL finished) {
         [self beginAnimation:imageView];
     }];
@@ -195,7 +195,7 @@ extern NSString *playingViewExitNotification;
     float unitWidth = CGRectGetWidth(self.view.frame)/21;
     float leftOffset = unitWidth;
     float buttonFunctionWidth = unitWidth*3;
-    float buttonFunctionY = CGRectGetHeight(self.view.frame) - buttonFunctionWidth * 2;
+    float buttonFunctionY = CGRectGetHeight(self.view.frame) - buttonFunctionWidth * 1.5;
     float buttonFunctionOringY = CGRectGetHeight(self.view.frame)*1.2;
     
     UIButton *buttonRanking = [self.view viewWithTag:10005];

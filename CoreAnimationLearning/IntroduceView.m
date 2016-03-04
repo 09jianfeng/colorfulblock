@@ -26,10 +26,10 @@
         self.image = image;
         self.userInteractionEnabled = YES;
         
-        float buttonBackWidth = 50;
+        float buttonBackWidth = 30;
         float buttonBackHeigh = 30;
         UIButton *buttonBack = [[UIButton alloc] initWithFrame:CGRectMake(CGRectGetWidth(frame)/2.0 - buttonBackWidth/2.0, CGRectGetHeight(frame) - buttonBackHeigh*1.5, buttonBackWidth, buttonBackHeigh)];
-        [buttonBack setTitle:@"Back" forState:UIControlStateNormal];
+        [buttonBack setImage:[UIImage imageNamed:@"btn_close"] forState:UIControlStateNormal];
         [buttonBack addTarget:self action:@selector(buttonPressedIntroducBack:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:buttonBack];
     }
