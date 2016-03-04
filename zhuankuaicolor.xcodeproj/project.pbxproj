@@ -724,7 +724,7 @@
 				TargetAttributes = {
 					782B1F781AE35B450051D053 = {
 						CreatedOnToolsVersion = 6.3;
-						DevelopmentTeam = BZ4734GZVJ;
+						DevelopmentTeam = 4QV5X7CC9T;
 					};
 					782B1F911AE35B450051D053 = {
 						CreatedOnToolsVersion = 6.3;
@@ -1016,7 +1016,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/thirdPard/WeChatSDK_1.5",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.hehele.colorfulblock;
+				PRODUCT_BUNDLE_IDENTIFIER = com.baxingame.colorfulblock;
 				PRODUCT_NAME = zhuankuaicolor;
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -1037,7 +1037,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/thirdPard/WeChatSDK_1.5",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.hehele.colorfulblock;
+				PRODUCT_BUNDLE_IDENTIFIER = com.baxingame.colorfulblock;
 				PRODUCT_NAME = zhuankuaicolor;
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
