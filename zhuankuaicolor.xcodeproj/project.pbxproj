@@ -77,6 +77,10 @@
 		788343791C805CC900496BC3 /* pic_name_04.png in Resources */ = {isa = PBXBuildFile; fileRef = 788343751C805CC900496BC3 /* pic_name_04.png */; };
 		7883437B1C8064ED00496BC3 /* playing_ground.png in Resources */ = {isa = PBXBuildFile; fileRef = 7883437A1C8064ED00496BC3 /* playing_ground.png */; };
 		78959C161C7B649600797EC2 /* button_paiming.png in Resources */ = {isa = PBXBuildFile; fileRef = 78959C151C7B649600797EC2 /* button_paiming.png */; };
+		7896BD171C8A7CB700A0F3F0 /* libMobClickLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7896BD141C8A7CB700A0F3F0 /* libMobClickLibrary.a */; };
+		7896BD1D1C8A7CC900A0F3F0 /* libGDTMobSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7896BD1C1C8A7CC900A0F3F0 /* libGDTMobSDK.a */; };
+		7896BD221C8ABB7C00A0F3F0 /* GAMADManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7896BD211C8ABB7C00A0F3F0 /* GAMADManager.m */; };
+		7896BD251C8ABC6200A0F3F0 /* GAMUMAnalyseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7896BD241C8ABC6200A0F3F0 /* GAMUMAnalyseManager.m */; };
 		78CC36301AF673AA00033213 /* GameKeyValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CC362F1AF673AA00033213 /* GameKeyValue.m */; };
 		78CE595B1C880CBB0091EBE3 /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 78CE59571C880CBB0091EBE3 /* libWeChatSDK.a */; };
 		78CE595C1C880CBB0091EBE3 /* read_me.txt in Resources */ = {isa = PBXBuildFile; fileRef = 78CE59581C880CBB0091EBE3 /* read_me.txt */; };
@@ -103,6 +107,11 @@
 		78DFE1641C888E1500DDC12B /* music_screen_switch.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 78DFE1631C888E1500DDC12B /* music_screen_switch.mp3 */; };
 		78DFE1671C88953400DDC12B /* image_back.png in Resources */ = {isa = PBXBuildFile; fileRef = 78DFE1661C88953400DDC12B /* image_back.png */; };
 		78E260931B1AEBA600EB9F3E /* GameResultData.m in Sources */ = {isa = PBXBuildFile; fileRef = 78E260921B1AEBA600EB9F3E /* GameResultData.m */; };
+		78E380B01C8B08EF005720D9 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78E380AF1C8B08EF005720D9 /* StoreKit.framework */; };
+		78E380B21C8B0903005720D9 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78E380B11C8B0903005720D9 /* AdSupport.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		78E380B41C8B090E005720D9 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78E380B31C8B090E005720D9 /* CoreLocation.framework */; };
+		78E380B61C8B0915005720D9 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78E380B51C8B0915005720D9 /* CoreTelephony.framework */; };
+		78E380B81C8B09B7005720D9 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78E380B71C8B09B7005720D9 /* QuartzCore.framework */; };
 		78EE81971C812D4200CD33BD /* bg_progress_02.png in Resources */ = {isa = PBXBuildFile; fileRef = 78EE81961C812D4200CD33BD /* bg_progress_02.png */; };
 		78EE819B1C81302700CD33BD /* btn_stop.png in Resources */ = {isa = PBXBuildFile; fileRef = 78EE819A1C81302700CD33BD /* btn_stop.png */; };
 		78EE81AA1C81495700CD33BD /* GameAudioPlay.m in Sources */ = {isa = PBXBuildFile; fileRef = 78EE81A91C81495700CD33BD /* GameAudioPlay.m */; };
@@ -227,6 +236,18 @@
 		788343751C805CC900496BC3 /* pic_name_04.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = pic_name_04.png; path = image/pic_name_04.png; sourceTree = SOURCE_ROOT; };
 		7883437A1C8064ED00496BC3 /* playing_ground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = playing_ground.png; path = image/playing_ground.png; sourceTree = SOURCE_ROOT; };
 		78959C151C7B649600797EC2 /* button_paiming.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = button_paiming.png; path = image/button_paiming.png; sourceTree = SOURCE_ROOT; };
+		7896BD141C8A7CB700A0F3F0 /* libMobClickLibrary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libMobClickLibrary.a; path = thirdPard/UMAnalytics_Sdk_3.5.10/libMobClickLibrary.a; sourceTree = SOURCE_ROOT; };
+		7896BD151C8A7CB700A0F3F0 /* MobClick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MobClick.h; path = thirdPard/UMAnalytics_Sdk_3.5.10/MobClick.h; sourceTree = SOURCE_ROOT; };
+		7896BD161C8A7CB700A0F3F0 /* MobClickSocialAnalytics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MobClickSocialAnalytics.h; path = thirdPard/UMAnalytics_Sdk_3.5.10/MobClickSocialAnalytics.h; sourceTree = SOURCE_ROOT; };
+		7896BD181C8A7CC900A0F3F0 /* GDTMobBannerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GDTMobBannerView.h; path = thirdPard/guangdiantong/GDTMobBannerView.h; sourceTree = SOURCE_ROOT; };
+		7896BD191C8A7CC900A0F3F0 /* GDTMobInterstitial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GDTMobInterstitial.h; path = thirdPard/guangdiantong/GDTMobInterstitial.h; sourceTree = SOURCE_ROOT; };
+		7896BD1A1C8A7CC900A0F3F0 /* GDTNativeAd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GDTNativeAd.h; path = thirdPard/guangdiantong/GDTNativeAd.h; sourceTree = SOURCE_ROOT; };
+		7896BD1B1C8A7CC900A0F3F0 /* GDTSplashAd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GDTSplashAd.h; path = thirdPard/guangdiantong/GDTSplashAd.h; sourceTree = SOURCE_ROOT; };
+		7896BD1C1C8A7CC900A0F3F0 /* libGDTMobSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libGDTMobSDK.a; path = thirdPard/guangdiantong/libGDTMobSDK.a; sourceTree = SOURCE_ROOT; };
+		7896BD201C8ABB7C00A0F3F0 /* GAMADManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAMADManager.h; sourceTree = "<group>"; };
+		7896BD211C8ABB7C00A0F3F0 /* GAMADManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GAMADManager.m; sourceTree = "<group>"; };
+		7896BD231C8ABC6200A0F3F0 /* GAMUMAnalyseManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAMUMAnalyseManager.h; sourceTree = "<group>"; };
+		7896BD241C8ABC6200A0F3F0 /* GAMUMAnalyseManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GAMUMAnalyseManager.m; sourceTree = "<group>"; };
 		78CC362E1AF673AA00033213 /* GameKeyValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameKeyValue.h; sourceTree = "<group>"; };
 		78CC362F1AF673AA00033213 /* GameKeyValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameKeyValue.m; sourceTree = "<group>"; };
 		78CE59571C880CBB0091EBE3 /* libWeChatSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libWeChatSDK.a; path = thirdPard/WeChatSDK_1.5/libWeChatSDK.a; sourceTree = SOURCE_ROOT; };
@@ -267,6 +288,11 @@
 		78E260901B1ACB5D00EB9F3E /* macro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = macro.h; sourceTree = "<group>"; };
 		78E260911B1AEBA600EB9F3E /* GameResultData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameResultData.h; sourceTree = "<group>"; };
 		78E260921B1AEBA600EB9F3E /* GameResultData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameResultData.m; sourceTree = "<group>"; };
+		78E380AF1C8B08EF005720D9 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		78E380B11C8B0903005720D9 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
+		78E380B31C8B090E005720D9 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		78E380B51C8B0915005720D9 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		78E380B71C8B09B7005720D9 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		78EE81961C812D4200CD33BD /* bg_progress_02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bg_progress_02.png; path = image/bg_progress_02.png; sourceTree = SOURCE_ROOT; };
 		78EE819A1C81302700CD33BD /* btn_stop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = btn_stop.png; path = image/btn_stop.png; sourceTree = SOURCE_ROOT; };
 		78EE81A81C81495700CD33BD /* GameAudioPlay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameAudioPlay.h; sourceTree = "<group>"; };
@@ -301,6 +327,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				78E380B81C8B09B7005720D9 /* QuartzCore.framework in Frameworks */,
+				78E380B61C8B0915005720D9 /* CoreTelephony.framework in Frameworks */,
+				78E380B41C8B090E005720D9 /* CoreLocation.framework in Frameworks */,
+				78E380B21C8B0903005720D9 /* AdSupport.framework in Frameworks */,
+				78E380B01C8B08EF005720D9 /* StoreKit.framework in Frameworks */,
 				78CE59861C8821DC0091EBE3 /* Security.framework in Frameworks */,
 				78CE59721C88100F0091EBE3 /* GameKit.framework in Frameworks */,
 				78CE59701C880EC80091EBE3 /* libc++.tbd in Frameworks */,
@@ -310,7 +341,9 @@
 				7836C7DD1AF3CE8D00E4AFAB /* Accelerate.framework in Frameworks */,
 				780E17651AEE7DDB007A4A88 /* UIKit.framework in Frameworks */,
 				78CE595B1C880CBB0091EBE3 /* libWeChatSDK.a in Frameworks */,
+				7896BD171C8A7CB700A0F3F0 /* libMobClickLibrary.a in Frameworks */,
 				7844B71A1AEB29B0006DE282 /* AVFoundation.framework in Frameworks */,
+				7896BD1D1C8A7CC900A0F3F0 /* libGDTMobSDK.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -327,20 +360,13 @@
 		780E17631AEE7D64007A4A88 /* common */ = {
 			isa = PBXGroup;
 			children = (
-				780E34C61C86A7DB00B1932A /* shareAndgameCenter */,
+				7896BD1E1C8ABAF900A0F3F0 /* thirdPardManager */,
 				78EE81A71C81492B00CD33BD /* audio */,
 				78EE81A61C81491C00CD33BD /* util */,
 				78EE81A51C81491000CD33BD /* systemInfo */,
 				78EE81A41C81490400CD33BD /* fileStorage */,
 			);
 			name = common;
-			sourceTree = "<group>";
-		};
-		780E34C61C86A7DB00B1932A /* shareAndgameCenter */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = shareAndgameCenter;
 			sourceTree = "<group>";
 		};
 		781FA81C1AED21510048B337 /* subscene_playing */ = {
@@ -356,6 +382,11 @@
 		782B1F701AE35B450051D053 = {
 			isa = PBXGroup;
 			children = (
+				78E380B71C8B09B7005720D9 /* QuartzCore.framework */,
+				78E380B51C8B0915005720D9 /* CoreTelephony.framework */,
+				78E380B31C8B090E005720D9 /* CoreLocation.framework */,
+				78E380B11C8B0903005720D9 /* AdSupport.framework */,
+				78E380AF1C8B08EF005720D9 /* StoreKit.framework */,
 				78CE59851C8821DC0091EBE3 /* Security.framework */,
 				78CE59711C88100F0091EBE3 /* GameKit.framework */,
 				78CE596F1C880EC80091EBE3 /* libc++.tbd */,
@@ -468,9 +499,54 @@
 			name = mainScene;
 			sourceTree = "<group>";
 		};
+		7896BD121C8A7C9800A0F3F0 /* UM */ = {
+			isa = PBXGroup;
+			children = (
+				7896BD141C8A7CB700A0F3F0 /* libMobClickLibrary.a */,
+				7896BD151C8A7CB700A0F3F0 /* MobClick.h */,
+				7896BD161C8A7CB700A0F3F0 /* MobClickSocialAnalytics.h */,
+			);
+			name = UM;
+			sourceTree = "<group>";
+		};
+		7896BD131C8A7C9F00A0F3F0 /* GDT */ = {
+			isa = PBXGroup;
+			children = (
+				7896BD181C8A7CC900A0F3F0 /* GDTMobBannerView.h */,
+				7896BD191C8A7CC900A0F3F0 /* GDTMobInterstitial.h */,
+				7896BD1A1C8A7CC900A0F3F0 /* GDTNativeAd.h */,
+				7896BD1B1C8A7CC900A0F3F0 /* GDTSplashAd.h */,
+				7896BD1C1C8A7CC900A0F3F0 /* libGDTMobSDK.a */,
+			);
+			name = GDT;
+			sourceTree = "<group>";
+		};
+		7896BD1E1C8ABAF900A0F3F0 /* thirdPardManager */ = {
+			isa = PBXGroup;
+			children = (
+				7896BD1F1C8ABB3E00A0F3F0 /* ADManager */,
+				78CE59771C88135A0091EBE3 /* weixinshare */,
+			);
+			name = thirdPardManager;
+			sourceTree = "<group>";
+		};
+		7896BD1F1C8ABB3E00A0F3F0 /* ADManager */ = {
+			isa = PBXGroup;
+			children = (
+				7896BD201C8ABB7C00A0F3F0 /* GAMADManager.h */,
+				7896BD211C8ABB7C00A0F3F0 /* GAMADManager.m */,
+				7896BD231C8ABC6200A0F3F0 /* GAMUMAnalyseManager.h */,
+				7896BD241C8ABC6200A0F3F0 /* GAMUMAnalyseManager.m */,
+			);
+			name = ADManager;
+			sourceTree = "<group>";
+		};
 		78CE59551C880C8C0091EBE3 /* thirdPard */ = {
 			isa = PBXGroup;
 			children = (
+				78CE59761C8813410091EBE3 /* gameCenter */,
+				7896BD131C8A7C9F00A0F3F0 /* GDT */,
+				7896BD121C8A7C9800A0F3F0 /* UM */,
 				78CE59561C880C9E0091EBE3 /* webchat */,
 			);
 			name = thirdPard;
@@ -533,8 +609,6 @@
 		78E2608D1B1A946500EB9F3E /* model */ = {
 			isa = PBXGroup;
 			children = (
-				78CE59771C88135A0091EBE3 /* weixinshare */,
-				78CE59761C8813410091EBE3 /* gameCenter */,
 				78E260911B1AEBA600EB9F3E /* GameResultData.h */,
 				78E260921B1AEBA600EB9F3E /* GameResultData.m */,
 			);
@@ -888,10 +962,12 @@
 			files = (
 				780E17621AEE7D52007A4A88 /* SystemInfo.m in Sources */,
 				782B1F851AE35B450051D053 /* ViewController.m in Sources */,
+				7896BD251C8ABC6200A0F3F0 /* GAMUMAnalyseManager.m in Sources */,
 				78CE59661C880DB60091EBE3 /* GameSetting.m in Sources */,
 				78CC36301AF673AA00033213 /* GameKeyValue.m in Sources */,
 				780E17681AEE95CA007A4A88 /* BallView.m in Sources */,
 				781FA81F1AED2FB60048B337 /* ProGressView.m in Sources */,
+				7896BD221C8ABB7C00A0F3F0 /* GAMADManager.m in Sources */,
 				780E34B71C868D7F00B1932A /* RankingView.m in Sources */,
 				782B1F821AE35B450051D053 /* AppDelegate.m in Sources */,
 				7844B7091AEA9A05006DE282 /* CollectionViewControllerPlay.m in Sources */,
@@ -1043,7 +1119,10 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/thirdPard/WeChatSDK_1.5",
+					"$(PROJECT_DIR)/thirdPard/UMAnalytics_Sdk_3.5.10",
+					"$(PROJECT_DIR)/thirdPard/guangdiantong",
 				);
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.baxingame.colorfulblock;
 				PRODUCT_NAME = zhuankuaicolor;
 				PROVISIONING_PROFILE = "";
@@ -1064,7 +1143,10 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/thirdPard/WeChatSDK_1.5",
+					"$(PROJECT_DIR)/thirdPard/UMAnalytics_Sdk_3.5.10",
+					"$(PROJECT_DIR)/thirdPard/guangdiantong",
 				);
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.baxingame.colorfulblock;
 				PRODUCT_NAME = zhuankuaicolor;
 				PROVISIONING_PROFILE = "";

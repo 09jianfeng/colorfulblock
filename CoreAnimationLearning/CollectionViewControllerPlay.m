@@ -15,6 +15,7 @@
 #import "UIViewFinishPlayAlert.h"
 #import "GameResultData.h"
 #import "GameAudioPlay.h"
+#import "GAMADManager.h"
 
 NSString *playingViewExitNotification = @"playingViewExitNotification";
 
@@ -35,6 +36,7 @@ NSString *playingViewExitNotification = @"playingViewExitNotification";
 
 @property(nonatomic, assign) float blockWidth;
 @property(nonatomic, assign) int heightnum;
+@property(nonatomic, assign) BOOL isGamePlaying;
 @end
 
 @implementation CollectionViewControllerPlay
@@ -73,6 +75,12 @@ static NSString * const reuseIdentifier = @"Cell";
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    
+    if (_isGamePlaying) {
+        return;
+    }
+    _isGamePlaying = YES;
+    
     if (self.gameDifficultyLevel == GameDifficultyLevel1) {
         self.collectionView.contentInset = UIEdgeInsetsMake(10, 10, 30, 10);
     }else{

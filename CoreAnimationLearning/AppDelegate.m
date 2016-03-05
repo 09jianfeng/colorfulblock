@@ -8,6 +8,8 @@
 
 #import "AppDelegate.h"
 #import "GameCenterManager.h"
+#import "GAMADManager.h"
+#import "GAMUMAnalyseManager.h"
 
 @interface AppDelegate ()
 
@@ -29,6 +31,8 @@
     [[GameCenterManager sharedManager] setupManager];
     //加密数据的秘钥，这个秘钥升级的时候不能变。否则会崩溃
     [[GameCenterManager sharedManager] setupManagerAndSetShouldCryptWithKey:@"3ufdekid"];
+    [GAMADManager showGDTSplashAD];
+    [GAMUMAnalyseManager initialUMSDK];
     return YES;
 }
 

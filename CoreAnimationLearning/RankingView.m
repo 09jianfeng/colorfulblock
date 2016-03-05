@@ -71,7 +71,7 @@ extern NSString *GAMEPEFECTTIMESKET;
     scrollView.showsHorizontalScrollIndicator = NO;
     [board addSubview:scrollView];
     
-    self.pageControl= [[UIPageControl alloc] initWithFrame:CGRectMake(0, scrollViewHeigh-20, scrollViewWidth, 20)];
+    self.pageControl= [[UIPageControl alloc] initWithFrame:CGRectMake(0, scrollViewHeigh-10, scrollViewWidth, 20)];
     self.pageControl.backgroundColor = [UIColor clearColor];
     self.pageControl.numberOfPages = 4;
     [self.pageControl setCurrentPage:0];

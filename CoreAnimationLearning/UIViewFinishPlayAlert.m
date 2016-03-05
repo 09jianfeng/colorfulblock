@@ -10,6 +10,7 @@
 #import "GameAudioPlay.h"
 #import "GameResultData.h"
 #import "WeiXinShare.h"
+#import "GAMADManager.h"
 
 @interface UIViewFinishPlayAlert()
 @property(nonatomic,retain) UIDynamicAnimator *ani;
@@ -71,6 +72,9 @@
     self.isPlayingAnimation = YES;
     //数字增加动画以及音效
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.8 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        //展示插屏广告
+        [GAMADManager showGDTInterstitial];
+        
         dispatch_source_t timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, dispatch_get_main_queue());
         dispatch_source_set_timer(timer, DISPATCH_TIME_NOW, 0.04 * NSEC_PER_SEC, 0 * NSEC_PER_SEC);
         dispatch_source_set_event_handler(timer, ^{
@@ -83,7 +87,7 @@
                 if (isPerfect) {
                     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                         [GameAudioPlay playPerfectAudio];
-                        labelPoints.text = [NSString stringWithFormat:@"完美拆除"];
+                        labelPoints.text = [NSString stringWithFormat:@"完美拆除+1"];
                     });
                 }else if (isHistoryBest){
                     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
@@ -211,7 +215,7 @@
     
     NSString *message = @"";
     if (self.isPerfectPlay) {
-        message = [NSString stringWithFormat:@"我刚刚在%@下获得“完美拆除”",difLevelString];
+        message = [NSString stringWithFormat:@"我在%@下获得“完美拆除+1”",difLevelString];
     }else{
         message = [NSString stringWithFormat:@"我在%@玩到了%d分,不服来战",difLevelString,self.gameCurrentPoints];
     }
