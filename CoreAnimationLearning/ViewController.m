@@ -63,6 +63,11 @@ extern NSString *playingViewExitNotification;
     }
 }
 
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self beginMainManuAnimation];
+}
+
 -(void)addSubViews{
     UIImage *manuBackground = [UIImage imageNamed:@"playing_background"];
     self.view.layer.contents = (__bridge id)(manuBackground.CGImage);
@@ -142,14 +147,11 @@ extern NSString *playingViewExitNotification;
     [buttonTutorial addTarget:self action:@selector(buttonPressedTutorial:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:buttonTutorial];
     
-    [self beginMainManuAnimation];
-    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playingViewExitNotificationResponseControl:) name:playingViewExitNotification object:nil];
 }
 
 
 -(void)beginMainManuAnimation{
-    
     int unitHeight = CGRectGetHeight(self.view.frame)/36;
     int buttonHeight = unitHeight*3;
     int buttonWidth = buttonHeight*2.3;
@@ -246,11 +248,6 @@ extern NSString *playingViewExitNotification;
             });
         });
     });
-}
-
-
-- (void)viewDidAppear:(BOOL)animated{
-    [super viewDidAppear:animated];
 }
 
 - (void)didReceiveMemoryWarning {
