@@ -16,6 +16,7 @@
 #import "GameResultData.h"
 #import "GameAudioPlay.h"
 #import "GAMADManager.h"
+#import "GAMGCManager.h"
 
 NSString *playingViewExitNotification = @"playingViewExitNotification";
 
@@ -197,6 +198,7 @@ static NSString * const reuseIdentifier = @"Cell";
     [finish showView];
     
     [GameAudioPlay playViewSwitchAudio];
+    [GAMGCManager updateGameCenterRankingInDifLevel:self.gameDifficultyLevel isPerfect:isPerfectPlay];
 }
 
 -(void)replayGame{

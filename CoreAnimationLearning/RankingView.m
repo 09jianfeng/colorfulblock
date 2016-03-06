@@ -10,6 +10,7 @@
 #import "GameAudioPlay.h"
 #import "GameResultData.h"
 #import "WeiXinShare.h"
+#import "GAMGCManager.h"
 
 extern NSString *GAMEBESTPOINTKEY;
 extern NSString *GAMEPEFECTTIMESKET;
@@ -56,7 +57,7 @@ extern NSString *GAMEPEFECTTIMESKET;
 
 -(void)addSubviewForBoard:(UIView *)board{
     float boardUnitHeigh = CGRectGetHeight(board.frame)/4.0;
-    float scrollViewHeigh = boardUnitHeigh *3.0;
+    float scrollViewHeigh = boardUnitHeigh *2.8;
     float scrollViewWidth = board.frame.size.width;
     UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, scrollViewWidth, scrollViewHeigh)];
     scrollView.delegate = self;
@@ -78,17 +79,24 @@ extern NSString *GAMEPEFECTTIMESKET;
     [board addSubview:self.pageControl];
     
     float buttonHeigh = boardUnitHeigh/2;
+    float buttonOriginY = board.frame.size.height - buttonHeigh*1.5;
     UIButton *buttonBack = [UIButton buttonWithType:UIButtonTypeCustom];
-    buttonBack.frame = CGRectMake(buttonHeigh,board.frame.size.height - buttonHeigh*1.5, buttonHeigh, buttonHeigh);
+    buttonBack.frame = CGRectMake(buttonHeigh/2.0,buttonOriginY, buttonHeigh, buttonHeigh);
     [buttonBack setImage:[UIImage imageNamed:@"image_back"] forState:UIControlStateNormal];
     [buttonBack addTarget:self action:@selector(buttonPressedBack:) forControlEvents:UIControlEventTouchUpInside];
     [board addSubview:buttonBack];
     
     UIButton *buttonShare = [UIButton buttonWithType:UIButtonTypeCustom];
-    buttonShare.frame = CGRectMake(board.frame.size.width - buttonHeigh*2.0, board.frame.size.height - buttonHeigh*1.5, buttonHeigh, buttonHeigh);
+    buttonShare.frame = CGRectMake(board.frame.size.width - buttonHeigh*1.5, buttonOriginY, buttonHeigh, buttonHeigh);
     [buttonShare setImage:[UIImage imageNamed:@"btn_icon_share_main"] forState:UIControlStateNormal];
     [buttonShare addTarget:self action:@selector(buttonPressShare:) forControlEvents:UIControlEventTouchUpInside];
     [board addSubview:buttonShare];
+    
+    UIButton *buttonGameCenter = [UIButton buttonWithType:UIButtonTypeCustom];
+    buttonGameCenter.frame = CGRectMake(board.frame.size.width/2.0 - buttonHeigh/2.0, buttonOriginY, buttonHeigh, buttonHeigh);
+    [buttonGameCenter setImage:[UIImage imageNamed:@"btn_gamecenter"] forState:UIControlStateNormal];
+    [buttonGameCenter addTarget:self action:@selector(buttonPressedGameCenter:) forControlEvents:UIControlEventTouchUpInside];
+    [board addSubview:buttonGameCenter];
 }
 
 -(UIView *)subViewForScrollView:(GameDifficultyLevel)difLevel bestPoint:(NSString *)bestPoint perfectTimes:(NSString *)perfectTimes viewFrame:(CGRect)viewFrame{
@@ -119,22 +127,23 @@ extern NSString *GAMEPEFECTTIMESKET;
     labelTitle.text = title;
     labelTitle.textAlignment = NSTextAlignmentCenter;
     labelTitle.textColor = [UIColor whiteColor];
-    labelTitle.font = [UIFont boldSystemFontOfSize:32];
+    labelTitle.font = [UIFont boldSystemFontOfSize:38];
     [subViewInScrollView addSubview:labelTitle];
     
     UILabel *labelBestPoint = [[UILabel alloc] initWithFrame:CGRectMake(0, unitHeigh * 6, textwidth, unitHeigh*4)];
     labelBestPoint.text = [NSString stringWithFormat:@"历史最高：%@",bestPoint];
     labelBestPoint.textAlignment = NSTextAlignmentCenter;
     labelBestPoint.textColor = [UIColor whiteColor];
-    labelBestPoint.font = [UIFont boldSystemFontOfSize:23];
+    labelBestPoint.font = [UIFont boldSystemFontOfSize:20];
     [subViewInScrollView addSubview:labelBestPoint];
 
     UILabel *labelPerfect = [[UILabel alloc] initWithFrame:CGRectMake(0, unitHeigh * 11, textwidth, unitHeigh*4)];
     labelPerfect.text = [NSString stringWithFormat:@"完美拆除：%@",perfectTimes];
     labelPerfect.textAlignment = NSTextAlignmentCenter;
     labelPerfect.textColor = [UIColor whiteColor];
-    labelPerfect.font = [UIFont boldSystemFontOfSize:23];
+    labelPerfect.font = [UIFont boldSystemFontOfSize:20];
     [subViewInScrollView addSubview:labelPerfect];
+    
     return subViewInScrollView;
 }
 
@@ -160,6 +169,11 @@ extern NSString *GAMEPEFECTTIMESKET;
     }];
     
     [GameAudioPlay playViewSwitchAudio];
+}
+
+-(void)buttonPressedGameCenter:(id)sender{
+    UIViewController *viewController = [[[UIApplication sharedApplication] keyWindow] rootViewController];
+    [GAMGCManager showGameCenterWithController:viewController difflevel:(int)self.pageControl.currentPage];
 }
 
 -(void)buttonPressShare:(id)sender{

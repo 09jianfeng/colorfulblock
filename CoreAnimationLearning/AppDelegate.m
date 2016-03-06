@@ -10,6 +10,7 @@
 #import "GameCenterManager.h"
 #import "GAMADManager.h"
 #import "GAMUMAnalyseManager.h"
+#import "GAMGCManager.h"
 
 @interface AppDelegate ()
 
@@ -28,9 +29,7 @@
         NSLog(@"微信registerApp 失败");
     }
     
-    [[GameCenterManager sharedManager] setupManager];
-    //加密数据的秘钥，这个秘钥升级的时候不能变。否则会崩溃
-    [[GameCenterManager sharedManager] setupManagerAndSetShouldCryptWithKey:@"3ufdekid"];
+    [GAMGCManager initGameCenter];
     [GAMADManager showGDTSplashAD];
     [GAMUMAnalyseManager initialUMSDK];
     return YES;

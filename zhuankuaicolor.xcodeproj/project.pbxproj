@@ -138,6 +138,8 @@
 		78FD4B801C7476D300905640 /* image_title.png in Resources */ = {isa = PBXBuildFile; fileRef = 78FD4B541C7476D300905640 /* image_title.png */; };
 		78FD4B881C7476D300905640 /* playing_cellbackground1.png in Resources */ = {isa = PBXBuildFile; fileRef = 78FD4B5C1C7476D300905640 /* playing_cellbackground1.png */; };
 		78FD4B8A1C7476D300905640 /* snow1.png in Resources */ = {isa = PBXBuildFile; fileRef = 78FD4B5E1C7476D300905640 /* snow1.png */; };
+		78FECE5D1C8BB31200679D29 /* GAMGCManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 78FECE5C1C8BB31200679D29 /* GAMGCManager.m */; };
+		78FECE621C8BC48700679D29 /* btn_gamecenter.png in Resources */ = {isa = PBXBuildFile; fileRef = 78FECE611C8BC48700679D29 /* btn_gamecenter.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -320,6 +322,9 @@
 		78FD4B541C7476D300905640 /* image_title.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = image_title.png; path = image/image_title.png; sourceTree = SOURCE_ROOT; };
 		78FD4B5C1C7476D300905640 /* playing_cellbackground1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = playing_cellbackground1.png; path = image/playing_cellbackground1.png; sourceTree = SOURCE_ROOT; };
 		78FD4B5E1C7476D300905640 /* snow1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = snow1.png; path = image/snow1.png; sourceTree = SOURCE_ROOT; };
+		78FECE5B1C8BB31200679D29 /* GAMGCManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAMGCManager.h; sourceTree = "<group>"; };
+		78FECE5C1C8BB31200679D29 /* GAMGCManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GAMGCManager.m; sourceTree = "<group>"; };
+		78FECE611C8BC48700679D29 /* btn_gamecenter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = btn_gamecenter.png; path = image/btn_gamecenter.png; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -524,6 +529,7 @@
 		7896BD1E1C8ABAF900A0F3F0 /* thirdPardManager */ = {
 			isa = PBXGroup;
 			children = (
+				78FECE5E1C8BB31900679D29 /* GameCenterManager */,
 				7896BD1F1C8ABB3E00A0F3F0 /* ADManager */,
 				78CE59771C88135A0091EBE3 /* weixinshare */,
 			);
@@ -689,6 +695,7 @@
 		78FD4B331C7476C400905640 /* image */ = {
 			isa = PBXGroup;
 			children = (
+				78FECE611C8BC48700679D29 /* btn_gamecenter.png */,
 				7860A7BF1C896DE800D0CC3B /* btn_icon_share_main.png */,
 				7860A7B81C89514400D0CC3B /* btn_home_click.png */,
 				7860A7B91C89514400D0CC3B /* btn_icon_share_click.png */,
@@ -770,6 +777,15 @@
 				78FD4B5E1C7476D300905640 /* snow1.png */,
 			);
 			name = image;
+			sourceTree = "<group>";
+		};
+		78FECE5E1C8BB31900679D29 /* GameCenterManager */ = {
+			isa = PBXGroup;
+			children = (
+				78FECE5B1C8BB31200679D29 /* GAMGCManager.h */,
+				78FECE5C1C8BB31200679D29 /* GAMGCManager.m */,
+			);
+			name = GameCenterManager;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -857,6 +873,7 @@
 				780E34B31C8677AE00B1932A /* 12@2x.png in Resources */,
 				78EE819B1C81302700CD33BD /* btn_stop.png in Resources */,
 				780E34A61C8677AE00B1932A /* 5@3x.png in Resources */,
+				78FECE621C8BC48700679D29 /* btn_gamecenter.png in Resources */,
 				7878D0121C809B1700BC37BF /* btn_crazy.png in Resources */,
 				78FD4B671C7476D300905640 /* 8.png in Resources */,
 				780E34B41C8677AE00B1932A /* 12@3x.png in Resources */,
@@ -979,6 +996,7 @@
 				781FA81B1AED17C50048B337 /* SpriteUIView.m in Sources */,
 				78CE59841C8821CA0091EBE3 /* Reachability.m in Sources */,
 				78E260931B1AEBA600EB9F3E /* GameResultData.m in Sources */,
+				78FECE5D1C8BB31200679D29 /* GAMGCManager.m in Sources */,
 				78CE59621C880D030091EBE3 /* WeiXinShare.m in Sources */,
 				78CE59821C8821CA0091EBE3 /* GCMMultiplayer.m in Sources */,
 				78CE59811C8821CA0091EBE3 /* GameCenterManager.m in Sources */,
