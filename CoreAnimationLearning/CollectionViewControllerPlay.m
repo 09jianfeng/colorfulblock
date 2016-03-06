@@ -22,7 +22,7 @@ NSString *playingViewExitNotification = @"playingViewExitNotification";
 
 @interface CollectionViewControllerPlay ()<UIAlertViewDelegate>
 {
-   int seconde;
+   float seconde;
 }
 
 @property(nonatomic, retain) GameAlgorithm *gameAlgorithm;
@@ -146,7 +146,7 @@ static NSString * const reuseIdentifier = @"Cell";
     self.processView.backgroundColor = [UIColor colorWithRed:160.0/255.0 green:52.0/255.0 blue:15.0/255.0 alpha:1.0];
     if (!_noBackgroundImage) {
         [self.view addSubview:self.processView];
-        self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(timerResponce:) userInfo:nil repeats:YES];
+        self.timer = [NSTimer scheduledTimerWithTimeInterval:0.2 target:self selector:@selector(timerResponce:) userInfo:nil repeats:YES];
     }
     
 }
@@ -159,7 +159,7 @@ static NSString * const reuseIdentifier = @"Cell";
 #pragma mark -
 #pragma mark 事件
 -(void)timerResponce:(id)sender{
-    seconde++;
+    seconde+=0.2;
     [self.processView setprocess:seconde/_timeLimit];
     
     if (seconde > _timeLimit) {
@@ -207,7 +207,7 @@ static NSString * const reuseIdentifier = @"Cell";
     seconde = 0;
     self.gameAlgorithm = [[GameAlgorithm alloc] initWithWidthNum:_widthNum heightNum:_heightnum gamecolorexternNum:self.gameInitTypeNum allblockNumpercent:0.65];
     [self.collectionView reloadData];
-    self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(timerResponce:) userInfo:nil repeats:YES];
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:0.2 target:self selector:@selector(timerResponce:) userInfo:nil repeats:YES];
 }
 
 -(int)numberOfblock{
@@ -413,7 +413,7 @@ static NSString * const reuseIdentifier = @"Cell";
         _Allpoints = _Allpoints + points;
         [GameAudioPlay playClickBlockAudio:YES];
     }else{
-        seconde+=5;
+        seconde+=3;
         [GameAudioPlay playClickBlockAudio:NO];
     }
     self.labelPoints.text = [NSString stringWithFormat:@"%d",_Allpoints];
@@ -456,7 +456,7 @@ static NSString * const reuseIdentifier = @"Cell";
 }
 
 -(void)contiuneTheGame{
-    self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(timerResponce:) userInfo:nil repeats:YES];
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:0.2 target:self selector:@selector(timerResponce:) userInfo:nil repeats:YES];
 }
 
 -(void)replayTheGame{
