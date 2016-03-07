@@ -59,6 +59,7 @@
 
     UILabel *labelPoints = [[UILabel alloc] initWithFrame:CGRectMake(0, unitHeigh, boardWidth, unitHeigh)];
     labelPoints.textAlignment = NSTextAlignmentCenter;
+    labelPoints.tag = 20002;
     labelPoints.textColor = [UIColor colorWithRed:160.0/255.0 green:52.0/255.0 blue:15.0/255.0 alpha:1.0];
     labelPoints.font = [UIFont fontWithName:@"AmericanTypewriter-bold" size:24.0];
     labelPoints.text = [NSString stringWithFormat:@"0"];
@@ -103,6 +104,47 @@
     [self.ani addBehavior:attachmentBehavior];
     [self addSubview:board];
     [self showEmitter];
+}
+
+-(void)caculateFinalPoints{
+    if (self.gameCurrentProgressTime > self.gameTimeLimit) {
+        self.gameCurrentProgressTime = self.gameTimeLimit;
+    }
+    int finalPoints = self.gameCurrentPoints + (self.gameTimeLimit - self.gameCurrentProgressTime)*2.0;
+    //end time 那里已经判断过一次是否是perfect了，这里的perfect一定要传NO进去
+    BOOL isUpdateBestPoint = [GameResultData setGameResultForDifLevel:self.collectionViewController.gameDifficultyLevel bestPoints:finalPoints isPerfectPlay:NO];
+    
+    
+    //更新历史最高
+    BOOL isPerfect = self.isPerfectPlay;
+    BOOL isHistoryBest = self.isHistoryBest | isUpdateBestPoint;
+    UILabel *labelPoints = (UILabel *)[self viewWithTag:20003];
+    __block int points = self.gameCurrentPoints;
+    dispatch_source_t timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, dispatch_get_main_queue());
+    dispatch_source_set_timer(timer, DISPATCH_TIME_NOW, 0.02 * NSEC_PER_SEC, 0 * NSEC_PER_SEC);
+    dispatch_source_set_event_handler(timer, ^{
+        [GameAudioPlay playNumAddingAudio];
+        labelPoints.text = [NSString stringWithFormat:@"%d",points];
+        points++;
+        if (points > finalPoints) {
+            dispatch_source_cancel(timer);
+            //展示插屏广告
+            [GAMADManager showGDTInterstitial];
+            self.isPlayingAnimation = NO;
+            if (isPerfect) {
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    [GameAudioPlay playPerfectAudio];
+                    labelPoints.text = [NSString stringWithFormat:@"完美拆除+1"];
+                });
+            }else if (isHistoryBest){
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    [GameAudioPlay playPerfectAudio];
+                    labelPoints.text = [NSString stringWithFormat:@"历史最高：%d",finalPoints];
+                });
+            }
+        }
+    });
+    dispatch_resume(timer);
 }
 
 #pragma mark - 动画效果
@@ -163,8 +205,6 @@
 -(void)numAddingAudio:(UILabel *)labelPoints{
     __block int points = 0;
     int gameCurrentPoints = self.gameCurrentPoints;
-    BOOL isPerfect = self.isPerfectPlay;
-    BOOL isHistoryBest = self.isHistoryBest;
     self.isPlayingAnimation = YES;
     if (self.isGameEnd) {
         //数字增加动画以及音效
@@ -177,22 +217,7 @@
                 points++;
                 if (points > gameCurrentPoints) {
                     dispatch_source_cancel(timer);
-                    //展示插屏广告
-                    [GAMADManager showGDTInterstitial];
-                    self.isPlayingAnimation = NO;
                     [self.collectionViewController numFirstAddingAnimationFinish];
-                    
-                    if (isPerfect) {
-                        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                            [GameAudioPlay playPerfectAudio];
-                            labelPoints.text = [NSString stringWithFormat:@"完美拆除+1"];
-                        });
-                    }else if (isHistoryBest){
-                        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                            [GameAudioPlay playPerfectAudio];
-                            labelPoints.text = [NSString stringWithFormat:@"历史最高：%d",gameCurrentPoints];
-                        });
-                    }
                 }
             });
             dispatch_resume(timer);
@@ -205,6 +230,7 @@
     }
 }
 #pragma mark - 重载方法
+
 -(void)setGameCurrentProgressTime:(float)value{
     _gameCurrentProgressTime = value;
     
@@ -215,6 +241,7 @@
 }
 
 #pragma mark - 按钮事件
+
 -(void)buttonShare:(id)sender{
     if (self.isPlayingAnimation) {
         return;

@@ -213,10 +213,13 @@ static NSString * const reuseIdentifier = @"Cell";
             [self.view addSubview:sprite];
             [blocks addObject:sprite];
             [self beginActionAnimatorBehavior:blocks];
+            finishAlertView.gameCurrentProgressTime+=3;
+            [GameAudioPlay playClickBlockAudio:YES];
         }
 
         index++;
         if(index >= blocksThatShouldBreak.count){
+            [finishAlertView caculateFinalPoints];
             dispatch_source_cancel(autoBreakTimer);
         }
     });
@@ -227,7 +230,7 @@ static NSString * const reuseIdentifier = @"Cell";
     [self.timer invalidate];
     
     //更新历史最高
-    BOOL isUpdateBestPoint = [GameResultData setGameResultForDifLevel:self.gameDifficultyLevel bestPoints:self.Allpoints isPerfectPlay:NO];
+    BOOL isUpdateBestPoint = [GameResultData setGameResultForDifLevel:self.gameDifficultyLevel bestPoints:self.Allpoints isPerfectPlay:isPerfectPlay];
     
     UIViewFinishPlayAlert *finish = [[UIViewFinishPlayAlert alloc] initWithFrame:self.view.bounds];
     finish.tag = 3000;

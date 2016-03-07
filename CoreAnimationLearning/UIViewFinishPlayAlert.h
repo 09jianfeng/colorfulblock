@@ -22,7 +22,7 @@
 @property(nonatomic, assign) BOOL isHistoryBest;
 @property(nonatomic, assign) float gameTimeLimit;
 @property(nonatomic, assign) float gameCurrentProgressTime;
-@property(nonatomic, assign) float gameResultPoints;
 
 -(void)showView;
+-(void)caculateFinalPoints;
 @end
