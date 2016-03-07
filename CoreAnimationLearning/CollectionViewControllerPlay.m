@@ -21,7 +21,7 @@
 
 NSString *playingViewExitNotification = @"playingViewExitNotification";
 
-@interface CollectionViewControllerPlay ()<UIAlertViewDelegate>
+@interface CollectionViewControllerPlay ()<UIAlertViewDelegate,UIViewFinishPlayAlertDelegate>
 {
    float currentProgressTime;
 }
@@ -33,9 +33,6 @@ NSString *playingViewExitNotification = @"playingViewExitNotification";
 @property(nonatomic, retain) NSTimer *timer;
 @property(nonatomic, retain) UILabel *labelPoints;
 @property(nonatomic, assign) int Allpoints;
-//mutArraySprites 存储正在动的sprites
-@property(nonatomic, strong) NSMutableArray *mutArraySprites;
-
 @property(nonatomic, assign) float blockWidth;
 @property(nonatomic, assign) int heightnum;
 @property(nonatomic, assign) BOOL isGamePlaying;
@@ -56,7 +53,7 @@ static NSString * const reuseIdentifier = @"Cell";
 }
 
 -(void)dealloc{
-    self.mutArraySprites = nil;
+    NSLog(@"CollectionViewControllerPlay dealloc");
     self.gameAlgorithm = nil;
     self.animator = nil;
     self.gravity = nil;
@@ -182,8 +179,16 @@ static NSString * const reuseIdentifier = @"Cell";
     [GameAudioPlay playViewSwitchAudio];
 }
 
-#pragma mark -
-#pragma mark logic
+#pragma mark - 游戏操作
+-(void)autoBreakBlock{
+    UIViewFinishPlayAlert *finishAlertView = [self.view viewWithTag:3000];
+    if (!finishAlertView) {
+        return;
+    }
+    
+    
+}
+
 -(void)endTheGame:(BOOL)isPerfectPlay{
     [self.timer invalidate];
     
@@ -270,7 +275,7 @@ static NSString * const reuseIdentifier = @"Cell";
 }
 
 //被拆的动画效果
--(void)beginActionAnimatorBehavior:(__weak NSMutableArray *)arraySprites{
+-(void)beginActionAnimatorBehavior:(NSMutableArray *)arraySprites{
     for(SpriteUIView *sprite in arraySprites){
         if (sprite.pushBehavior) {
             //正在执行动画，下一个
@@ -393,9 +398,7 @@ static NSString * const reuseIdentifier = @"Cell";
     
     
     int spritesNumShouldDrop = 0;
-    if (!self.mutArraySprites) {
-        self.mutArraySprites = [[NSMutableArray alloc] init];
-    }
+    NSMutableArray* mutArraySprites = [[NSMutableArray alloc] init];
     for (NSNumber *num in arrayshouldRemoveIndexpath) {
         int indexpathrow = [num intValue];
         NSIndexPath *path = [NSIndexPath indexPathForRow:indexpathrow inSection:0];
@@ -407,10 +410,10 @@ static NSString * const reuseIdentifier = @"Cell";
             [sprite removeFromSuperview];
             sprite.frame = rect;
             [self.view addSubview:sprite];
-            [self.mutArraySprites addObject:sprite];
+            [mutArraySprites addObject:sprite];
         }
     }
-    [self beginActionAnimatorBehavior:self.mutArraySprites];
+    [self beginActionAnimatorBehavior:mutArraySprites];
     
     //计算消除的个数，增加的分数
     int points = spritesNumShouldDrop*2 - 2;
@@ -435,20 +438,9 @@ static NSString * const reuseIdentifier = @"Cell";
 //cell反选时被调用(多选时才生效)
 - (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath{
 }
-#pragma mark -
-#pragma mark alertviewDelegate
--(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
-    if (buttonIndex == 1) {
-        if (alertView.tag == 2000) {
-            [self contiuneTheGame];
-        }else{
-          [self replayGame];
-        }
-    }else if(buttonIndex == 0){
-        [self exitTheGame];
-    }
-}
 
+
+#pragma mark - 游戏操作
 -(void)exitTheGame{
     [UIView animateWithDuration:0.3 animations:^{
         self.view.alpha = 0.0;
@@ -467,4 +459,11 @@ static NSString * const reuseIdentifier = @"Cell";
 -(void)replayTheGame{
     [self replayGame];
 }
+
+#pragma mark - UIViewFinishPlayAlertDelegate
+-(void)numFirstAddingAnimationFinish{
+    [self autoBreakBlock];
+}
+
+
 @end

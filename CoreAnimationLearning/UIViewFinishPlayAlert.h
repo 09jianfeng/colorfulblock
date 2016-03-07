@@ -9,8 +9,13 @@
 #import <UIKit/UIKit.h>
 #import "CollectionViewControllerPlay.h"
 
+@protocol UIViewFinishPlayAlertDelegate <NSObject>
+@required
+-(void)numFirstAddingAnimationFinish;
+@end
+
 @interface UIViewFinishPlayAlert : UIView
-@property(nonatomic, assign) CollectionViewControllerPlay *collectionViewController;
+@property(nonatomic, assign) CollectionViewControllerPlay<UIViewFinishPlayAlertDelegate> *collectionViewController;
 @property(nonatomic, assign) int gameCurrentPoints;
 @property(nonatomic, assign) BOOL isPerfectPlay;
 @property(nonatomic, assign) BOOL isGameEnd;

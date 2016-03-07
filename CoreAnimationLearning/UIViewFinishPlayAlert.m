@@ -90,6 +90,7 @@
     [board addSubview:buttonMainManu];
 
     ProGressView *processView = [[ProGressView alloc] initWithFrame:CGRectMake(0,-30, boardWidth, 10)];
+    processView.tag = 20001;
     processView.backgroundColor = [UIColor colorWithRed:160.0/255.0 green:52.0/255.0 blue:15.0/255.0 alpha:1.0];
     [processView setprocess:_gameCurrentProgressTime/_gameTimeLimit ];
     [board addSubview:processView];
@@ -104,6 +105,7 @@
     [self showEmitter];
 }
 
+#pragma mark - 动画效果
 -(void)showEmitter{
     //添加粒子效果,往下掉
     // 设置粒子发射的地方
@@ -128,49 +130,6 @@
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [snowEmitter setValue:[NSNumber numberWithFloat:0.5] forKeyPath:@"emitterCells.snowflake.birthRate"];
     });
-}
-
--(void)numAddingAudio:(UILabel *)labelPoints{
-    __block int points = 0;
-    int gameCurrentPoints = self.gameCurrentPoints;
-    BOOL isPerfect = self.isPerfectPlay;
-    BOOL isHistoryBest = self.isHistoryBest;
-    self.isPlayingAnimation = YES;
-    if (self.isGameEnd) {
-        //数字增加动画以及音效
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.8 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            dispatch_source_t timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, dispatch_get_main_queue());
-            dispatch_source_set_timer(timer, DISPATCH_TIME_NOW, 0.02 * NSEC_PER_SEC, 0 * NSEC_PER_SEC);
-            dispatch_source_set_event_handler(timer, ^{
-                [GameAudioPlay playNumAddingAudio];
-                labelPoints.text = [NSString stringWithFormat:@"%d",points];
-                points++;
-                if (points > gameCurrentPoints) {
-                    dispatch_source_cancel(timer);
-                    //展示插屏广告
-                    [GAMADManager showGDTInterstitial];
-                    self.isPlayingAnimation = NO;
-                    if (isPerfect) {
-                        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                            [GameAudioPlay playPerfectAudio];
-                            labelPoints.text = [NSString stringWithFormat:@"完美拆除+1"];
-                        });
-                    }else if (isHistoryBest){
-                        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                            [GameAudioPlay playPerfectAudio];
-                            labelPoints.text = [NSString stringWithFormat:@"历史最高：%d",gameCurrentPoints];
-                        });
-                    }
-                }
-            });
-            dispatch_resume(timer);
-        });
-    }else{
-        labelPoints.text = [NSString stringWithFormat:@"%d",gameCurrentPoints];
-        //展示插屏广告
-        [GAMADManager showGDTInterstitial];
-        self.isPlayingAnimation = NO;
-    }
 }
 
 -(NSArray *)getEmitters{
@@ -198,6 +157,61 @@
         [arrayEmitters addObject:snowflake];
     }
     return arrayEmitters;
+}
+
+
+-(void)numAddingAudio:(UILabel *)labelPoints{
+    __block int points = 0;
+    int gameCurrentPoints = self.gameCurrentPoints;
+    BOOL isPerfect = self.isPerfectPlay;
+    BOOL isHistoryBest = self.isHistoryBest;
+    self.isPlayingAnimation = YES;
+    if (self.isGameEnd) {
+        //数字增加动画以及音效
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.8 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            dispatch_source_t timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, dispatch_get_main_queue());
+            dispatch_source_set_timer(timer, DISPATCH_TIME_NOW, 0.02 * NSEC_PER_SEC, 0 * NSEC_PER_SEC);
+            dispatch_source_set_event_handler(timer, ^{
+                [GameAudioPlay playNumAddingAudio];
+                labelPoints.text = [NSString stringWithFormat:@"%d",points];
+                points++;
+                if (points > gameCurrentPoints) {
+                    dispatch_source_cancel(timer);
+                    //展示插屏广告
+                    [GAMADManager showGDTInterstitial];
+                    self.isPlayingAnimation = NO;
+                    [self.collectionViewController numFirstAddingAnimationFinish];
+                    
+                    if (isPerfect) {
+                        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                            [GameAudioPlay playPerfectAudio];
+                            labelPoints.text = [NSString stringWithFormat:@"完美拆除+1"];
+                        });
+                    }else if (isHistoryBest){
+                        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                            [GameAudioPlay playPerfectAudio];
+                            labelPoints.text = [NSString stringWithFormat:@"历史最高：%d",gameCurrentPoints];
+                        });
+                    }
+                }
+            });
+            dispatch_resume(timer);
+        });
+    }else{
+        labelPoints.text = [NSString stringWithFormat:@"%d",gameCurrentPoints];
+        //展示插屏广告
+        [GAMADManager showGDTInterstitial];
+        self.isPlayingAnimation = NO;
+    }
+}
+#pragma mark - 重载方法
+-(void)setGameCurrentProgressTime:(float)value{
+    _gameCurrentProgressTime = value;
+    
+    ProGressView *processView = (ProGressView *)[self viewWithTag:20001];
+    if (processView) {
+        [processView setprocess: _gameCurrentProgressTime/_gameTimeLimit];
+    }
 }
 
 #pragma mark - 按钮事件
