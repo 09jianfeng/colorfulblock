@@ -24,6 +24,7 @@ NSString *playingViewExitNotification = @"playingViewExitNotification";
 @interface CollectionViewControllerPlay ()<UIAlertViewDelegate,UIViewFinishPlayAlertDelegate>
 {
    float currentProgressTime;
+    dispatch_source_t autoBreakTimer;
 }
 
 @property(nonatomic, retain) GameAlgorithm *gameAlgorithm;
@@ -186,7 +187,33 @@ static NSString * const reuseIdentifier = @"Cell";
         return;
     }
     
-    
+    NSArray *blocksThatShouldBreak = [_gameAlgorithm getRestColorfulBlockIndexs];
+    NSMutableArray *blocks = [[NSMutableArray alloc] init];
+    __block int index = 0;
+    autoBreakTimer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, dispatch_get_main_queue());
+    dispatch_source_set_timer(autoBreakTimer, DISPATCH_TIME_NOW, 0.3 * NSEC_PER_SEC, 0 * NSEC_PER_SEC);
+    dispatch_source_set_event_handler(autoBreakTimer, ^{
+        
+        NSNumber *indexNum = [blocksThatShouldBreak objectAtIndex:index];
+        int indexpathrow = [indexNum intValue];
+        NSIndexPath *path = [NSIndexPath indexPathForRow:indexpathrow inSection:0];
+        UICollectionViewCell *cell = [self.collectionView cellForItemAtIndexPath:path];
+        SpriteUIView *sprite = (SpriteUIView *)[cell viewWithTag:1001];
+        if (sprite) {
+            CGRect rect = [sprite convertRect:sprite.frame toView:self.view];
+            [sprite removeFromSuperview];
+            sprite.frame = rect;
+            [self.view addSubview:sprite];
+            [blocks addObject:sprite];
+            [self beginActionAnimatorBehavior:blocks];
+        }
+
+        index++;
+        if(index >= blocksThatShouldBreak.count){
+            dispatch_source_cancel(autoBreakTimer);
+        }
+    });
+    dispatch_resume(autoBreakTimer);
 }
 
 -(void)endTheGame:(BOOL)isPerfectPlay{
@@ -220,50 +247,70 @@ static NSString * const reuseIdentifier = @"Cell";
     self.timer = [NSTimer scheduledTimerWithTimeInterval:0.2 target:self selector:@selector(timerResponce:) userInfo:nil repeats:YES];
 }
 
+-(void)exitTheGame{
+    dispatch_source_cancel(autoBreakTimer);
+    [UIView animateWithDuration:0.3 animations:^{
+        self.view.alpha = 0.0;
+    } completion:^(BOOL isFinish){
+        [self.view removeFromSuperview];
+        [self removeFromParentViewController];
+    }];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:playingViewExitNotification object:nil userInfo:nil];
+}
+
+-(void)contiuneTheGame{
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:0.2 target:self selector:@selector(timerResponce:) userInfo:nil repeats:YES];
+}
+
+-(void)replayTheGame{
+    [self replayGame];
+}
+
 -(int)numberOfblock{
     return _heightnum*_widthNum;
 }
 
--(UIImage *)getColorInColorType:(blockcolor)blockcolorType{
-    switch (blockcolorType) {
-        case blockcolornone:
+-(UIImage *)getColorInColorType:(BLOCKCOLOR)BLOCKCOLORType{
+    switch (BLOCKCOLORType) {
+        case BLOCKCOLORnone:
             return nil;
             break;
-        case blockcolor1:
+        case BLOCKCOLOR1:
             return [UIImage imageNamed:@"1.png"];
             break;
-        case blockcolor2:
+        case BLOCKCOLOR2:
             return [UIImage imageNamed:@"2.png"];
             break;
-        case blockcolor3:
+        case BLOCKCOLOR3:
             return [UIImage imageNamed:@"3.png"];
             break;
-        case blockcolor4:
+        case BLOCKCOLOR4:
             return [UIImage imageNamed:@"4.png"];
             break;
         
-        case blockcolor5:
+        case BLOCKCOLOR5:
             return [UIImage imageNamed:@"5.png"];
             break;
-        case blockcolor6:
+        case BLOCKCOLOR6:
             return [UIImage imageNamed:@"6.png"];
             break;
-        case blockcolor7:
+        case BLOCKCOLOR7:
             return [UIImage imageNamed:@"7.png"];
             break;
-        case blockcolor8:
+        case BLOCKCOLOR8:
             return [UIImage imageNamed:@"8.png"];
             break;
-        case blockcolor9:
+        case BLOCKCOLOR9:
             return [UIImage imageNamed:@"9.png"];
             break;
-        case blockcolor10:
+        case BLOCKCOLOR10:
             return [UIImage imageNamed:@"10.png"];
             break;
-        case blockcolor11:
+        case BLOCKCOLOR11:
             return [UIImage imageNamed:@"11.png"];
             break;
-        case blockcolor12:
+        case BLOCKCOLOR12:
             return [UIImage imageNamed:@"12.png"];
             break;
 
@@ -274,6 +321,7 @@ static NSString * const reuseIdentifier = @"Cell";
     return nil;
 }
 
+#pragma mark - 动画
 //被拆的动画效果
 -(void)beginActionAnimatorBehavior:(NSMutableArray *)arraySprites{
     for(SpriteUIView *sprite in arraySprites){
@@ -421,7 +469,7 @@ static NSString * const reuseIdentifier = @"Cell";
         _Allpoints = _Allpoints + points;
         [GameAudioPlay playClickBlockAudio:YES];
     }else{
-        currentProgressTime+=3;
+        currentProgressTime+=5;
         [GameAudioPlay playClickBlockAudio:NO];
     }
     self.labelPoints.text = [NSString stringWithFormat:@"%d",_Allpoints];
@@ -439,26 +487,6 @@ static NSString * const reuseIdentifier = @"Cell";
 - (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath{
 }
 
-
-#pragma mark - 游戏操作
--(void)exitTheGame{
-    [UIView animateWithDuration:0.3 animations:^{
-        self.view.alpha = 0.0;
-    } completion:^(BOOL isFinish){
-        [self.view removeFromSuperview];
-        [self removeFromParentViewController];
-    }];
-    
-    [[NSNotificationCenter defaultCenter] postNotificationName:playingViewExitNotification object:nil userInfo:nil];
-}
-
--(void)contiuneTheGame{
-    self.timer = [NSTimer scheduledTimerWithTimeInterval:0.2 target:self selector:@selector(timerResponce:) userInfo:nil repeats:YES];
-}
-
--(void)replayTheGame{
-    [self replayGame];
-}
 
 #pragma mark - UIViewFinishPlayAlertDelegate
 -(void)numFirstAddingAnimationFinish{

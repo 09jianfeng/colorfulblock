@@ -55,7 +55,7 @@
     
     int allblockNum = widthNum*heightNum;
     for (int i = 0; i < _allValueblockNum; i+=2) {
-        int blockColorrandom = arc4random()%(_blockTypeNum)+1;
+        int BLOCKCOLORrandom = arc4random()%(_blockTypeNum)+1;
         for (int j = 0; j < 2; j++) {
             
             int endIndex = allblockNum - i - j-1;
@@ -65,7 +65,7 @@
             //给a数组的某个位置赋颜色值
             int widthindex = aGetValueIndex%_widthNum;
             int heightIndex = aGetValueIndex/_widthNum;
-            a[heightIndex][widthindex] = blockColorrandom;
+            a[heightIndex][widthindex] = BLOCKCOLORrandom;
             //把赋值了的位置移到b数组的最后面
             b[blockLocationrandom] = b[endIndex];
             b[endIndex] = -1;
@@ -79,12 +79,23 @@
 }
 
 //输入位置返回颜色
--(blockcolor)getColorInthisPlace:(int)index{
+-(BLOCKCOLOR)getColorInthisPlace:(int)index{
     int widthindex = index%_widthNum;
     int heightIndex = index/_widthNum;
     return a[heightIndex][widthindex];
 }
 
+-(NSArray *)getRestColorfulBlockIndexs{
+    NSMutableArray *restBlocks = [[NSMutableArray alloc] init];
+    for (int i = 0; i < _widthNum*_heightNum; i++) {
+        BLOCKCOLOR color = [self getColorInthisPlace:i];
+        if (color != BLOCKCOLORnone) {
+            [restBlocks addObject:[NSNumber numberWithInt:i]];
+        }
+    }
+    
+    return restBlocks;
+}
 
 -(NSArray *)getplacethatShoulddrop:(int)index placeShouldUpdate:(NSMutableArray **)mutableShouldUpdateAll{
     int widthindex = index%_widthNum;
