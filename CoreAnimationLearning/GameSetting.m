@@ -13,7 +13,7 @@ static NSString *ISFIRSTTIMEINSTALLKEY = @"ISFIRSTTIMEINSTALLKEY";
 static NSString *ISVOICEOPENKEY = @"ISVOICEOPENKEY";
 @implementation GameSetting
 +(NSString *)gameAppURLInAppStore{
-    return @"http://www.baidu.com";
+    return @"https://itunes.apple.com/cn/app/zhuan-kuai-xiao/id1090664606?l=zh&ls=1&mt=8";
 }
 
 +(BOOL)gameIsFirstInstall{

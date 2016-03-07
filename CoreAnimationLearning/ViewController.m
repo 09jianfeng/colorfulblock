@@ -143,7 +143,7 @@ extern NSString *playingViewExitNotification;
     UIButton *buttonTutorial = [[UIButton alloc] initWithFrame:CGRectZero];
     buttonTutorial.tag = 10009;
     buttonTutorial.backgroundColor = [UIColor clearColor];
-    [buttonTutorial setImage:[UIImage imageNamed:@"btn_share"] forState:UIControlStateNormal];
+    [buttonTutorial setImage:[UIImage imageNamed:@"btn_teach"] forState:UIControlStateNormal];
     [buttonTutorial addTarget:self action:@selector(buttonPressedTutorial:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:buttonTutorial];
     
@@ -311,7 +311,7 @@ extern NSString *playingViewExitNotification;
 
 -(void)buttonPressedAssessment:(id)sender{
     [GameAudioPlay playClickBlockAudio:YES];
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://itunes.apple.com/cn/app/zhuan-kuai-xiao/id1090664606?l=zh&ls=1&mt=8"]];
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[GameSetting gameAppURLInAppStore]]];
 }
 
 -(void)buttonPressedShare:(id)sender{
