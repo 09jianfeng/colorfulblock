@@ -71,6 +71,13 @@ static NSString * const reuseIdentifier = @"Cell";
     //缓存视频，图片资源。以免在执行动画的时候，导致动画节目卡顿
     [GameAudioPlay playClickBlockAudio:YES];
     [UIImage imageNamed:@"back_point.png"];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(viewWillEnterBackground) name:UIApplicationDidEnterBackgroundNotification object:nil];
+}
+
+-(void)viewWillEnterBackground{
+    if(autoBreakTimer) {
+        dispatch_source_cancel(autoBreakTimer);
+    }
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -239,6 +246,9 @@ static NSString * const reuseIdentifier = @"Cell";
 }
 
 -(void)replayGame{
+    if (autoBreakTimer) {
+        dispatch_source_cancel(autoBreakTimer);
+    }
     self.Allpoints = 0;
     [self.processView setprocess:0.0];
     currentProgressTime = 0;
@@ -248,7 +258,9 @@ static NSString * const reuseIdentifier = @"Cell";
 }
 
 -(void)exitTheGame{
-    dispatch_source_cancel(autoBreakTimer);
+    if (autoBreakTimer) {
+        dispatch_source_cancel(autoBreakTimer);
+    }
     [UIView animateWithDuration:0.3 animations:^{
         self.view.alpha = 0.0;
     } completion:^(BOOL isFinish){
