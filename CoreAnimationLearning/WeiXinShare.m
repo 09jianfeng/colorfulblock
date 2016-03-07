@@ -122,8 +122,13 @@
 -(void) onResp:(BaseResp*)resp{
     if([resp isKindOfClass:[SendMessageToWXResp class]])
     {
-        NSString *strTitle = [NSString stringWithFormat:@"发送媒体消息结果"];
+        NSString *strTitle = [NSString stringWithFormat:@"提醒"];
         NSString *strMsg = [NSString stringWithFormat:@"errcode:%d", resp.errCode];
+        if (0 == resp.errCode) {
+            strMsg = @"分享成功";
+        }else{
+            strMsg = @"分享失败";
+        }
         
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:strTitle message:strMsg delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
         [alert show];
