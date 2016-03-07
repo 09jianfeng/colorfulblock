@@ -17,12 +17,13 @@
 #import "GameAudioPlay.h"
 #import "GAMADManager.h"
 #import "GAMGCManager.h"
+#import "ProGressView.h"
 
 NSString *playingViewExitNotification = @"playingViewExitNotification";
 
 @interface CollectionViewControllerPlay ()<UIAlertViewDelegate>
 {
-   float seconde;
+   float currentProgressTime;
 }
 
 @property(nonatomic, retain) GameAlgorithm *gameAlgorithm;
@@ -88,7 +89,7 @@ static NSString * const reuseIdentifier = @"Cell";
         self.collectionView.contentInset = UIEdgeInsetsMake(10, 10, 20, 10);
     }
     
-    seconde = 0;
+    currentProgressTime = 0;
     
     // Register cell classes
     [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier];
@@ -159,10 +160,10 @@ static NSString * const reuseIdentifier = @"Cell";
 #pragma mark -
 #pragma mark 事件
 -(void)timerResponce:(id)sender{
-    seconde+=0.2;
-    [self.processView setprocess:seconde/_timeLimit];
+    currentProgressTime+=0.2;
+    [self.processView setprocess:currentProgressTime/_timeLimit];
     
-    if (seconde > _timeLimit) {
+    if (currentProgressTime > _timeLimit) {
         [self endTheGame:NO];
     }
 }
@@ -171,6 +172,8 @@ static NSString * const reuseIdentifier = @"Cell";
     [self.timer invalidate];
     UIViewFinishPlayAlert *finish = [[UIViewFinishPlayAlert alloc] initWithFrame:self.view.bounds];
     finish.tag = 3000;
+    finish.gameTimeLimit = _timeLimit;
+    finish.gameCurrentProgressTime = currentProgressTime;
     finish.gameCurrentPoints = self.Allpoints;
     [self.view addSubview:finish];
     finish.collectionViewController = self;
@@ -193,6 +196,8 @@ static NSString * const reuseIdentifier = @"Cell";
     [self.view addSubview:finish];
     finish.collectionViewController = self;
     finish.isGameEnd = YES;
+    finish.gameTimeLimit = _timeLimit;
+    finish.gameCurrentProgressTime = currentProgressTime;
     finish.isHistoryBest = isUpdateBestPoint;
     finish.isPerfectPlay = isPerfectPlay;
     [finish showView];
@@ -204,7 +209,7 @@ static NSString * const reuseIdentifier = @"Cell";
 -(void)replayGame{
     self.Allpoints = 0;
     [self.processView setprocess:0.0];
-    seconde = 0;
+    currentProgressTime = 0;
     self.gameAlgorithm = [[GameAlgorithm alloc] initWithWidthNum:_widthNum heightNum:_heightnum gamecolorexternNum:self.gameInitTypeNum allblockNumpercent:0.65];
     [self.collectionView reloadData];
     self.timer = [NSTimer scheduledTimerWithTimeInterval:0.2 target:self selector:@selector(timerResponce:) userInfo:nil repeats:YES];
@@ -413,7 +418,7 @@ static NSString * const reuseIdentifier = @"Cell";
         _Allpoints = _Allpoints + points;
         [GameAudioPlay playClickBlockAudio:YES];
     }else{
-        seconde+=3;
+        currentProgressTime+=3;
         [GameAudioPlay playClickBlockAudio:NO];
     }
     self.labelPoints.text = [NSString stringWithFormat:@"%d",_Allpoints];

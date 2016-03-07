@@ -286,19 +286,19 @@ extern NSString *playingViewExitNotification;
 }
 
 -(void)level1ButtonPlayPressed:(id)sender{
-    [self beginGameWith:50 widthNum:8 colorNum:8 gameDifficultyLevel:GameDifficultyLevel1];
+    [self beginGameWith:50 widthNum:8 colorNum:9 gameDifficultyLevel:GameDifficultyLevel1];
 }
 
 -(void)level2ButtonPlayPressed:(id)sender{
-    [self beginGameWith:56 widthNum:9 colorNum:9 gameDifficultyLevel:GameDifficultyLevel2];
+    [self beginGameWith:50 widthNum:9 colorNum:10 gameDifficultyLevel:GameDifficultyLevel2];
 }
 
 -(void)level3ButtonPlayPressed:(id)sender{
-    [self beginGameWith:60 widthNum:10 colorNum:10 gameDifficultyLevel:GameDifficultyLevel3];
+    [self beginGameWith:50 widthNum:10 colorNum:11 gameDifficultyLevel:GameDifficultyLevel3];
 }
 
 -(void)level4ButtonPlayPressed:(id)sender{
-    [self beginGameWith:60 widthNum:11 colorNum:12 gameDifficultyLevel:GameDifficultyLevel4];
+    [self beginGameWith:50 widthNum:11 colorNum:12 gameDifficultyLevel:GameDifficultyLevel4];
 }
 
 -(void)buttonPressedRanking:(id)sender{
