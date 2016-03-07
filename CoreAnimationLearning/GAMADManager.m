@@ -74,21 +74,24 @@ static GAMADManager *_instance = nil;
     self.gdtInterstitial.delegate = self;
     self.gdtInterstitial.isGpsOn = NO;
     [self.gdtInterstitial loadAd];
-    
 }
 
 #pragma mark -
 
 +(void)showGDTInterstitial{
-    UIViewController *vc = [[[UIApplication sharedApplication] keyWindow]
-                            rootViewController];
     
-    GDTMobInterstitial *_interstitialObj = [[GAMADManager shareInstance] gdtInterstitial];
-    if (_interstitialObj.isReady) {
-        NSLog(@"广点通 ready了");
-        [_interstitialObj presentFromRootViewController:vc];
-    }else{
-        NSLog(@"广点通 还没ready");
+    int randNum = arc4random()%4;
+    if (!randNum) {
+        UIViewController *vc = [[[UIApplication sharedApplication] keyWindow]
+                                rootViewController];
+        
+        GDTMobInterstitial *_interstitialObj = [[GAMADManager shareInstance] gdtInterstitial];
+        if (_interstitialObj.isReady) {
+            NSLog(@"广点通 ready了");
+            [_interstitialObj presentFromRootViewController:vc];
+        }else{
+            NSLog(@"广点通 还没ready");
+        }
     }
 }
 
