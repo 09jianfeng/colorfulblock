@@ -311,6 +311,7 @@ extern NSString *playingViewExitNotification;
 
 -(void)buttonPressedAssessment:(id)sender{
     [GameAudioPlay playClickBlockAudio:YES];
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://itunes.apple.com/cn/app/zhuan-kuai-xiao/id1090664606?l=zh&ls=1&mt=8"]];
 }
 
 -(void)buttonPressedShare:(id)sender{
