@@ -118,7 +118,7 @@
     //更新历史最高
     BOOL isPerfect = self.isPerfectPlay;
     BOOL isHistoryBest = self.isHistoryBest | isUpdateBestPoint;
-    UILabel *labelPoints = (UILabel *)[self viewWithTag:20003];
+    UILabel *labelPoints = (UILabel *)[self viewWithTag:20002];
     __block int points = self.gameCurrentPoints;
     dispatch_source_t timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, dispatch_get_main_queue());
     dispatch_source_set_timer(timer, DISPATCH_TIME_NOW, 0.02 * NSEC_PER_SEC, 0 * NSEC_PER_SEC);
