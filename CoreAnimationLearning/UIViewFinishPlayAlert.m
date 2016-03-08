@@ -126,6 +126,7 @@
         dispatch_async(dispatch_get_main_queue(), ^{
             [GameAudioPlay playNumAddingAudio];
             labelPoints.text = [NSString stringWithFormat:@"%d",points];
+            self.gameCurrentProgressTime += 0.5;
         });
         
         points++;
