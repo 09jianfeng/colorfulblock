@@ -123,7 +123,7 @@
     if([resp isKindOfClass:[SendMessageToWXResp class]])
     {
         NSString *strTitle = [NSString stringWithFormat:@"提醒"];
-        NSString *strMsg = [NSString stringWithFormat:@"errcode:%d", resp.errCode];
+        NSString *strMsg = @"";
         if (0 == resp.errCode) {
             strMsg = @"分享成功";
         }else{

@@ -371,6 +371,7 @@ extern NSString *playingViewExitNotification;
     CGRect circleContainer = CGRectInset(bt.frame, bt.frame.size.width/2-3, bt.frame.size.width/2-3);
     CGPathAddEllipseInRect(curvedPath, nil, circleContainer);
     pathAnimation.path = curvedPath;
+    CGPathRelease(curvedPath);
     float randNumP = (arc4random()%5 + 20)/10.0;
     pathAnimation.duration = randNumP;
     

@@ -218,6 +218,7 @@
                 if (points > gameCurrentPoints) {
                     dispatch_source_cancel(timer);
                     [self.collectionViewController numFirstAddingAnimationFinish];
+                    self.isPlayingAnimation = NO;
                 }
             });
             dispatch_resume(timer);

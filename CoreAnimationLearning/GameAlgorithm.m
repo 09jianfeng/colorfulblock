@@ -59,6 +59,9 @@
         for (int j = 0; j < 2; j++) {
             
             int endIndex = allblockNum - i - j-1;
+            if (endIndex == 0) {
+                return;
+            }
             int blockLocationrandom = arc4random()%(endIndex);
             //从b数组中取出值
             int aGetValueIndex = b[blockLocationrandom];

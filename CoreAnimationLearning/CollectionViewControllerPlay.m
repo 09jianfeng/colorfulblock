@@ -102,14 +102,6 @@ static NSString * const reuseIdentifier = @"Cell";
     self.collectionView.scrollEnabled = NO;
     // Do any additional setup after loading the view.
     
-    int processHeight = 20;
-    //如果是ipad 横向右13.0个方块
-    if (IsPadUIBlockGame()) {
-        _widthNum +=2;
-        processHeight = 40;
-    }
-    
-    
     _blockWidth = (self.collectionView.frame.size.width - self.collectionView.contentInset.left - self.collectionView.contentInset.right)/_widthNum;
     _heightnum = (self.collectionView.frame.size.height - self.collectionView.contentInset.top - self.collectionView.contentInset.bottom)/_blockWidth;
     float allblockNump = 0.65;
