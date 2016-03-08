@@ -37,6 +37,7 @@ NSString *playingViewExitNotification = @"playingViewExitNotification";
 @property(nonatomic, assign) float blockWidth;
 @property(nonatomic, assign) int heightnum;
 @property(nonatomic, assign) BOOL isGamePlaying;
+@property(nonatomic, retain) NSMutableArray *mutArraySprites;
 @end
 
 @implementation CollectionViewControllerPlay
@@ -49,6 +50,7 @@ static NSString * const reuseIdentifier = @"Cell";
         self.widthNum = 11.0;
         self.timeLimit = 50;
         self.gameInitTypeNum = 3.0;
+        self.mutArraySprites = [[NSMutableArray alloc] init];
     }
     return self;
 }
@@ -460,7 +462,6 @@ static NSString * const reuseIdentifier = @"Cell";
     
     
     int spritesNumShouldDrop = 0;
-    NSMutableArray* mutArraySprites = [[NSMutableArray alloc] init];
     for (NSNumber *num in arrayshouldRemoveIndexpath) {
         int indexpathrow = [num intValue];
         NSIndexPath *path = [NSIndexPath indexPathForRow:indexpathrow inSection:0];
@@ -472,10 +473,10 @@ static NSString * const reuseIdentifier = @"Cell";
             [sprite removeFromSuperview];
             sprite.frame = rect;
             [self.view addSubview:sprite];
-            [mutArraySprites addObject:sprite];
+            [_mutArraySprites addObject:sprite];
         }
     }
-    [self beginActionAnimatorBehavior:mutArraySprites];
+    [self beginActionAnimatorBehavior:_mutArraySprites];
     
     //计算消除的个数，增加的分数
     int points = spritesNumShouldDrop*2 - 2;
