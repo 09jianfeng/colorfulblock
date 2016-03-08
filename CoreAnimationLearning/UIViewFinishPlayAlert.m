@@ -120,16 +120,17 @@
     BOOL isHistoryBest = self.isHistoryBest | isUpdateBestPoint;
     UILabel *labelPoints = (UILabel *)[self viewWithTag:20002];
     __block int points = self.gameCurrentPoints;
-    dispatch_source_t timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, dispatch_get_main_queue());
-    dispatch_source_set_timer(timer, DISPATCH_TIME_NOW, 0.02 * NSEC_PER_SEC, 0 * NSEC_PER_SEC);
+    dispatch_source_t timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0));
+    dispatch_source_set_timer(timer, DISPATCH_TIME_NOW, 0.05 * NSEC_PER_SEC, 0 * NSEC_PER_SEC);
     dispatch_source_set_event_handler(timer, ^{
-        [GameAudioPlay playNumAddingAudio];
-        labelPoints.text = [NSString stringWithFormat:@"%d",points];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [GameAudioPlay playNumAddingAudio];
+            labelPoints.text = [NSString stringWithFormat:@"%d",points];
+        });
+        
         points++;
         if (points > finalPoints) {
             dispatch_source_cancel(timer);
-            //展示插屏广告
-            [GAMADManager showGDTInterstitial];
             self.isPlayingAnimation = NO;
             if (isPerfect) {
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
@@ -140,6 +141,11 @@
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                     [GameAudioPlay playPerfectAudio];
                     labelPoints.text = [NSString stringWithFormat:@"历史最高：%d",finalPoints];
+                });
+            }else{
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    //展示插屏广告
+                    [GAMADManager showGDTInterstitial];
                 });
             }
         }
