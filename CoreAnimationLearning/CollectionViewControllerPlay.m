@@ -57,6 +57,8 @@ static NSString * const reuseIdentifier = @"Cell";
 
 -(void)dealloc{
     NSLog(@"CollectionViewControllerPlay dealloc");
+    [self.mutArraySprites removeAllObjects];
+    self.mutArraySprites = nil;
     self.gameAlgorithm = nil;
     self.animator = nil;
     self.gravity = nil;
