@@ -187,6 +187,11 @@ static NSString * const reuseIdentifier = @"Cell";
     }
     
     NSArray *blocksThatShouldBreak = [_gameAlgorithm getRestColorfulBlockIndexs];
+    if (!blocksThatShouldBreak || 0 == blocksThatShouldBreak.count) {
+        [finishAlertView caculateFinalPoints];
+        return;
+    }
+    
     NSMutableArray *blocks = [[NSMutableArray alloc] init];
     __block int index = 0;
     autoBreakTimer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, dispatch_get_main_queue());
