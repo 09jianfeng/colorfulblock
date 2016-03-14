@@ -90,7 +90,7 @@
     [buttonMainManu addTarget:self action:@selector(buttonMainManu:) forControlEvents:UIControlEventTouchUpInside];
     [board addSubview:buttonMainManu];
 
-    ProGressView *processView = [[ProGressView alloc] initWithFrame:CGRectMake(0,-30, boardWidth, 10)];
+    ProGressView *processView = [[ProGressView alloc] initWithFrame:CGRectMake(0,boardHeigh+10, boardWidth, 10)];
     processView.tag = 20001;
     processView.backgroundColor = [UIColor colorWithRed:160.0/255.0 green:52.0/255.0 blue:15.0/255.0 alpha:1.0];
     [processView setprocess:_gameCurrentProgressTime/_gameTimeLimit ];

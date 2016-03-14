@@ -32,6 +32,7 @@
 //process是％分制的
 -(void)setprocess:(float)process{
     float width = self.frame.size.width * process;
+    width = width > self.frame.size.width ? self.frame.size.width : width;
     self.innerView.frame = CGRectMake(0.0, 0.0, width, self.frame.size.height);
 }
 @end
