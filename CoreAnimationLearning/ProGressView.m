@@ -9,7 +9,7 @@
 #import "ProGressView.h"
 
 @interface ProGressView()
-@property(nonatomic, retain) UIImageView *innerView;
+@property(nonatomic, retain) CALayer *innerLayer;
 @end
 
 @implementation ProGressView
@@ -17,9 +17,10 @@
 -(id)initWithFrame:(CGRect)frame{
     self = [super initWithFrame:frame];
     if (self) {
-        self.innerView = [[UIImageView alloc] initWithFrame:CGRectMake(0.0, 0.0, 1.0, frame.size.height)];
-        self.innerView.image = [UIImage imageNamed:@"bg_progress_02"];
-        [self addSubview:_innerView];
+        self.innerLayer = [CALayer layer];
+        self.innerLayer.contents = (__bridge id _Nullable)([UIImage imageNamed:@"bg_progress_02"].CGImage);
+        self.innerLayer.frame = CGRectMake(0.0, 0.0, 1.0, frame.size.height);
+        [self.layer addSublayer:self.innerLayer];
         
         self.layer.borderColor = [UIColor grayColor].CGColor;
         self.layer.borderWidth = 0.0;
@@ -33,6 +34,6 @@
 -(void)setprocess:(float)process{
     float width = self.frame.size.width * process;
     width = width > self.frame.size.width ? self.frame.size.width : width;
-    self.innerView.frame = CGRectMake(0.0, 0.0, width, self.frame.size.height);
+    self.innerLayer.frame = CGRectMake(0.0, 0.0, width, self.frame.size.height);
 }
 @end
