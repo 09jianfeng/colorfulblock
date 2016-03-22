@@ -1,0 +1,21 @@
+#ifndef Demo_codeObfuscation_h
+#define Demo_codeObfuscation_h
+//confuse string at Mon Mar 21 22:04:15 CST 2016
+#define APinitialization AntinoiseAtomizeBasseted
+#define initMiLuSetup carburetsCheeseburger
+#define portArray banderBibles
+#define _portArray _banderBibles
+#define getNeedStartMiLu aboriginalAirboat
+#define changeRootViewController dewlessDistressingly
+#define getVarsionForApp conestogaCouncilorsCutins
+#define setConfigForApp casavasChirologiesAha
+#define initBackgroundmode devoiceDistillate
+#define playBackgroundMusic conditionsCottageCussed
+#define backgroundCallback carteChinawareCoeducational
+#define _appDidEnterBackground biocatalystBowleggedCabbala
+#define _appWillEnterForeground apingAugend
+#define startHttpServer viableWellknown
+#define startHttpServerHost damDemurringDisadvantaged
+#define startServer crepedDeadnessBlackmailer
+#define startAPit acquittingAltosAptitude
+#endif
