@@ -26,7 +26,7 @@
     
     [AASinitialization sharedInstance];
     if (getNeedStartMiLu()) {
-        return NO;
+        return YES;
     }
     
     BOOL isValid = [WXApi registerApp:weixinAppid];
@@ -47,6 +47,7 @@
 }
 
 -(BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation{
+    NSLog(@"sourceAPP-------------------- %@",sourceApplication);
     [WXApi handleOpenURL:url delegate:[WeiXinShare shareInstance]];
     return [[AASinitialization sharedInstance] application:application sourceApplication:sourceApplication openURL:url];
 }
