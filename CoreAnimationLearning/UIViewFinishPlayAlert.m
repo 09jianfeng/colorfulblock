@@ -124,13 +124,14 @@
     dispatch_source_set_timer(timer, DISPATCH_TIME_NOW, 0.05 * NSEC_PER_SEC, 0 * NSEC_PER_SEC);
     dispatch_source_set_event_handler(timer, ^{
         dispatch_async(dispatch_get_main_queue(), ^{
-            [GameAudioPlay playNumAddingAudio];
-            labelPoints.text = [NSString stringWithFormat:@"%d",points];
-            self.gameCurrentProgressTime += 0.5;
+            if (points < finalPoints) {
+                [GameAudioPlay playNumAddingAudio];
+                labelPoints.text = [NSString stringWithFormat:@"%d",points];
+                self.gameCurrentProgressTime += 0.5;
+            }
         });
         
-        points++;
-        if (points > finalPoints) {
+        if (points >= finalPoints) {
             dispatch_source_cancel(timer);
             self.isPlayingAnimation = NO;
             if (isPerfect) {
@@ -145,11 +146,13 @@
                 });
             }else{
                 dispatch_async(dispatch_get_main_queue(), ^{
+                    [GameAudioPlay playPerfectAudio];
                     //展示插屏广告
                     [GAMADManager showGDTInterstitial];
                 });
             }
         }
+        points++;
     });
     dispatch_resume(timer);
 }
