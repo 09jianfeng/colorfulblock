@@ -100,12 +100,12 @@
     return restBlocks;
 }
 
--(NSArray *)getplacethatShoulddrop:(int)index placeShouldUpdate:(NSMutableArray **)mutableShouldUpdateAll{
+-(NSDictionary *)getplacethatShoulddrop:(int)index placeShouldUpdate:(NSMutableArray **)mutableShouldUpdateAll{
     int widthindex = index%_widthNum;
     int heightIndex = index/_widthNum;
-    if(a[heightIndex][widthindex] > 0) return [NSArray array];
+    if(a[heightIndex][widthindex] > 0) return [NSDictionary dictionary];
     
-    NSMutableArray *mutableShouldDrop = [[NSMutableArray alloc] init];
+    NSMutableDictionary *mutableShouldDrop = [[NSMutableDictionary alloc] init];
     *mutableShouldUpdateAll = [[NSMutableArray alloc] init];
     NSMutableArray *mutableShouldUpdateLeft = [[NSMutableArray alloc] init];
     NSMutableArray *mutableShouldUpdateRight = [[NSMutableArray alloc] init];
@@ -140,9 +140,9 @@
             if (colorIndex[colorValue] >= 0) {
                 //记下以前那个值
                 NSNumber *number = [NSNumber numberWithInt:colorIndex[colorValue]];
-                [mutableShouldDrop addObject:number];
+                [mutableShouldDrop setObject:@"1" forKey:number];
                 number = [NSNumber numberWithInt:(heightIndex*_widthNum+i)];
-                [mutableShouldDrop addObject:number];
+                [mutableShouldDrop setObject:@"1" forKey:number];
                 int width = colorIndex[colorValue]%_widthNum;
                 int height = colorIndex[colorValue]/_widthNum;
                 //去除这两个位置的颜色
@@ -169,9 +169,9 @@
             if (colorIndex[colorVaule] >= 0) {
                 //记下以前那个值
                 NSNumber *number = [NSNumber numberWithInt:colorIndex[colorVaule]];
-                [mutableShouldDrop addObject:number];
+                [mutableShouldDrop setObject:@"1" forKey:number];
                 number = [NSNumber numberWithInt:(i*_widthNum+widthindex)];
-                [mutableShouldDrop addObject:number];
+                [mutableShouldDrop setObject:@"1" forKey:number];
                 
                 int width = colorIndex[colorVaule]%_widthNum;
                 int height = colorIndex[colorVaule]/_widthNum;
@@ -202,9 +202,9 @@
             if (colorIndex[colorVaule] >= 0) {
                 //记下以前那个值
                 NSNumber *number = [NSNumber numberWithInt:colorIndex[colorVaule]];
-                [mutableShouldDrop addObject:number];
+                [mutableShouldDrop setObject:@"1" forKey:number];
                 number = [NSNumber numberWithInt:(i*_widthNum+widthindex)];
-                [mutableShouldDrop addObject:number];
+                [mutableShouldDrop setObject:@"1" forKey:number];
                 
                 int width = colorIndex[colorVaule]%_widthNum;
                 int height = colorIndex[colorVaule]/_widthNum;

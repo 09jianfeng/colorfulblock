@@ -35,7 +35,7 @@ typedef enum{
 -(BLOCKCOLOR)getColorInthisPlace:(int)index;
 
 ///最多返回六个位置，有可能返回重复的位置。要注意判断
--(NSArray *)getplacethatShoulddrop:(int)index placeShouldUpdate:(NSMutableArray **)mutableShouldDrop;
+-(NSDictionary *)getplacethatShoulddrop:(int)index placeShouldUpdate:(NSMutableArray **)mutableShouldDrop;
 
 ///是否还有砖块可以消除
 -(void)isHaveBlockToDestroy:(void(^)(BOOL isHave,BOOL isPerfectPlay))callbackBlock;

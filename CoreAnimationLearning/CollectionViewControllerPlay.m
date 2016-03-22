@@ -445,7 +445,7 @@ static NSString * const reuseIdentifier = @"Cell";
     
     NSMutableArray *mutableShoulUpdate = nil;
     //获取要remove掉的label
-    NSArray *arrayshouldRemoveIndexpath = [self.gameAlgorithm getplacethatShoulddrop:(int)indexPath.row  placeShouldUpdate:&mutableShoulUpdate];
+    NSArray *arrayshouldRemoveIndexpath = [[self.gameAlgorithm getplacethatShoulddrop:(int)indexPath.row  placeShouldUpdate:&mutableShoulUpdate] allKeys];
     //显示路径
     for (NSNumber *numIndex in mutableShoulUpdate) {
         int indexpathrow = [numIndex intValue];
