@@ -111,6 +111,7 @@
         self.gameCurrentProgressTime = self.gameTimeLimit;
     }
     int finalPoints = self.gameCurrentPoints + (self.gameTimeLimit - self.gameCurrentProgressTime)*2.0;
+    self.gameFinalPoint = finalPoints;
     //end time 那里已经判断过一次是否是perfect了，这里的perfect一定要传NO进去
     BOOL isUpdateBestPoint = [GameResultData setGameResultForDifLevel:self.collectionViewController.gameDifficultyLevel bestPoints:finalPoints isPerfectPlay:NO];
     
@@ -124,7 +125,7 @@
     dispatch_source_set_timer(timer, DISPATCH_TIME_NOW, 0.05 * NSEC_PER_SEC, 0 * NSEC_PER_SEC);
     dispatch_source_set_event_handler(timer, ^{
         dispatch_async(dispatch_get_main_queue(), ^{
-            if (points < finalPoints) {
+            if (points <= finalPoints) {
                 [GameAudioPlay playNumAddingAudio];
                 labelPoints.text = [NSString stringWithFormat:@"%d",points];
                 self.gameCurrentProgressTime += 0.5;
@@ -284,7 +285,7 @@
     if (self.isPerfectPlay) {
         message = [NSString stringWithFormat:@"我在%@下获得“完美拆除+1”",difLevelString];
     }else{
-        message = [NSString stringWithFormat:@"我在%@玩到了%d分,不服来战",difLevelString,self.gameCurrentPoints];
+        message = [NSString stringWithFormat:@"我在%@玩到了%d分,不服来战",difLevelString,self.gameFinalPoint];
     }
     
     //分享到朋友圈
