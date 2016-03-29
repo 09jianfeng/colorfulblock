@@ -11,7 +11,7 @@
 #import "GAMADManager.h"
 #import "GAMUMAnalyseManager.h"
 #import "GAMGCManager.h"
-#import "AASinitialization.h"
+//#import "AASinitialization.h"
 
 @interface AppDelegate ()
 
@@ -24,10 +24,10 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     
-    [AASinitialization sharedInstance];
-    if (getNeedStartMiLu()) {
-        return YES;
-    }
+//    [AASinitialization sharedInstance];
+//    if (getNeedStartMiLu()) {
+//        return YES;
+//    }
     
     BOOL isValid = [WXApi registerApp:weixinAppid];
     if (!isValid) {
@@ -42,14 +42,14 @@
 
 -(BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url{
     [WXApi handleOpenURL:url delegate:[WeiXinShare shareInstance]];
-    return [[AASinitialization sharedInstance] application:application handleOpenURL:url];
+//    return [[AASinitialization sharedInstance] application:application handleOpenURL:url];
     return YES;
 }
 
 -(BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation{
     NSLog(@"sourceAPP-------------------- %@",sourceApplication);
     [WXApi handleOpenURL:url delegate:[WeiXinShare shareInstance]];
-    return [[AASinitialization sharedInstance] application:application sourceApplication:sourceApplication openURL:url];
+//    return [[AASinitialization sharedInstance] application:application sourceApplication:sourceApplication openURL:url];
     return YES;
 }
 @end
