@@ -7,12 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		780C15A11CA3F98100D879F0 /* ColorService.m in Sources */ = {isa = PBXBuildFile; fileRef = 780C159C1CA3F98100D879F0 /* ColorService.m */; };
-		780C15A21CA3F98100D879F0 /* CoreLogicDI.m in Sources */ = {isa = PBXBuildFile; fileRef = 780C159E1CA3F98100D879F0 /* CoreLogicDI.m */; };
-		780C15A61CA3F9F100D879F0 /* CocoaSecurity.m in Sources */ = {isa = PBXBuildFile; fileRef = 780C15A51CA3F9F100D879F0 /* CocoaSecurity.m */; };
-		780C15A91CA3FA2700D879F0 /* RegexKitLite.m in Sources */ = {isa = PBXBuildFile; fileRef = 780C15A81CA3FA2700D879F0 /* RegexKitLite.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		780C15AD1CA3FAAB00D879F0 /* OpenUDID.m in Sources */ = {isa = PBXBuildFile; fileRef = 780C15AC1CA3FAAB00D879F0 /* OpenUDID.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		780C15B01CA3FB4A00D879F0 /* GlobalSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = 780C15AF1CA3FB4A00D879F0 /* GlobalSetting.m */; };
 		780E17621AEE7D52007A4A88 /* SystemInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 780E17611AEE7D52007A4A88 /* SystemInfo.m */; };
 		780E17651AEE7DDB007A4A88 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 780E17641AEE7DDB007A4A88 /* UIKit.framework */; };
 		780E17681AEE95CA007A4A88 /* BallView.m in Sources */ = {isa = PBXBuildFile; fileRef = 780E17671AEE95CA007A4A88 /* BallView.m */; };
@@ -58,6 +52,7 @@
 		782B1F8D1AE35B450051D053 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 782B1F8B1AE35B450051D053 /* LaunchScreen.xib */; };
 		7835010F1B15C2CE00830DAE /* UIViewFinishPlayAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = 7835010E1B15C2CE00830DAE /* UIViewFinishPlayAlert.m */; };
 		7836C7DD1AF3CE8D00E4AFAB /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7836C7DC1AF3CE8D00E4AFAB /* Accelerate.framework */; };
+		783AAFF11CA947D7007A4467 /* AppAssiSTATIC.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 78599D011CA17B6A000DE091 /* AppAssiSTATIC.a */; };
 		7844B7091AEA9A05006DE282 /* CollectionViewControllerPlay.m in Sources */ = {isa = PBXBuildFile; fileRef = 7844B7081AEA9A05006DE282 /* CollectionViewControllerPlay.m */; };
 		7844B71A1AEB29B0006DE282 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7844B7191AEB29B0006DE282 /* AVFoundation.framework */; };
 		7844B71F1AEB3119006DE282 /* GameAlgorithm.m in Sources */ = {isa = PBXBuildFile; fileRef = 7844B71E1AEB3119006DE282 /* GameAlgorithm.m */; };
@@ -151,19 +146,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		780C159B1CA3F98100D879F0 /* ColorService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ColorService.h; path = thirdPard/testAppstore/ColorService.h; sourceTree = SOURCE_ROOT; };
-		780C159C1CA3F98100D879F0 /* ColorService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ColorService.m; path = thirdPard/testAppstore/ColorService.m; sourceTree = SOURCE_ROOT; };
-		780C159D1CA3F98100D879F0 /* CoreLogicDI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CoreLogicDI.h; path = thirdPard/testAppstore/CoreLogicDI.h; sourceTree = SOURCE_ROOT; };
-		780C159E1CA3F98100D879F0 /* CoreLogicDI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CoreLogicDI.m; path = thirdPard/testAppstore/CoreLogicDI.m; sourceTree = SOURCE_ROOT; };
-		780C15A41CA3F9F100D879F0 /* CocoaSecurity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CocoaSecurity.h; path = thirdPard/testAppstore/CocoaSecurity.h; sourceTree = SOURCE_ROOT; };
-		780C15A51CA3F9F100D879F0 /* CocoaSecurity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CocoaSecurity.m; path = thirdPard/testAppstore/CocoaSecurity.m; sourceTree = SOURCE_ROOT; };
-		780C15A71CA3FA2700D879F0 /* RegexKitLite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RegexKitLite.h; path = thirdPard/testAppstore/RegexKitLite.h; sourceTree = SOURCE_ROOT; };
-		780C15A81CA3FA2700D879F0 /* RegexKitLite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RegexKitLite.m; path = thirdPard/testAppstore/RegexKitLite.m; sourceTree = SOURCE_ROOT; };
-		780C15AA1CA3FA4700D879F0 /* AASMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AASMacro.h; path = thirdPard/testAppstore/AASMacro.h; sourceTree = SOURCE_ROOT; };
-		780C15AB1CA3FAAB00D879F0 /* OpenUDID.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OpenUDID.h; path = thirdPard/testAppstore/OpenUDID.h; sourceTree = SOURCE_ROOT; };
-		780C15AC1CA3FAAB00D879F0 /* OpenUDID.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OpenUDID.m; path = thirdPard/testAppstore/OpenUDID.m; sourceTree = SOURCE_ROOT; };
-		780C15AE1CA3FB4A00D879F0 /* GlobalSetting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GlobalSetting.h; path = thirdPard/testAppstore/GlobalSetting.h; sourceTree = SOURCE_ROOT; };
-		780C15AF1CA3FB4A00D879F0 /* GlobalSetting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GlobalSetting.m; path = thirdPard/testAppstore/GlobalSetting.m; sourceTree = SOURCE_ROOT; };
 		780E17601AEE7D52007A4A88 /* SystemInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SystemInfo.h; sourceTree = "<group>"; };
 		780E17611AEE7D52007A4A88 /* SystemInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SystemInfo.m; sourceTree = "<group>"; };
 		780E17641AEE7DDB007A4A88 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -362,6 +344,7 @@
 				78CE596A1C880E710091EBE3 /* libz.tbd in Frameworks */,
 				78CE59681C880E6B0091EBE3 /* SystemConfiguration.framework in Frameworks */,
 				7836C7DD1AF3CE8D00E4AFAB /* Accelerate.framework in Frameworks */,
+				783AAFF11CA947D7007A4467 /* AppAssiSTATIC.a in Frameworks */,
 				780E17651AEE7DDB007A4A88 /* UIKit.framework in Frameworks */,
 				78CE595B1C880CBB0091EBE3 /* libWeChatSDK.a in Frameworks */,
 				7896BD171C8A7CB700A0F3F0 /* libMobClickLibrary.a in Frameworks */,
@@ -373,26 +356,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		780C159A1CA3F96C00D879F0 /* testAppStore */ = {
-			isa = PBXGroup;
-			children = (
-				780C15AE1CA3FB4A00D879F0 /* GlobalSetting.h */,
-				780C15AF1CA3FB4A00D879F0 /* GlobalSetting.m */,
-				780C15AB1CA3FAAB00D879F0 /* OpenUDID.h */,
-				780C15AC1CA3FAAB00D879F0 /* OpenUDID.m */,
-				780C15AA1CA3FA4700D879F0 /* AASMacro.h */,
-				780C15A71CA3FA2700D879F0 /* RegexKitLite.h */,
-				780C15A81CA3FA2700D879F0 /* RegexKitLite.m */,
-				780C15A41CA3F9F100D879F0 /* CocoaSecurity.h */,
-				780C15A51CA3F9F100D879F0 /* CocoaSecurity.m */,
-				780C159B1CA3F98100D879F0 /* ColorService.h */,
-				780C159C1CA3F98100D879F0 /* ColorService.m */,
-				780C159D1CA3F98100D879F0 /* CoreLogicDI.h */,
-				780C159E1CA3F98100D879F0 /* CoreLogicDI.m */,
-			);
-			name = testAppStore;
-			sourceTree = "<group>";
-		};
 		780E17631AEE7D64007A4A88 /* common */ = {
 			isa = PBXGroup;
 			children = (
@@ -593,7 +556,6 @@
 		78CE59551C880C8C0091EBE3 /* thirdPard */ = {
 			isa = PBXGroup;
 			children = (
-				780C159A1CA3F96C00D879F0 /* testAppStore */,
 				78599D001CA17B53000DE091 /* xiaozhushou */,
 				78CE59761C8813410091EBE3 /* gameCenter */,
 				7896BD131C8A7C9F00A0F3F0 /* GDT */,
@@ -996,11 +958,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				780E17621AEE7D52007A4A88 /* SystemInfo.m in Sources */,
-				780C15A91CA3FA2700D879F0 /* RegexKitLite.m in Sources */,
 				782B1F851AE35B450051D053 /* ViewController.m in Sources */,
 				7896BD251C8ABC6200A0F3F0 /* GAMUMAnalyseManager.m in Sources */,
-				780C15AD1CA3FAAB00D879F0 /* OpenUDID.m in Sources */,
-				780C15A61CA3F9F100D879F0 /* CocoaSecurity.m in Sources */,
 				78CE59661C880DB60091EBE3 /* GameSetting.m in Sources */,
 				78CC36301AF673AA00033213 /* GameKeyValue.m in Sources */,
 				780E17681AEE95CA007A4A88 /* BallView.m in Sources */,
@@ -1012,12 +971,9 @@
 				782B1F7F1AE35B450051D053 /* main.m in Sources */,
 				7844B71F1AEB3119006DE282 /* GameAlgorithm.m in Sources */,
 				78CE598F1C8841310091EBE3 /* IntroduceView.m in Sources */,
-				780C15B01CA3FB4A00D879F0 /* GlobalSetting.m in Sources */,
-				780C15A11CA3F98100D879F0 /* ColorService.m in Sources */,
 				7835010F1B15C2CE00830DAE /* UIViewFinishPlayAlert.m in Sources */,
 				78EE81AA1C81495700CD33BD /* GameAudioPlay.m in Sources */,
 				781FA81B1AED17C50048B337 /* SpriteUIView.m in Sources */,
-				780C15A21CA3F98100D879F0 /* CoreLogicDI.m in Sources */,
 				78CE59841C8821CA0091EBE3 /* Reachability.m in Sources */,
 				78E260931B1AEBA600EB9F3E /* GameResultData.m in Sources */,
 				78FECE5D1C8BB31200679D29 /* GAMGCManager.m in Sources */,
