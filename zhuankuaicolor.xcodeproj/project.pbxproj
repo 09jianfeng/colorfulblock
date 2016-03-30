@@ -38,6 +38,7 @@
 		780E34BF1C86984C00B1932A /* button_continue_click.png in Resources */ = {isa = PBXBuildFile; fileRef = 780E34B81C86984C00B1932A /* button_continue_click.png */; };
 		780E34C41C86984C00B1932A /* button_home_click.png in Resources */ = {isa = PBXBuildFile; fileRef = 780E34BD1C86984C00B1932A /* button_home_click.png */; };
 		780E34C51C86984C00B1932A /* button_reflesh_click.png in Resources */ = {isa = PBXBuildFile; fileRef = 780E34BE1C86984C00B1932A /* button_reflesh_click.png */; };
+		780EEDD81CAB801C00F80F91 /* GameCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 780EEDD71CAB801C00F80F91 /* GameCenter.m */; };
 		781FA81B1AED17C50048B337 /* SpriteUIView.m in Sources */ = {isa = PBXBuildFile; fileRef = 781FA81A1AED17C50048B337 /* SpriteUIView.m */; };
 		781FA81F1AED2FB60048B337 /* ProGressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 781FA81E1AED2FB60048B337 /* ProGressView.m */; };
 		782698681C7A154F00514B47 /* button_continue.png in Resources */ = {isa = PBXBuildFile; fileRef = 782698651C7A154F00514B47 /* button_continue.png */; };
@@ -93,10 +94,6 @@
 		78CE596E1C880E8B0091EBE3 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 78CE596D1C880E8B0091EBE3 /* libsqlite3.0.tbd */; };
 		78CE59701C880EC80091EBE3 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 78CE596F1C880EC80091EBE3 /* libc++.tbd */; };
 		78CE59721C88100F0091EBE3 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78CE59711C88100F0091EBE3 /* GameKit.framework */; };
-		78CE59811C8821CA0091EBE3 /* GameCenterManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CE59791C8821CA0091EBE3 /* GameCenterManager.m */; };
-		78CE59821C8821CA0091EBE3 /* GCMMultiplayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CE597C1C8821CA0091EBE3 /* GCMMultiplayer.m */; };
-		78CE59831C8821CA0091EBE3 /* NSDataAES256.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CE597E1C8821CA0091EBE3 /* NSDataAES256.m */; };
-		78CE59841C8821CA0091EBE3 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CE59801C8821CA0091EBE3 /* Reachability.m */; };
 		78CE59861C8821DC0091EBE3 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78CE59851C8821DC0091EBE3 /* Security.framework */; };
 		78CE59881C88366E0091EBE3 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 78CE59871C88366E0091EBE3 /* icon.png */; };
 		78CE598B1C88408F0091EBE3 /* introduce_4s.png in Resources */ = {isa = PBXBuildFile; fileRef = 78CE59891C88408F0091EBE3 /* introduce_4s.png */; };
@@ -179,6 +176,8 @@
 		780E34B81C86984C00B1932A /* button_continue_click.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = button_continue_click.png; path = image/button_continue_click.png; sourceTree = SOURCE_ROOT; };
 		780E34BD1C86984C00B1932A /* button_home_click.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = button_home_click.png; path = image/button_home_click.png; sourceTree = SOURCE_ROOT; };
 		780E34BE1C86984C00B1932A /* button_reflesh_click.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = button_reflesh_click.png; path = image/button_reflesh_click.png; sourceTree = SOURCE_ROOT; };
+		780EEDD61CAB801C00F80F91 /* GameCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameCenter.h; sourceTree = "<group>"; };
+		780EEDD71CAB801C00F80F91 /* GameCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameCenter.m; sourceTree = "<group>"; };
 		781FA8191AED17C50048B337 /* SpriteUIView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpriteUIView.h; sourceTree = "<group>"; };
 		781FA81A1AED17C50048B337 /* SpriteUIView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpriteUIView.m; sourceTree = "<group>"; };
 		781FA81D1AED2FB60048B337 /* ProGressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProGressView.h; sourceTree = "<group>"; };
@@ -262,15 +261,6 @@
 		78CE596D1C880E8B0091EBE3 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
 		78CE596F1C880EC80091EBE3 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		78CE59711C88100F0091EBE3 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
-		78CE59781C8821CA0091EBE3 /* GameCenterManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GameCenterManager.h; path = "thirdPard/GC Manager/GameCenterManager.h"; sourceTree = SOURCE_ROOT; };
-		78CE59791C8821CA0091EBE3 /* GameCenterManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GameCenterManager.m; path = "thirdPard/GC Manager/GameCenterManager.m"; sourceTree = SOURCE_ROOT; };
-		78CE597A1C8821CA0091EBE3 /* GCMConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GCMConstants.h; path = "thirdPard/GC Manager/GCMConstants.h"; sourceTree = SOURCE_ROOT; };
-		78CE597B1C8821CA0091EBE3 /* GCMMultiplayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GCMMultiplayer.h; path = "thirdPard/GC Manager/GCMMultiplayer.h"; sourceTree = SOURCE_ROOT; };
-		78CE597C1C8821CA0091EBE3 /* GCMMultiplayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GCMMultiplayer.m; path = "thirdPard/GC Manager/GCMMultiplayer.m"; sourceTree = SOURCE_ROOT; };
-		78CE597D1C8821CA0091EBE3 /* NSDataAES256.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NSDataAES256.h; path = "thirdPard/GC Manager/NSDataAES256.h"; sourceTree = SOURCE_ROOT; };
-		78CE597E1C8821CA0091EBE3 /* NSDataAES256.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NSDataAES256.m; path = "thirdPard/GC Manager/NSDataAES256.m"; sourceTree = SOURCE_ROOT; };
-		78CE597F1C8821CA0091EBE3 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Reachability.h; path = "thirdPard/GC Manager/Reachability.h"; sourceTree = SOURCE_ROOT; };
-		78CE59801C8821CA0091EBE3 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Reachability.m; path = "thirdPard/GC Manager/Reachability.m"; sourceTree = SOURCE_ROOT; };
 		78CE59851C8821DC0091EBE3 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		78CE59871C88366E0091EBE3 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon.png; path = image/icon.png; sourceTree = SOURCE_ROOT; };
 		78CE59891C88408F0091EBE3 /* introduce_4s.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = introduce_4s.png; path = image/introduce_4s.png; sourceTree = SOURCE_ROOT; };
@@ -357,6 +347,7 @@
 			children = (
 				7896BD1E1C8ABAF900A0F3F0 /* thirdPardManager */,
 				78EE81A71C81492B00CD33BD /* audio */,
+				78FECE5E1C8BB31900679D29 /* GameCenterManager */,
 				78EE81A61C81491C00CD33BD /* util */,
 				78EE81A51C81491000CD33BD /* systemInfo */,
 				78EE81A41C81490400CD33BD /* fileStorage */,
@@ -527,7 +518,6 @@
 		7896BD1E1C8ABAF900A0F3F0 /* thirdPardManager */ = {
 			isa = PBXGroup;
 			children = (
-				78FECE5E1C8BB31900679D29 /* GameCenterManager */,
 				7896BD1F1C8ABB3E00A0F3F0 /* ADManager */,
 				78CE59771C88135A0091EBE3 /* weixinshare */,
 			);
@@ -559,7 +549,6 @@
 			children = (
 				78A4A2121CAA969900D88B24 /* background */,
 				78599D001CA17B53000DE091 /* xiaozhushou */,
-				78CE59761C8813410091EBE3 /* gameCenter */,
 				7896BD131C8A7C9F00A0F3F0 /* GDT */,
 				7896BD121C8A7C9800A0F3F0 /* UM */,
 				78CE59561C880C9E0091EBE3 /* webchat */,
@@ -585,22 +574,6 @@
 				78CE59651C880DB60091EBE3 /* GameSetting.m */,
 			);
 			name = sceneCommon;
-			sourceTree = "<group>";
-		};
-		78CE59761C8813410091EBE3 /* gameCenter */ = {
-			isa = PBXGroup;
-			children = (
-				78CE59781C8821CA0091EBE3 /* GameCenterManager.h */,
-				78CE59791C8821CA0091EBE3 /* GameCenterManager.m */,
-				78CE597A1C8821CA0091EBE3 /* GCMConstants.h */,
-				78CE597B1C8821CA0091EBE3 /* GCMMultiplayer.h */,
-				78CE597C1C8821CA0091EBE3 /* GCMMultiplayer.m */,
-				78CE597D1C8821CA0091EBE3 /* NSDataAES256.h */,
-				78CE597E1C8821CA0091EBE3 /* NSDataAES256.m */,
-				78CE597F1C8821CA0091EBE3 /* Reachability.h */,
-				78CE59801C8821CA0091EBE3 /* Reachability.m */,
-			);
-			name = gameCenter;
 			sourceTree = "<group>";
 		};
 		78CE59771C88135A0091EBE3 /* weixinshare */ = {
@@ -792,6 +765,8 @@
 		78FECE5E1C8BB31900679D29 /* GameCenterManager */ = {
 			isa = PBXGroup;
 			children = (
+				780EEDD61CAB801C00F80F91 /* GameCenter.h */,
+				780EEDD71CAB801C00F80F91 /* GameCenter.m */,
 				78FECE5B1C8BB31200679D29 /* GAMGCManager.h */,
 				78FECE5C1C8BB31200679D29 /* GAMGCManager.m */,
 			);
@@ -966,6 +941,7 @@
 				780E17681AEE95CA007A4A88 /* BallView.m in Sources */,
 				781FA81F1AED2FB60048B337 /* ProGressView.m in Sources */,
 				7896BD221C8ABB7C00A0F3F0 /* GAMADManager.m in Sources */,
+				780EEDD81CAB801C00F80F91 /* GameCenter.m in Sources */,
 				780E34B71C868D7F00B1932A /* RankingView.m in Sources */,
 				782B1F821AE35B450051D053 /* AppDelegate.m in Sources */,
 				7844B7091AEA9A05006DE282 /* CollectionViewControllerPlay.m in Sources */,
@@ -975,14 +951,10 @@
 				7835010F1B15C2CE00830DAE /* UIViewFinishPlayAlert.m in Sources */,
 				78EE81AA1C81495700CD33BD /* GameAudioPlay.m in Sources */,
 				781FA81B1AED17C50048B337 /* SpriteUIView.m in Sources */,
-				78CE59841C8821CA0091EBE3 /* Reachability.m in Sources */,
 				78A4A2151CAA96B000D88B24 /* BackgroundTask.m in Sources */,
 				78E260931B1AEBA600EB9F3E /* GameResultData.m in Sources */,
 				78FECE5D1C8BB31200679D29 /* GAMGCManager.m in Sources */,
 				78CE59621C880D030091EBE3 /* WeiXinShare.m in Sources */,
-				78CE59821C8821CA0091EBE3 /* GCMMultiplayer.m in Sources */,
-				78CE59811C8821CA0091EBE3 /* GameCenterManager.m in Sources */,
-				78CE59831C8821CA0091EBE3 /* NSDataAES256.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1100,7 +1072,7 @@
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = CoreAnimationLearning/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited)";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/thirdPard/WeChatSDK_1.5",
@@ -1128,7 +1100,7 @@
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = CoreAnimationLearning/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited)";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/thirdPard/WeChatSDK_1.5",

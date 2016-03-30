@@ -7,8 +7,8 @@
 //
 
 #import "GAMGCManager.h"
-#import "GameCenterManager.h"
 #import "GameResultData.h"
+#import "GameCenter.h"
 
 #define EASYMODEL 101
 #define NORMALMODEL 102
@@ -19,18 +19,43 @@
 extern NSString *GAMEBESTPOINTKEY;
 extern NSString *GAMEPEFECTTIMESKET;
 
-@implementation GAMGCManager
+@interface GAMGCManager()
+@property(nonatomic, retain) GameCenter *gameCenter;
+@end
 
-+(void)initGameCenter{
-    [[GameCenterManager sharedManager] setupManager];
-    //加密数据的秘钥，这个秘钥升级的时候不能变。否则会崩溃
-    [[GameCenterManager sharedManager] setupManagerAndSetShouldCryptWithKey:@"3ufdekid"];
+@implementation GAMGCManager
++(id)shareInstance{
+    static GAMGCManager *instance = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        instance = [GAMGCManager new];
+    });
+    
+    return instance;
+}
+
+-(id)init{
+    self = [super init];
+    if (!self) {
+        return nil;
+    }
+    
+    self.gameCenter = [GameCenter new];
+    self.gameCenter.delegate = self;
+    [self.gameCenter authenticateLocalPlayer];
+    
+    return self;
+}
+
++(void)initGameCenter:(ViewController *)viewController{
+    [GAMGCManager shareInstance];
+    [[[GAMGCManager shareInstance] gameCenter]setViewController:viewController];
 }
 
 +(void)updateGameCenterRankingInDifLevel:(GameDifficultyLevel)difLevel isPerfect:(BOOL)isPerfect{
     NSArray *arrayGameResult = [GameResultData getDictionaryOfGameResult];
     int bestPoint = [[[arrayGameResult objectAtIndex:difLevel] objectForKey:GAMEBESTPOINTKEY] intValue];
-    [[GameCenterManager sharedManager] saveAndReportScore:bestPoint leaderboard:[NSString stringWithFormat:@"%d",EASYMODEL+difLevel] sortOrder:GameCenterSortOrderHighToLow];
+    [[[GAMGCManager shareInstance] gameCenter] reportScore:bestPoint forCategory:[NSString stringWithFormat:@"%d",EASYMODEL+difLevel]];
     
     if (isPerfect) {
         int allPerfectTimes = 0;
@@ -38,15 +63,13 @@ extern NSString *GAMEPEFECTTIMESKET;
             int perfectTimes = [[[arrayGameResult objectAtIndex:i] objectForKey:GAMEPEFECTTIMESKET] intValue];
             allPerfectTimes += perfectTimes;
         }
-        [[GameCenterManager sharedManager] saveAndReportScore:bestPoint leaderboard:[NSString stringWithFormat:@"%d",PERFECTTIMES] sortOrder:GameCenterSortOrderHighToLow];
+
+        [[[GAMGCManager shareInstance] gameCenter] reportScore:bestPoint forCategory:[NSString stringWithFormat:@"%d",PERFECTTIMES]];
     }
 }
 
-+(void)showGameCenterWithController:(UIViewController *)viewController difflevel:(GameDifficultyLevel)difflevel{
-    BOOL isAvaliable = [[GameCenterManager sharedManager] checkGameCenterAvailability:YES];
-    if (isAvaliable) {
-        [[GameCenterManager sharedManager] presentLeaderboardsOnViewController:viewController withLeaderboard:[NSString stringWithFormat:@"%d",EASYMODEL+difflevel]];
-    }
++(void)showGameCenterWithController:(ViewController *)viewController difflevel:(GameDifficultyLevel)difflevel{
+    [[[GAMGCManager shareInstance] gameCenter] setViewController:viewController];
+    [[[GAMGCManager shareInstance] gameCenter] showGameCenter];
 }
-
 @end

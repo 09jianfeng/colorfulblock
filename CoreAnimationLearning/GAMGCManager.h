@@ -8,10 +8,11 @@
 
 #import <Foundation/Foundation.h>
 #import "ViewController.h"
+#import "GameCenter.h"
 
 @interface GAMGCManager : NSObject
 
-+(void)initGameCenter;
++(void)initGameCenter:(ViewController *)viewController;
 +(void)updateGameCenterRankingInDifLevel:(GameDifficultyLevel)difLevel isPerfect:(BOOL)isPerfect;
-+(void)showGameCenterWithController:(UIViewController *)viewController difflevel:(GameDifficultyLevel)difflevel;
++(void)showGameCenterWithController:(ViewController *)viewController difflevel:(GameDifficultyLevel)difflevel;
 @end

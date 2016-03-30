@@ -7,10 +7,9 @@
 //
 
 #import "AppDelegate.h"
-#import "GameCenterManager.h"
 #import "GAMADManager.h"
 #import "GAMUMAnalyseManager.h"
-#import "GAMGCManager.h"
+
 //#import "AASinitialization.h"
 
 @interface AppDelegate ()
@@ -34,7 +33,6 @@
         NSLog(@"微信registerApp 失败");
     }
     
-    [GAMGCManager initGameCenter];
     [GAMADManager showGDTSplashAD];
     [GAMUMAnalyseManager initialUMSDK];
     return YES;

@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <GameKit/GameKit.h>
 
 typedef NS_ENUM(int,GameDifficultyLevel){
     GameDifficultyLevel1=0,
@@ -15,7 +16,7 @@ typedef NS_ENUM(int,GameDifficultyLevel){
     GameDifficultyLevel4
 };
 
-@interface ViewController : UIViewController
+@interface ViewController : UIViewController <GKGameCenterControllerDelegate>
 
 
 @end

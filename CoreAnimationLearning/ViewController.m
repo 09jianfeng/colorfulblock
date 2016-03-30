@@ -16,15 +16,16 @@
 #import "GameResultData.h"
 #import "RankingView.h"
 #import "WeiXinShare.h"
-#import "GameCenterManager.h"
 #import "IntroduceView.h"
 #import "GameAudioPlay.h"
 #import "GameSetting.h"
 #import "BackgroundTask.h"
+#import "GAMGCManager.h"
+#import <GameKit/GameKit.h>
 
 extern NSString *playingViewExitNotification;
 
-@interface ViewController () <GameCenterManagerDelegate>{
+@interface ViewController (){
     float radius;
 }
 
@@ -57,8 +58,8 @@ extern NSString *playingViewExitNotification;
     [self addSubViews];
     
     // Set GameCenter Manager Delegate
-    [[GameCenterManager sharedManager] setDelegate:self];
-    [[GameCenterManager sharedManager] checkGameCenterAvailability:YES];
+//    [[GameCenterManager sharedManager] setDelegate:self];
+//    [[GameCenterManager sharedManager] checkGameCenterAvailability:YES];
     
     BOOL isVoiceOpen = [GameSetting gameIsVoiceOpen];
     if (isVoiceOpen) {
@@ -72,6 +73,11 @@ extern NSString *playingViewExitNotification;
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self beginMainManuAnimation];
+}
+
+-(void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    [GAMGCManager initGameCenter:self];
 }
 
 -(void)addSubViews{
@@ -426,77 +432,5 @@ extern NSString *playingViewExitNotification;
     } else {
         NSLog(@"Displayed GameCenter controller.");
     }
-}
-
-//------------------------------------------------------------------------------------------------------------//
-//------- GameCenter Manager Delegate ------------------------------------------------------------------------//
-//------------------------------------------------------------------------------------------------------------//
-#pragma mark - GameCenter Manager Delegate
-
-- (void)gameCenterManager:(GameCenterManager *)manager authenticateUser:(UIViewController *)gameCenterLoginController {
-    [self presentViewController:gameCenterLoginController animated:YES completion:^{
-        NSLog(@"Finished Presenting Authentication Controller");
-    }];
-}
-
-- (void)gameCenterManager:(GameCenterManager *)manager availabilityChanged:(NSDictionary *)availabilityInformation {
-    NSLog(@"GC Availabilty: %@", availabilityInformation);
-    if ([[availabilityInformation objectForKey:@"status"] isEqualToString:@"GameCenter Available"]) {
-        [self.navigationController.navigationBar setValue:@"GameCenter Available" forKeyPath:@"prompt"];
-        NSLog(@"Game Center is online, the current player is logged in, and this app is setup.");
-    } else {
-        [self.navigationController.navigationBar setValue:@"GameCenter Unavailable" forKeyPath:@"prompt"];
-        NSLog(@"%@",[availabilityInformation objectForKey:@"error"]);
-    }
-    
-    GKLocalPlayer *player = [[GameCenterManager sharedManager] localPlayerData];
-    if (player) {
-        if ([player isUnderage] == NO) {
-            NSLog(@"%@",[NSString stringWithFormat:@"%@ signed in.", player.displayName]);
-            NSLog(@"%@",player.displayName);
-            NSLog(@"%@",@"Player is not underage and is signed-in");
-            [[GameCenterManager sharedManager] localPlayerPhoto:^(UIImage *playerPhoto) {
-            }];
-        } else {
-            NSLog(@"%@",player.displayName);
-            NSLog(@"%@",@"Player is underage");
-            NSLog(@"%@",[NSString stringWithFormat:@"Underage player, %@, signed in.", player.displayName]);
-        }
-    } else {
-        NSLog(@"%@",[NSString stringWithFormat:@"No GameCenter player found."]);
-    }
-}
-
-- (void)gameCenterManager:(GameCenterManager *)manager error:(NSError *)error {
-    NSLog(@"GCM Error: %@", error);
-    NSLog(@"%@",error.domain);
-}
-
-- (void)gameCenterManager:(GameCenterManager *)manager reportedAchievement:(GKAchievement *)achievement withError:(NSError *)error {
-    if (!error) {
-        NSLog(@"GCM Reported Achievement: %@", achievement);
-        NSLog(@"%@",[NSString stringWithFormat:@"Reported achievement with %.1f percent completed", achievement.percentComplete]);
-    } else {
-        NSLog(@"GCM Error while reporting achievement: %@", error);
-    }
-}
-
-- (void)gameCenterManager:(GameCenterManager *)manager reportedScore:(GKScore *)score withError:(NSError *)error {
-    if (!error) {
-        NSLog(@"GCM Reported Score: %@", score);
-        NSLog(@"%@",[NSString stringWithFormat:@"Reported leaderboard score: %lld", score.value]);
-    } else {
-        NSLog(@"GCM Error while reporting score: %@", error);
-    }
-}
-
-- (void)gameCenterManager:(GameCenterManager *)manager didSaveScore:(GKScore *)score {
-    NSLog(@"Saved GCM Score with value: %lld", score.value);
-    NSLog(@"%@",[NSString stringWithFormat:@"Score saved for upload to GameCenter."]);
-}
-
-- (void)gameCenterManager:(GameCenterManager *)manager didSaveAchievement:(GKAchievement *)achievement {
-    NSLog(@"Saved GCM Achievement: %@", achievement);
-    NSLog(@"%@",[NSString stringWithFormat:@"Achievement saved for upload to GameCenter."]);
 }
 @end
