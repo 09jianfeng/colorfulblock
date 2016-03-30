@@ -64,7 +64,7 @@ extern NSString *GAMEPEFECTTIMESKET;
             allPerfectTimes += perfectTimes;
         }
 
-        [[[GAMGCManager shareInstance] gameCenter] reportScore:bestPoint forCategory:[NSString stringWithFormat:@"%d",PERFECTTIMES]];
+        [[[GAMGCManager shareInstance] gameCenter] reportScore:allPerfectTimes forCategory:[NSString stringWithFormat:@"%d",PERFECTTIMES]];
     }
 }
 

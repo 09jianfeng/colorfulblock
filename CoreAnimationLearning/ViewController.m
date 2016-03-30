@@ -298,7 +298,7 @@ extern NSString *playingViewExitNotification;
 }
 
 -(void)level1ButtonPlayPressed:(id)sender{
-    [self beginGameWith:50 widthNum:8 colorNum:9 gameDifficultyLevel:GameDifficultyLevel1];
+    [self beginGameWith:60 widthNum:8 colorNum:9 gameDifficultyLevel:GameDifficultyLevel1];
 }
 
 -(void)level2ButtonPlayPressed:(id)sender{
