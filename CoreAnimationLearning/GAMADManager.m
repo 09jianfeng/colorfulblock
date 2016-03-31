@@ -80,7 +80,7 @@ static GAMADManager *_instance = nil;
 
 +(void)showGDTInterstitial{
     
-    int randNum = arc4random()%4;
+    int randNum = arc4random()%3;
     if (!randNum) {
         UIViewController *vc = [[[UIApplication sharedApplication] keyWindow]
                                 rootViewController];
@@ -91,6 +91,7 @@ static GAMADManager *_instance = nil;
             [_interstitialObj presentFromRootViewController:vc];
         }else{
             NSLog(@"广点通 还没ready");
+            [_interstitialObj loadAd];
         }
     }
 }
