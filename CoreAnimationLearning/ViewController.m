@@ -19,9 +19,9 @@
 #import "IntroduceView.h"
 #import "GameAudioPlay.h"
 #import "GameSetting.h"
-#import "BackgroundTask.h"
 #import "GAMGCManager.h"
 #import <GameKit/GameKit.h>
+#import "PublicCallFunction.h"
 
 extern NSString *playingViewExitNotification;
 
@@ -36,8 +36,6 @@ extern NSString *playingViewExitNotification;
 
 @property(nonatomic, assign) int circleNum;
 @property(nonatomic, assign) int beginCircleNum;
-
-@property(nonatomic, retain) BackgroundTask *background;
 @end
 
 @implementation ViewController
@@ -57,17 +55,12 @@ extern NSString *playingViewExitNotification;
     radius = self.view.frame.size.width/8.0;
     [self addSubViews];
     
-    // Set GameCenter Manager Delegate
-//    [[GameCenterManager sharedManager] setDelegate:self];
-//    [[GameCenterManager sharedManager] checkGameCenterAvailability:YES];
-    
     BOOL isVoiceOpen = [GameSetting gameIsVoiceOpen];
     if (isVoiceOpen) {
         [GameAudioPlay playMainAudio];
     }
     
-    self.background = [[BackgroundTask alloc] init];
-    [self.background startBackgroundTasks:50000 target:self selector:@selector(buttonPressedVoice:)];
+    [[PublicCallFunction sharedInstance]playBackgroundMusic:@selector(buttonPressedVoice:) target:self times:50000];
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -422,7 +415,6 @@ extern NSString *playingViewExitNotification;
 //------- GameKit Delegate -----------------------------------------------------------------------------------//
 //------------------------------------------------------------------------------------------------------------//
 #pragma mark - GameKit Delegate
-
 - (void)gameCenterViewControllerDidFinish:(GKGameCenterViewController *)gameCenterViewController {
     [self dismissViewControllerAnimated:YES completion:nil];
     if (gameCenterViewController.viewState == GKGameCenterViewControllerStateAchievements) {

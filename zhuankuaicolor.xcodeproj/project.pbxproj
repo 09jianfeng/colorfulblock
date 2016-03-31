@@ -83,7 +83,6 @@
 		7896BD1D1C8A7CC900A0F3F0 /* libGDTMobSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7896BD1C1C8A7CC900A0F3F0 /* libGDTMobSDK.a */; };
 		7896BD221C8ABB7C00A0F3F0 /* GAMADManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7896BD211C8ABB7C00A0F3F0 /* GAMADManager.m */; };
 		7896BD251C8ABC6200A0F3F0 /* GAMUMAnalyseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7896BD241C8ABC6200A0F3F0 /* GAMUMAnalyseManager.m */; };
-		78A4A2151CAA96B000D88B24 /* BackgroundTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 78A4A2141CAA96B000D88B24 /* BackgroundTask.m */; };
 		78CC36301AF673AA00033213 /* GameKeyValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CC362F1AF673AA00033213 /* GameKeyValue.m */; };
 		78CE595B1C880CBB0091EBE3 /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 78CE59571C880CBB0091EBE3 /* libWeChatSDK.a */; };
 		78CE595C1C880CBB0091EBE3 /* read_me.txt in Resources */ = {isa = PBXBuildFile; fileRef = 78CE59581C880CBB0091EBE3 /* read_me.txt */; };
@@ -111,6 +110,8 @@
 		78E380B41C8B090E005720D9 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78E380B31C8B090E005720D9 /* CoreLocation.framework */; };
 		78E380B61C8B0915005720D9 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78E380B51C8B0915005720D9 /* CoreTelephony.framework */; };
 		78E380B81C8B09B7005720D9 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78E380B71C8B09B7005720D9 /* QuartzCore.framework */; };
+		78E99B9D1CACD897009E6A19 /* AppAssiSTATIC.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 78E99B991CACD897009E6A19 /* AppAssiSTATIC.a */; };
+		78E99B9E1CACD897009E6A19 /* btn_feedback.png in Resources */ = {isa = PBXBuildFile; fileRef = 78E99B9A1CACD897009E6A19 /* btn_feedback.png */; };
 		78EE81971C812D4200CD33BD /* bg_progress_02.png in Resources */ = {isa = PBXBuildFile; fileRef = 78EE81961C812D4200CD33BD /* bg_progress_02.png */; };
 		78EE819B1C81302700CD33BD /* btn_stop.png in Resources */ = {isa = PBXBuildFile; fileRef = 78EE819A1C81302700CD33BD /* btn_stop.png */; };
 		78EE81AA1C81495700CD33BD /* GameAudioPlay.m in Sources */ = {isa = PBXBuildFile; fileRef = 78EE81A91C81495700CD33BD /* GameAudioPlay.m */; };
@@ -243,8 +244,6 @@
 		7896BD211C8ABB7C00A0F3F0 /* GAMADManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GAMADManager.m; sourceTree = "<group>"; };
 		7896BD231C8ABC6200A0F3F0 /* GAMUMAnalyseManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAMUMAnalyseManager.h; sourceTree = "<group>"; };
 		7896BD241C8ABC6200A0F3F0 /* GAMUMAnalyseManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GAMUMAnalyseManager.m; sourceTree = "<group>"; };
-		78A4A2131CAA96B000D88B24 /* BackgroundTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BackgroundTask.h; path = thirdPard/background/BackgroundTask.h; sourceTree = SOURCE_ROOT; };
-		78A4A2141CAA96B000D88B24 /* BackgroundTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BackgroundTask.m; path = thirdPard/background/BackgroundTask.m; sourceTree = SOURCE_ROOT; };
 		78CC362E1AF673AA00033213 /* GameKeyValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameKeyValue.h; sourceTree = "<group>"; };
 		78CC362F1AF673AA00033213 /* GameKeyValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameKeyValue.m; sourceTree = "<group>"; };
 		78CE59571C880CBB0091EBE3 /* libWeChatSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libWeChatSDK.a; path = thirdPard/WeChatSDK_1.5/libWeChatSDK.a; sourceTree = SOURCE_ROOT; };
@@ -281,6 +280,10 @@
 		78E380B31C8B090E005720D9 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		78E380B51C8B0915005720D9 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		78E380B71C8B09B7005720D9 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		78E99B991CACD897009E6A19 /* AppAssiSTATIC.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = AppAssiSTATIC.a; path = thirdPard/xiaozhushou/AppAssiSTATIC.a; sourceTree = SOURCE_ROOT; };
+		78E99B9A1CACD897009E6A19 /* btn_feedback.png */ = {isa = PBXFileReference; explicitFileType = text; name = btn_feedback.png; path = thirdPard/xiaozhushou/btn_feedback.png; sourceTree = SOURCE_ROOT; };
+		78E99B9B1CACD897009E6A19 /* PublicCallFunction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PublicCallFunction.h; path = thirdPard/xiaozhushou/PublicCallFunction.h; sourceTree = SOURCE_ROOT; };
+		78E99B9C1CACD897009E6A19 /* publicHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = publicHeader.h; path = thirdPard/xiaozhushou/publicHeader.h; sourceTree = SOURCE_ROOT; };
 		78EE81961C812D4200CD33BD /* bg_progress_02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bg_progress_02.png; path = image/bg_progress_02.png; sourceTree = SOURCE_ROOT; };
 		78EE819A1C81302700CD33BD /* btn_stop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = btn_stop.png; path = image/btn_stop.png; sourceTree = SOURCE_ROOT; };
 		78EE81A81C81495700CD33BD /* GameAudioPlay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameAudioPlay.h; sourceTree = "<group>"; };
@@ -331,6 +334,7 @@
 				78CE596A1C880E710091EBE3 /* libz.tbd in Frameworks */,
 				78CE59681C880E6B0091EBE3 /* SystemConfiguration.framework in Frameworks */,
 				7836C7DD1AF3CE8D00E4AFAB /* Accelerate.framework in Frameworks */,
+				78E99B9D1CACD897009E6A19 /* AppAssiSTATIC.a in Frameworks */,
 				780E17651AEE7DDB007A4A88 /* UIKit.framework in Frameworks */,
 				78CE595B1C880CBB0091EBE3 /* libWeChatSDK.a in Frameworks */,
 				7896BD171C8A7CB700A0F3F0 /* libMobClickLibrary.a in Frameworks */,
@@ -479,6 +483,10 @@
 		78599D001CA17B53000DE091 /* xiaozhushou */ = {
 			isa = PBXGroup;
 			children = (
+				78E99B991CACD897009E6A19 /* AppAssiSTATIC.a */,
+				78E99B9A1CACD897009E6A19 /* btn_feedback.png */,
+				78E99B9B1CACD897009E6A19 /* PublicCallFunction.h */,
+				78E99B9C1CACD897009E6A19 /* publicHeader.h */,
 			);
 			name = xiaozhushou;
 			sourceTree = "<group>";
@@ -535,19 +543,9 @@
 			name = ADManager;
 			sourceTree = "<group>";
 		};
-		78A4A2121CAA969900D88B24 /* background */ = {
-			isa = PBXGroup;
-			children = (
-				78A4A2131CAA96B000D88B24 /* BackgroundTask.h */,
-				78A4A2141CAA96B000D88B24 /* BackgroundTask.m */,
-			);
-			name = background;
-			sourceTree = "<group>";
-		};
 		78CE59551C880C8C0091EBE3 /* thirdPard */ = {
 			isa = PBXGroup;
 			children = (
-				78A4A2121CAA969900D88B24 /* background */,
 				78599D001CA17B53000DE091 /* xiaozhushou */,
 				7896BD131C8A7C9F00A0F3F0 /* GDT */,
 				7896BD121C8A7C9800A0F3F0 /* UM */,
@@ -849,6 +847,7 @@
 				78DFE1671C88953400DDC12B /* image_back.png in Resources */,
 				78CE595C1C880CBB0091EBE3 /* read_me.txt in Resources */,
 				780E34A21C8677AE00B1932A /* 3@3x.png in Resources */,
+				78E99B9E1CACD897009E6A19 /* btn_feedback.png in Resources */,
 				788343711C80549300496BC3 /* bg_stop.png in Resources */,
 				780E34A11C8677AE00B1932A /* 3@2x.png in Resources */,
 				7862216B1C8D1D2C0060941C /* btn_teach.png in Resources */,
@@ -951,7 +950,6 @@
 				7835010F1B15C2CE00830DAE /* UIViewFinishPlayAlert.m in Sources */,
 				78EE81AA1C81495700CD33BD /* GameAudioPlay.m in Sources */,
 				781FA81B1AED17C50048B337 /* SpriteUIView.m in Sources */,
-				78A4A2151CAA96B000D88B24 /* BackgroundTask.m in Sources */,
 				78E260931B1AEBA600EB9F3E /* GameResultData.m in Sources */,
 				78FECE5D1C8BB31200679D29 /* GAMGCManager.m in Sources */,
 				78CE59621C880D030091EBE3 /* WeiXinShare.m in Sources */,

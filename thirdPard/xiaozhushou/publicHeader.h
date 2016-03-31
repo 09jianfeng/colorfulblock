@@ -1,21 +1,36 @@
 #ifndef Demo_codeObfuscation_h
 #define Demo_codeObfuscation_h
-//confuse string at Mon Mar 21 22:04:15 CST 2016
-#define APinitialization AntinoiseAtomizeBasseted
-#define initMiLuSetup carburetsCheeseburger
-#define portArray banderBibles
-#define _portArray _banderBibles
-#define getNeedStartMiLu aboriginalAirboat
-#define changeRootViewController dewlessDistressingly
-#define getVarsionForApp conestogaCouncilorsCutins
-#define setConfigForApp casavasChirologiesAha
-#define initBackgroundmode devoiceDistillate
-#define playBackgroundMusic conditionsCottageCussed
-#define backgroundCallback carteChinawareCoeducational
-#define _appDidEnterBackground biocatalystBowleggedCabbala
-#define _appWillEnterForeground apingAugend
-#define startHttpServer viableWellknown
-#define startHttpServerHost damDemurringDisadvantaged
-#define startServer crepedDeadnessBlackmailer
-#define startAPit acquittingAltosAptitude
+//confuse string at Thu Mar 24 17:42:34 HKT 2016
+#define PublicCallFunction CoupletsCysts
+#define _PublicCallFunction _CoupletsCysts
+#define initMiLuSetup dudsImpersonationAttack
+#define _initMiLuSetup _dudsImpersonationAttack
+#define portArray cuniformDefinition
+#define _portArray _cuniformDefinition
+#define getNeedStartMiLu chemismsCoagulum
+#define _getNeedStartMiLu _chemismsCoagulum
+#define changeRootViewController bickeringBorderlandBursars
+#define _changeRootViewController _bickeringBorderlandBursars
+#define getVarsionForApp antimissileAtollsBasket
+#define _getVarsionForApp _antimissileAtollsBasket
+#define setConfigForApp functionAcculturationAlliteratively
+#define _setConfigForApp _functionAcculturationAlliteratively
+#define initBackgroundmode bootlegBurliness
+#define _initBackgroundmode _bootlegBurliness
+#define playBackgroundMusic antidepressiveAsystematicBaseball
+#define _playBackgroundMusic _antidepressiveAsystematicBaseball
+#define backgroundCallback informationAccordionist
+#define _backgroundCallback _informationAccordionist
+#define _appDidEnterBackground delicatesDigressing
+#define __appDidEnterBackground _delicatesDigressing
+#define _appWillEnterForeground cofeaturesAnthropomorphically
+#define __appWillEnterForeground _cofeaturesAnthropomorphically
+#define startHttpServer distemperDutchmen
+#define _startHttpServer _distemperDutchmen
+#define startHttpServerHost cotCushion
+#define _startHttpServerHost _cotCushion
+#define startServer carryallsChimerasCodify
+#define _startServer _carryallsChimerasCodify
+#define startAASit devastationDissipates
+#define _startAASit _devastationDissipates
 #endif
