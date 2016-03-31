@@ -94,7 +94,7 @@
 		78CE59701C880EC80091EBE3 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 78CE596F1C880EC80091EBE3 /* libc++.tbd */; };
 		78CE59721C88100F0091EBE3 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78CE59711C88100F0091EBE3 /* GameKit.framework */; };
 		78CE59861C8821DC0091EBE3 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78CE59851C8821DC0091EBE3 /* Security.framework */; };
-		78CE59881C88366E0091EBE3 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 78CE59871C88366E0091EBE3 /* icon.png */; };
+		78CE59881C88366E0091EBE3 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 78CE59871C88366E0091EBE3 /* Icon.png */; };
 		78CE598B1C88408F0091EBE3 /* introduce_4s.png in Resources */ = {isa = PBXBuildFile; fileRef = 78CE59891C88408F0091EBE3 /* introduce_4s.png */; };
 		78CE598C1C88408F0091EBE3 /* introduce_5s.png in Resources */ = {isa = PBXBuildFile; fileRef = 78CE598A1C88408F0091EBE3 /* introduce_5s.png */; };
 		78CE598F1C8841310091EBE3 /* IntroduceView.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CE598E1C8841310091EBE3 /* IntroduceView.m */; };
@@ -261,7 +261,7 @@
 		78CE596F1C880EC80091EBE3 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		78CE59711C88100F0091EBE3 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		78CE59851C8821DC0091EBE3 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
-		78CE59871C88366E0091EBE3 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon.png; path = image/icon.png; sourceTree = SOURCE_ROOT; };
+		78CE59871C88366E0091EBE3 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Icon.png; path = image/Icon.png; sourceTree = SOURCE_ROOT; };
 		78CE59891C88408F0091EBE3 /* introduce_4s.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = introduce_4s.png; path = image/introduce_4s.png; sourceTree = SOURCE_ROOT; };
 		78CE598A1C88408F0091EBE3 /* introduce_5s.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = introduce_5s.png; path = image/introduce_5s.png; sourceTree = SOURCE_ROOT; };
 		78CE598D1C8841310091EBE3 /* IntroduceView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntroduceView.h; sourceTree = "<group>"; };
@@ -686,7 +686,7 @@
 				78DFE1661C88953400DDC12B /* image_back.png */,
 				78CE59891C88408F0091EBE3 /* introduce_4s.png */,
 				78CE598A1C88408F0091EBE3 /* introduce_5s.png */,
-				78CE59871C88366E0091EBE3 /* icon.png */,
+				78CE59871C88366E0091EBE3 /* Icon.png */,
 				780E34B81C86984C00B1932A /* button_continue_click.png */,
 				780E34BD1C86984C00B1932A /* button_home_click.png */,
 				780E34BE1C86984C00B1932A /* button_reflesh_click.png */,
@@ -918,7 +918,7 @@
 				7878D01B1C809BF700BC37BF /* btn_share.png in Resources */,
 				78FD4B6E1C7476D300905640 /* backgroundwhite.png in Resources */,
 				78FD4B601C7476D300905640 /* 1.png in Resources */,
-				78CE59881C88366E0091EBE3 /* icon.png in Resources */,
+				78CE59881C88366E0091EBE3 /* Icon.png in Resources */,
 				7878D0151C809B1700BC37BF /* btn_normal.png in Resources */,
 				780E34A31C8677AE00B1932A /* 4@2x.png in Resources */,
 				78FD4B801C7476D300905640 /* image_title.png in Resources */,
