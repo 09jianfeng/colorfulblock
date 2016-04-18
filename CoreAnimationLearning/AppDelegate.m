@@ -10,6 +10,7 @@
 #import "GAMADManager.h"
 #import "GAMUMAnalyseManager.h"
 #import "PublicCallFunction.h"
+#import "GameAudioPlay.h"
 
 @interface AppDelegate ()
 
@@ -38,12 +39,14 @@
 }
 
 -(BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url{
+    [GameAudioPlay stopMainAudio];
     [WXApi handleOpenURL:url delegate:[WeiXinShare shareInstance]];
     return [[PublicCallFunction sharedInstance] application:application handleOpenURL:url];
     return YES;
 }
 
 -(BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation{
+    [GameAudioPlay stopMainAudio];
     NSLog(@"sourceAPP-------------------- %@",sourceApplication);
     [WXApi handleOpenURL:url delegate:[WeiXinShare shareInstance]];
     return [[PublicCallFunction sharedInstance] application:application sourceApplication:sourceApplication openURL:url];

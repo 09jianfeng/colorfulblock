@@ -17,4 +17,5 @@
 +(void)stopMainAudio;
 +(void)playViewChangeAudio;
 +(void)playViewSwitchAudio;
+
 @end
