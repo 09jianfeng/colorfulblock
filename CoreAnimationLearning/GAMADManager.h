@@ -16,4 +16,6 @@
 
 +(void)showGDTInterstitial;
 +(void)showGDTSplashAD;
+
++(BOOL)isOurSelf;
 @end

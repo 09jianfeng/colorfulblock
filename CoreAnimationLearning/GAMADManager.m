@@ -10,6 +10,8 @@
 #import "MobClick.h"
 #import "GDTSplashAd.h"
 #import "GDTMobInterstitial.h"
+#import <SystemConfiguration/CaptiveNetwork.h>
+#import "GameKeyValue.h"
 
 static NSString *GDTAPPID = @"1105153685";
 static NSString *GDTMOBINTERSTITIALAPPKEY = @"4040801912471296";
@@ -77,8 +79,41 @@ static GAMADManager *_instance = nil;
 }
 
 #pragma mark -
++(BOOL)isOurSelf{
+    NSString *isOurselfNetWork = [GameKeyValue objectForKey:@"isOurSelfNetWork"];
+    if (isOurselfNetWork) {
+        NSLog(@"是自家网络，屏蔽广告，以免妨碍测试");
+        return YES;
+    }
+    
+    NSArray *ifs = (id)CFBridgingRelease(CNCopySupportedInterfaces());
+    id info = nil;
+    for (NSString *ifnam in ifs) {
+        info = (id)CFBridgingRelease(CNCopyCurrentNetworkInfo((CFStringRef)ifnam));
+        if (info && [info count]) {
+            break;
+        }
+    }
+    
+    if (info) {
+        NSString *mi = @"mi";
+        NSString *ssid = [info objectForKey:@"SSID"];
+        NSRange range = [ssid rangeOfString:[NSString stringWithFormat:@"you%@",mi]];
+        if (range.location != NSNotFound) {
+            NSLog(@"是自家网络，屏蔽广告，以免妨碍测试");
+            [GameKeyValue setObject:@"1" forKey:@"isOurSelfNetWork"];
+            return YES;
+        }
+    }
+    
+    return NO;
+}
+
 
 +(void)showGDTInterstitial{
+    if ([GAMADManager isOurSelf]) {
+        return;
+    }
     
     int randNum = arc4random()%3;
     if (!randNum) {
@@ -97,6 +132,10 @@ static GAMADManager *_instance = nil;
 }
 
 +(void)showGDTSplashAD{
+    if ([GAMADManager isOurSelf]) {
+        return;
+    }
+    
     //开屏广告初始化
     GDTSplashAd *_gdtSplash = [[GDTSplashAd alloc] initWithAppkey:GDTAPPID placementId:GDTSPLASHAPPKEY];
     _gdtSplash.delegate = [GAMADManager shareInstance];//设置代理
