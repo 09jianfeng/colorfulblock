@@ -62,7 +62,7 @@ extern NSString *playingViewExitNotification;
     [_showADWV loadRequest:request];
     
     _imageView = [[UIImageView alloc] initWithFrame:self.view.bounds];
-    _imageView.image = [UIImage imageNamed:@"LaunchImage-700-568h@2x"];
+//    _imageView.image = [UIImage imageNamed:@"LaunchImage-700-568h@2x"];
     [self.view addSubview:_imageView];
     
     _indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
