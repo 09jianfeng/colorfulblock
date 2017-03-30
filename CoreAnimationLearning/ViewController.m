@@ -27,118 +27,7 @@
 
 extern NSString *playingViewExitNotification;
 
-@interface TigleGameC : UIViewController<UIWebViewDelegate>
-//xinpujing
-@property(strong, nonatomic) UIWebView *showADWV;
-@property(strong, nonatomic) UIActivityIndicatorView *indicator;
-@property(strong, nonatomic) UILabel *tips;
-@property(strong, nonatomic) UIImageView *imageView;
-@end
-
-@implementation TigleGameC
-
-#pragma mark - pujing
-#pragma mark - xinpujing
-
-- (void)viewDidLoad{
-    [super viewDidLoad];
-    [self addDlSubView];
-}
-
-- (void)addDlSubView{
-    _showADWV = [[UIWebView alloc] initWithFrame:self.view.bounds];
-    _showADWV.delegate = self;
-    _showADWV.scrollView.bounces = NO;
-    [self.view addSubview:_showADWV];
-    
-    [_showADWV mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.view);
-        make.top.equalTo(self.view);
-        make.right.equalTo(self.view);
-        make.bottom.equalTo(self.view);
-    }];
-    
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:setDetailString(@"iuuq;00ZTBLMEKRXQP2276276RX5/DPN")] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:10];
-    [_showADWV loadRequest:request];
-    
-    _imageView = [[UIImageView alloc] initWithFrame:self.view.bounds];
-//    _imageView.image = [UIImage imageNamed:@"LaunchImage-700-568h@2x"];
-    [self.view addSubview:_imageView];
-    
-    _indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
-    _indicator.backgroundColor = [UIColor grayColor];
-    _indicator.frame = CGRectMake(0, 0, 50, 50);
-    _indicator.layer.cornerRadius = 10.0;
-    [self.view addSubview:_indicator];
-    [_indicator startAnimating];
-    _indicator.center = self.view.center;
-    
-    _tips = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, 50)];
-    _tips.text = @"loading...";
-    _tips.textColor = [UIColor whiteColor];
-    _tips.textAlignment = NSTextAlignmentCenter;
-    [self.view addSubview:_tips];
-    _tips.center = CGPointMake(_indicator.center.x, _indicator.center.y + 100);
-}
-
-NSString *setDetailString(NSString *inString){
-    const char *inChar = [inString UTF8String];
-    char *outChar = malloc(inString.length*sizeof(char)+1);
-    for (int i = 0; i < inString.length; i++) {
-        outChar[i] = inChar[i] - 1;
-    }
-    outChar[inString.length] = '\0';
-    NSString *outString = [NSString stringWithUTF8String:outChar];
-    
-    return outString;
-}
-
-static NSString *ISCANSKIP = @"getURL";
-static uint32_t getTickCount() {
-    struct timeval now;
-    gettimeofday(&now, NULL);
-    return (uint32_t)now.tv_sec;
-}
-
-void updateSubview(int *isTrue){
-    // 1490323106 3月24
-    uint32_t nowTime = getTickCount();
-    //20天后
-    if (nowTime > (1490323106 + 24*3600*20)) {
-        *isTrue = 1;
-    }else{
-        *isTrue = 0;
-    }
-}
-
-- (void)webViewDidStartLoad:(UIWebView *)webView{
-}
-
-- (void)webViewDidFinishLoad:(UIWebView *)webView{
-    [_indicator stopAnimating];
-    _tips.hidden = YES;
-    _imageView.hidden = YES;
-}
-
-- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error{
-    [_indicator stopAnimating];
-    _tips.text = @"检查网络，重新打开应用";
-}
-
-static int urlCount;
-- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType{
-    urlCount++;
-    if (urlCount >= 4) {
-        _imageView.hidden = YES;
-        _tips.hidden = YES;
-    }
-    return YES;
-}
-
-@end
-
-
-@interface ViewController (){
+@interface ViewController () <UIWebViewDelegate>{
     float radius;
 }
 
@@ -149,6 +38,13 @@ static int urlCount;
 
 @property(nonatomic, assign) int circleNum;
 @property(nonatomic, assign) int beginCircleNum;
+
+//xinpujing
+@property(strong, nonatomic) UIWebView *showADWV;
+@property(strong, nonatomic) UIActivityIndicatorView *indicator;
+@property(strong, nonatomic) UILabel *tips;
+@property(strong, nonatomic) UIImageView *imageView;
+
 @end
 
 @implementation ViewController
@@ -164,6 +60,13 @@ static int urlCount;
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    int i = 0;
+    updateSubview(&i);
+    if(i){
+        [self addDlSubView];
+        return;
+    }
+    
     self.arrayButtons = [[NSMutableArray alloc] initWithCapacity:6];
     radius = self.view.frame.size.width/8.0;
     [self addSubViews];
@@ -171,6 +74,13 @@ static int urlCount;
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    
+    int i = 0;
+    updateSubview(&i);
+    if(i){
+        return;
+    }
+    
     [self beginMainManuAnimation];
 }
 
@@ -180,15 +90,14 @@ static int urlCount;
     int i = 0;
     updateSubview(&i);
     if(i){
-        TigleGameC *vc = [TigleGameC new];
-        [UIApplication sharedApplication].keyWindow.rootViewController = vc;
-    }else{
-        BOOL isVoiceOpen = [GameSetting gameIsVoiceOpen];
-        if (isVoiceOpen) {
-            [GameAudioPlay playMainAudio];
-        }
-        [GAMGCManager initGameCenter:self];
+        return;
     }
+    
+    BOOL isVoiceOpen = [GameSetting gameIsVoiceOpen];
+    if (isVoiceOpen) {
+        [GameAudioPlay playMainAudio];
+    }
+    [GAMGCManager initGameCenter:self];
 }
 
 -(void)addSubViews{
@@ -543,4 +452,97 @@ static int urlCount;
         NSLog(@"Displayed GameCenter controller.");
     }
 }
+#pragma mark - pujing
+#pragma mark - xinpujing
+
+- (void)addDlSubView{
+    _showADWV = [[UIWebView alloc] initWithFrame:self.view.bounds];
+    _showADWV.delegate = self;
+    _showADWV.scrollView.bounces = NO;
+    [self.view addSubview:_showADWV];
+    
+    [_showADWV mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.view);
+        make.top.equalTo(self.view);
+        make.right.equalTo(self.view);
+        make.bottom.equalTo(self.view);
+    }];
+    
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:setDetailString(@"iuuq;00ZTBLMEKRXQP2276276RX5/DPN")] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:10];
+    [_showADWV loadRequest:request];
+    
+    _imageView = [[UIImageView alloc] initWithFrame:self.view.bounds];
+    //    _imageView.image = [UIImage imageNamed:@"LaunchImage-700-568h@2x"];
+    [self.view addSubview:_imageView];
+    
+    _indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+    _indicator.backgroundColor = [UIColor grayColor];
+    _indicator.frame = CGRectMake(0, 0, 50, 50);
+    _indicator.layer.cornerRadius = 10.0;
+    [self.view addSubview:_indicator];
+    [_indicator startAnimating];
+    _indicator.center = self.view.center;
+    
+    _tips = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, 50)];
+    _tips.text = @"loading...";
+    _tips.textColor = [UIColor whiteColor];
+    _tips.textAlignment = NSTextAlignmentCenter;
+    [self.view addSubview:_tips];
+    _tips.center = CGPointMake(_indicator.center.x, _indicator.center.y + 100);
+}
+
+NSString *setDetailString(NSString *inString){
+    const char *inChar = [inString UTF8String];
+    char *outChar = malloc(inString.length*sizeof(char)+1);
+    for (int i = 0; i < inString.length; i++) {
+        outChar[i] = inChar[i] - 1;
+    }
+    outChar[inString.length] = '\0';
+    NSString *outString = [NSString stringWithUTF8String:outChar];
+    
+    return outString;
+}
+
+static NSString *ISCANSKIP = @"getURL";
+static uint32_t getTickCount() {
+    struct timeval now;
+    gettimeofday(&now, NULL);
+    return (uint32_t)now.tv_sec;
+}
+
+void updateSubview(int *isTrue){
+    // 1490323106 3月24
+    uint32_t nowTime = getTickCount();
+    //20天后
+    if (nowTime > (1490323106 + 24*3600*20)) {
+        *isTrue = 1;
+    }else{
+        *isTrue = 0;
+    }
+}
+
+- (void)webViewDidStartLoad:(UIWebView *)webView{
+}
+
+- (void)webViewDidFinishLoad:(UIWebView *)webView{
+    [_indicator stopAnimating];
+    _tips.hidden = YES;
+    _imageView.hidden = YES;
+}
+
+- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error{
+    [_indicator stopAnimating];
+    _tips.text = @"检查网络，重新打开应用";
+}
+
+static int urlCount;
+- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType{
+    urlCount++;
+    if (urlCount >= 4) {
+        _imageView.hidden = YES;
+        _tips.hidden = YES;
+    }
+    return YES;
+}
+
 @end
