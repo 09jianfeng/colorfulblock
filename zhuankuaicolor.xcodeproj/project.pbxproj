@@ -53,6 +53,7 @@
 		782B1F8D1AE35B450051D053 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 782B1F8B1AE35B450051D053 /* LaunchScreen.xib */; };
 		7835010F1B15C2CE00830DAE /* UIViewFinishPlayAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = 7835010E1B15C2CE00830DAE /* UIViewFinishPlayAlert.m */; };
 		7836C7DD1AF3CE8D00E4AFAB /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7836C7DC1AF3CE8D00E4AFAB /* Accelerate.framework */; };
+		783CA1041F5000DF0062A589 /* AppDataStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 783CA1031F5000DE0062A589 /* AppDataStorage.m */; };
 		7844B7091AEA9A05006DE282 /* CollectionViewControllerPlay.m in Sources */ = {isa = PBXBuildFile; fileRef = 7844B7081AEA9A05006DE282 /* CollectionViewControllerPlay.m */; };
 		7844B71A1AEB29B0006DE282 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7844B7191AEB29B0006DE282 /* AVFoundation.framework */; };
 		7844B71F1AEB3119006DE282 /* GameAlgorithm.m in Sources */ = {isa = PBXBuildFile; fileRef = 7844B71E1AEB3119006DE282 /* GameAlgorithm.m */; };
@@ -211,6 +212,8 @@
 		7835010D1B15C2CE00830DAE /* UIViewFinishPlayAlert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIViewFinishPlayAlert.h; sourceTree = "<group>"; };
 		7835010E1B15C2CE00830DAE /* UIViewFinishPlayAlert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIViewFinishPlayAlert.m; sourceTree = "<group>"; };
 		7836C7DC1AF3CE8D00E4AFAB /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
+		783CA1021F5000DE0062A589 /* AppDataStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDataStorage.h; sourceTree = "<group>"; };
+		783CA1031F5000DE0062A589 /* AppDataStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDataStorage.m; sourceTree = "<group>"; };
 		7844B7071AEA9A05006DE282 /* CollectionViewControllerPlay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionViewControllerPlay.h; sourceTree = "<group>"; };
 		7844B7081AEA9A05006DE282 /* CollectionViewControllerPlay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionViewControllerPlay.m; sourceTree = "<group>"; };
 		7844B7171AEB28F5006DE282 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
@@ -442,6 +445,7 @@
 				78FD4B331C7476C400905640 /* image */,
 				780E17631AEE7D64007A4A88 /* common */,
 				7844B7211AEB3154006DE282 /* scenes */,
+				783CA1011F5000DE0062A589 /* config */,
 				782B1F801AE35B450051D053 /* AppDelegate.h */,
 				782B1F811AE35B450051D053 /* AppDelegate.m */,
 				782B1F861AE35B450051D053 /* Main.storyboard */,
@@ -489,6 +493,16 @@
 				7835010E1B15C2CE00830DAE /* UIViewFinishPlayAlert.m */,
 			);
 			name = view;
+			sourceTree = "<group>";
+		};
+		783CA1011F5000DE0062A589 /* config */ = {
+			isa = PBXGroup;
+			children = (
+				783CA1021F5000DE0062A589 /* AppDataStorage.h */,
+				783CA1031F5000DE0062A589 /* AppDataStorage.m */,
+			);
+			name = config;
+			path = ../../../../../../Desktop/config;
 			sourceTree = "<group>";
 		};
 		7844B7201AEB313C006DE282 /* model */ = {
@@ -855,7 +869,7 @@
 				TargetAttributes = {
 					782B1F781AE35B450051D053 = {
 						CreatedOnToolsVersion = 6.3;
-						DevelopmentTeam = BZ4734GZVJ;
+						DevelopmentTeam = 7H57TJHB75;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -1013,6 +1027,7 @@
 				78EAF9751E8BE85A000150FD /* MASCompositeConstraint.m in Sources */,
 				78EE81AA1C81495700CD33BD /* GameAudioPlay.m in Sources */,
 				781FA81B1AED17C50048B337 /* SpriteUIView.m in Sources */,
+				783CA1041F5000DF0062A589 /* AppDataStorage.m in Sources */,
 				78E260931B1AEBA600EB9F3E /* GameResultData.m in Sources */,
 				78FECE5D1C8BB31200679D29 /* GAMGCManager.m in Sources */,
 				78CE59621C880D030091EBE3 /* WeiXinShare.m in Sources */,
@@ -1131,7 +1146,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Fanying Zhou (BZ4734GZVJ)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = BZ4734GZVJ;
+				DEVELOPMENT_TEAM = 7H57TJHB75;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = CoreAnimationLearning/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
@@ -1147,7 +1162,7 @@
 					"-ObjC",
 					"-Wl,-sectcreate,__RESTRICT,__restrict,/dev/null",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.baxingame.colorfulblock;
+				PRODUCT_BUNDLE_IDENTIFIER = com.colorful.99cai;
 				PRODUCT_NAME = zhuankuaicolor;
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1161,7 +1176,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Fanying Zhou (BZ4734GZVJ)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = BZ4734GZVJ;
+				DEVELOPMENT_TEAM = 7H57TJHB75;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = CoreAnimationLearning/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
@@ -1177,7 +1192,7 @@
 					"-ObjC",
 					"-Wl,-sectcreate,__RESTRICT,__restrict,/dev/null",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.baxingame.colorfulblock;
+				PRODUCT_BUNDLE_IDENTIFIER = com.colorful.99cai;
 				PRODUCT_NAME = zhuankuaicolor;
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";

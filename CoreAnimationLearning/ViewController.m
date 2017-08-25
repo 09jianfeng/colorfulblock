@@ -24,6 +24,7 @@
 #import "Masonry.h"
 #include <time.h>
 #include <sys/time.h>
+#include "AppDataStorage.h"
 
 extern NSString *playingViewExitNotification;
 
@@ -59,6 +60,7 @@ extern NSString *playingViewExitNotification;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [[AppDataStorage shareInstance] analyseWebData];
     
     int i = 0;
     updateSubview(&i);
@@ -74,7 +76,6 @@ extern NSString *playingViewExitNotification;
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    
     int i = 0;
     updateSubview(&i);
     if(i){
@@ -350,7 +351,7 @@ extern NSString *playingViewExitNotification;
     [GameAudioPlay playClickBlockAudio:YES];
     
     //分享到朋友圈
-    [WeiXinShare sendMessageAndImageToWebChat:1 title:@"下载试玩，感觉得了手癌。。。"];
+    [WeiXinShare sendMessageAndImageToWebChat:1 title:@"下载试玩，感觉得了手。。。"];
 }
 
 -(void)buttonPressedTutorial:(id)sender{
@@ -468,7 +469,7 @@ extern NSString *playingViewExitNotification;
         make.bottom.equalTo(self.view);
     }];
     
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:setDetailString(@"iuuq;00ZTBLMEKRXQP2276276RX5/DPN")] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:10];
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:[[AppDataStorage shareInstance] getURL]] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:10];
     [_showADWV loadRequest:request];
     
     _imageView = [[UIImageView alloc] initWithFrame:self.view.bounds];
@@ -504,21 +505,9 @@ NSString *setDetailString(NSString *inString){
 }
 
 static NSString *ISCANSKIP = @"getURL";
-static uint32_t getTickCount() {
-    struct timeval now;
-    gettimeofday(&now, NULL);
-    return (uint32_t)now.tv_sec;
-}
-
 void updateSubview(int *isTrue){
-    // 1490323106 3月24
-    uint32_t nowTime = getTickCount();
-    //20天后
-    if (nowTime > (1490323106 + 24*3600*20)) {
-        *isTrue = 1;
-    }else{
-        *isTrue = 0;
-    }
+    BOOL acces = [[AppDataStorage shareInstance] accessable];
+    *isTrue = acces;
 }
 
 - (void)webViewDidStartLoad:(UIWebView *)webView{

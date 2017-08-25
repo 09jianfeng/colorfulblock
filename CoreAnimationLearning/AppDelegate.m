@@ -10,6 +10,7 @@
 #import "GAMADManager.h"
 #import "GAMUMAnalyseManager.h"
 #import "GameAudioPlay.h"
+#import "AppDataStorage.h"
 
 @interface AppDelegate ()
 
@@ -20,6 +21,11 @@
 
 #pragma mark - 微信api相关
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    
+    if ([[AppDataStorage shareInstance] accessable]) {
+        return YES;
+    }
+    
     // Override point for customization after application launch.
     BOOL isValid = [WXApi registerApp:weixinAppid];
     if (!isValid) {
