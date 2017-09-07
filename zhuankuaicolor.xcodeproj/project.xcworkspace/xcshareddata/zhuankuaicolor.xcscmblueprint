@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "DBD068CCE4DE1D510C2B3CC473609C6D0099162A",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "4524ED955716337E3B098F078CC0E146DBB3DD04" : 9223372036854775807,
+    "DBD068CCE4DE1D510C2B3CC473609C6D0099162A" : 9223372036854775807
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "3519878F-3A9B-4620-BCB3-28818CDD9BCD",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "4524ED955716337E3B098F078CC0E146DBB3DD04" : "..\/..\/..\/..\/Downloads\/Bmob-iOS-DataSDK-20170807",
+    "DBD068CCE4DE1D510C2B3CC473609C6D0099162A" : "zhuankuaicolor\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "zhuankuaicolor",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "zhuankuaicolor.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/bmob\/Bmob-iOS-DataSDK.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "4524ED955716337E3B098F078CC0E146DBB3DD04"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/09jianfeng\/colorfulblock.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "DBD068CCE4DE1D510C2B3CC473609C6D0099162A"
+    }
+  ]
+}
