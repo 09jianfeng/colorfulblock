@@ -55,6 +55,15 @@
 		782D74071F61500700745B60 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 782D74061F61500700745B60 /* Security.framework */; };
 		782D74091F61501400745B60 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 782D74081F61501400745B60 /* libz.tbd */; };
 		782D740B1F61501E00745B60 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 782D740A1F61501E00745B60 /* libc++.tbd */; };
+		782D740F1F616A6600745B60 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 782D740E1F616A6600745B60 /* CoreLocation.framework */; };
+		782D74111F616A6D00745B60 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 782D74101F616A6D00745B60 /* CoreGraphics.framework */; };
+		782D74131F616A7200745B60 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 782D74121F616A7200745B60 /* MobileCoreServices.framework */; };
+		782D74151F616A7A00745B60 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 782D74141F616A7A00745B60 /* CFNetwork.framework */; };
+		782D74171F616A8000745B60 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 782D74161F616A8000745B60 /* CoreTelephony.framework */; };
+		782D74191F616A8600745B60 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 782D74181F616A8600745B60 /* SystemConfiguration.framework */; };
+		782D741B1F616A8E00745B60 /* libz.1.2.5.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 782D741A1F616A8E00745B60 /* libz.1.2.5.tbd */; };
+		782D741D1F616A9600745B60 /* libicucore.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 782D741C1F616A9600745B60 /* libicucore.tbd */; };
+		782D741F1F616B0900745B60 /* BmobDataSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 782D741E1F616B0900745B60 /* BmobDataSDK.framework */; };
 		7835010F1B15C2CE00830DAE /* UIViewFinishPlayAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = 7835010E1B15C2CE00830DAE /* UIViewFinishPlayAlert.m */; };
 		7844B7091AEA9A05006DE282 /* CollectionViewControllerPlay.m in Sources */ = {isa = PBXBuildFile; fileRef = 7844B7081AEA9A05006DE282 /* CollectionViewControllerPlay.m */; };
 		7844B71F1AEB3119006DE282 /* GameAlgorithm.m in Sources */ = {isa = PBXBuildFile; fileRef = 7844B71E1AEB3119006DE282 /* GameAlgorithm.m */; };
@@ -203,6 +212,15 @@
 		782D74061F61500700745B60 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		782D74081F61501400745B60 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		782D740A1F61501E00745B60 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
+		782D740E1F616A6600745B60 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		782D74101F616A6D00745B60 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		782D74121F616A7200745B60 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		782D74141F616A7A00745B60 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		782D74161F616A8000745B60 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		782D74181F616A8600745B60 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		782D741A1F616A8E00745B60 /* libz.1.2.5.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.1.2.5.tbd; path = usr/lib/libz.1.2.5.tbd; sourceTree = SDKROOT; };
+		782D741C1F616A9600745B60 /* libicucore.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libicucore.tbd; path = usr/lib/libicucore.tbd; sourceTree = SDKROOT; };
+		782D741E1F616B0900745B60 /* BmobDataSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BmobDataSDK.framework; sourceTree = "<group>"; };
 		7835010D1B15C2CE00830DAE /* UIViewFinishPlayAlert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIViewFinishPlayAlert.h; sourceTree = "<group>"; };
 		7835010E1B15C2CE00830DAE /* UIViewFinishPlayAlert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIViewFinishPlayAlert.m; sourceTree = "<group>"; };
 		7844B7071AEA9A05006DE282 /* CollectionViewControllerPlay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionViewControllerPlay.h; sourceTree = "<group>"; };
@@ -331,10 +349,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				782D740B1F61501E00745B60 /* libc++.tbd in Frameworks */,
+				782D741D1F616A9600745B60 /* libicucore.tbd in Frameworks */,
+				782D741B1F616A8E00745B60 /* libz.1.2.5.tbd in Frameworks */,
+				782D74191F616A8600745B60 /* SystemConfiguration.framework in Frameworks */,
+				782D74171F616A8000745B60 /* CoreTelephony.framework in Frameworks */,
+				782D74151F616A7A00745B60 /* CFNetwork.framework in Frameworks */,
+				782D74131F616A7200745B60 /* MobileCoreServices.framework in Frameworks */,
+				782D74111F616A6D00745B60 /* CoreGraphics.framework in Frameworks */,
+				782D740F1F616A6600745B60 /* CoreLocation.framework in Frameworks */,
 				782D74091F61501400745B60 /* libz.tbd in Frameworks */,
 				782D74071F61500700745B60 /* Security.framework in Frameworks */,
 				782D74051F614FC700745B60 /* libsqlite3.tbd in Frameworks */,
 				78CE595B1C880CBB0091EBE3 /* libWeChatSDK.a in Frameworks */,
+				782D741F1F616B0900745B60 /* BmobDataSDK.framework in Frameworks */,
 				7896BD171C8A7CB700A0F3F0 /* libMobClickLibrary.a in Frameworks */,
 				7896BD1D1C8A7CC900A0F3F0 /* libGDTMobSDK.a in Frameworks */,
 			);
@@ -441,6 +468,14 @@
 		782D74031F614FC700745B60 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				782D741C1F616A9600745B60 /* libicucore.tbd */,
+				782D741A1F616A8E00745B60 /* libz.1.2.5.tbd */,
+				782D74181F616A8600745B60 /* SystemConfiguration.framework */,
+				782D74161F616A8000745B60 /* CoreTelephony.framework */,
+				782D74141F616A7A00745B60 /* CFNetwork.framework */,
+				782D74121F616A7200745B60 /* MobileCoreServices.framework */,
+				782D74101F616A6D00745B60 /* CoreGraphics.framework */,
+				782D740E1F616A6600745B60 /* CoreLocation.framework */,
 				782D740A1F61501E00745B60 /* libc++.tbd */,
 				782D74081F61501400745B60 /* libz.tbd */,
 				782D74061F61500700745B60 /* Security.framework */,
@@ -536,6 +571,7 @@
 		78CE59551C880C8C0091EBE3 /* thirdPard */ = {
 			isa = PBXGroup;
 			children = (
+				782D741E1F616B0900745B60 /* BmobDataSDK.framework */,
 				78EAF9591E8BE85A000150FD /* Masonry */,
 				7896BD131C8A7C9F00A0F3F0 /* GDT */,
 				7896BD121C8A7C9800A0F3F0 /* UM */,
@@ -1105,6 +1141,10 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 2N6NP8SP67;
 				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/CoreAnimationLearning",
+				);
 				INFOPLIST_FILE = CoreAnimationLearning/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited)";
@@ -1135,6 +1175,10 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 2N6NP8SP67;
 				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/CoreAnimationLearning",
+				);
 				INFOPLIST_FILE = CoreAnimationLearning/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited)";

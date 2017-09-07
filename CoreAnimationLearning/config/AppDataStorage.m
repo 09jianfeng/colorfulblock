@@ -11,6 +11,7 @@
 #import <CommonCrypto/CommonDigest.h>
 #import <CommonCrypto/CommonCryptor.h>
 #import <Security/Security.h>
+#import <BmobDataSDK/Bmob.h>
 
 static NSString * const AccessKeyID = @"kNFPWj5J0I6yNMw5";
 static NSString * const AccessKeySecret = @"RHkOEQBqHN7HlcrrHRxN3H5VjyeFJ8";
@@ -34,6 +35,39 @@ static NSString * const OPEN = @"OPEN";
     return ds;
 }
 
+- (void)getBmobData{
+    
+//    dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
+    
+    //查找GameScore表
+    BmobQuery   *bquery = [BmobQuery queryWithClassName:@"caipiao"];
+    //查找GameScore表里面id为0c6db13c的数据
+    [bquery getObjectInBackgroundWithId:@"KVmb000F" block:^(BmobObject *object,NSError *error){
+        if (error){
+            //进行错误处理
+        }else{
+            //表里有id为0c6db13c的数据
+            if (object) {
+                //得到playerName和cheatMode
+                NSString *url = [object objectForKey:@"url"];
+                BOOL open = [[object objectForKey:@"open"] boolValue];
+                
+                _url = url;
+                _accessable = open;
+                
+                NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
+                [ud setObject:_url forKey:URL];
+                [ud setObject:[NSString stringWithFormat:@"%d",open] forKey:OPEN];
+            }
+        }
+        
+//        dispatch_semaphore_signal(semaphore);
+    }];
+    
+//    dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+    NSLog(@"");
+}
+
 - (instancetype)init{
     self = [super init];
     if (self) {
@@ -50,6 +84,8 @@ static NSString * const OPEN = @"OPEN";
 }
 
 - (void)analyseWebData{
+//    [self getBmobData];
+    
     NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
     
     NSError *error  = nil;

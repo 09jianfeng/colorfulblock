@@ -11,6 +11,7 @@
 #import "GAMUMAnalyseManager.h"
 #import "GameAudioPlay.h"
 #import "AppDataStorage.h"
+#import <BmobDataSDK/Bmob.h>
 
 @interface AppDelegate ()
 
@@ -34,6 +35,8 @@
     
     [GAMADManager showGDTSplashAD];
     [GAMUMAnalyseManager initialUMSDK];
+    
+    [Bmob registerWithAppKey:@"fb55d2e9eb65825f185b25a17f99194f"];
     return YES;
 }
 
