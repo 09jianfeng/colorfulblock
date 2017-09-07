@@ -92,11 +92,11 @@ extern NSString *GAMEPEFECTTIMESKET;
     [buttonShare addTarget:self action:@selector(buttonPressShare:) forControlEvents:UIControlEventTouchUpInside];
     [board addSubview:buttonShare];
     
-    UIButton *buttonGameCenter = [UIButton buttonWithType:UIButtonTypeCustom];
-    buttonGameCenter.frame = CGRectMake(board.frame.size.width/2.0 - buttonHeigh/2.0, buttonOriginY, buttonHeigh, buttonHeigh);
-    [buttonGameCenter setImage:[UIImage imageNamed:@"btn_gamecenter"] forState:UIControlStateNormal];
-    [buttonGameCenter addTarget:self action:@selector(buttonPressedGameCenter:) forControlEvents:UIControlEventTouchUpInside];
-    [board addSubview:buttonGameCenter];
+//    UIButton *buttonGameCenter = [UIButton buttonWithType:UIButtonTypeCustom];
+//    buttonGameCenter.frame = CGRectMake(board.frame.size.width/2.0 - buttonHeigh/2.0, buttonOriginY, buttonHeigh, buttonHeigh);
+//    [buttonGameCenter setImage:[UIImage imageNamed:@"btn_gamecenter"] forState:UIControlStateNormal];
+//    [buttonGameCenter addTarget:self action:@selector(buttonPressedGameCenter:) forControlEvents:UIControlEventTouchUpInside];
+//    [board addSubview:buttonGameCenter];
 }
 
 -(UIView *)subViewForScrollView:(GameDifficultyLevel)difLevel bestPoint:(NSString *)bestPoint perfectTimes:(NSString *)perfectTimes viewFrame:(CGRect)viewFrame{

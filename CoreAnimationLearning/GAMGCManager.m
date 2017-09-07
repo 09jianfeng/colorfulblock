@@ -48,28 +48,28 @@ extern NSString *GAMEPEFECTTIMESKET;
 }
 
 +(void)initGameCenter:(ViewController *)viewController{
-    [GAMGCManager shareInstance];
-    [[[GAMGCManager shareInstance] gameCenter]setViewController:viewController];
+//    [GAMGCManager shareInstance];
+//    [[[GAMGCManager shareInstance] gameCenter]setViewController:viewController];
 }
 
 +(void)updateGameCenterRankingInDifLevel:(GameDifficultyLevel)difLevel isPerfect:(BOOL)isPerfect{
-    NSArray *arrayGameResult = [GameResultData getDictionaryOfGameResult];
-    int bestPoint = [[[arrayGameResult objectAtIndex:difLevel] objectForKey:GAMEBESTPOINTKEY] intValue];
-    [[[GAMGCManager shareInstance] gameCenter] reportScore:bestPoint forCategory:[NSString stringWithFormat:@"%d",EASYMODEL+difLevel]];
-    
-    if (isPerfect) {
-        int allPerfectTimes = 0;
-        for (int i=0; i < 4; i++) {
-            int perfectTimes = [[[arrayGameResult objectAtIndex:i] objectForKey:GAMEPEFECTTIMESKET] intValue];
-            allPerfectTimes += perfectTimes;
-        }
-
-        [[[GAMGCManager shareInstance] gameCenter] reportScore:allPerfectTimes forCategory:[NSString stringWithFormat:@"%d",PERFECTTIMES]];
-    }
+//    NSArray *arrayGameResult = [GameResultData getDictionaryOfGameResult];
+//    int bestPoint = [[[arrayGameResult objectAtIndex:difLevel] objectForKey:GAMEBESTPOINTKEY] intValue];
+//    [[[GAMGCManager shareInstance] gameCenter] reportScore:bestPoint forCategory:[NSString stringWithFormat:@"%d",EASYMODEL+difLevel]];
+//    
+//    if (isPerfect) {
+//        int allPerfectTimes = 0;
+//        for (int i=0; i < 4; i++) {
+//            int perfectTimes = [[[arrayGameResult objectAtIndex:i] objectForKey:GAMEPEFECTTIMESKET] intValue];
+//            allPerfectTimes += perfectTimes;
+//        }
+//
+//        [[[GAMGCManager shareInstance] gameCenter] reportScore:allPerfectTimes forCategory:[NSString stringWithFormat:@"%d",PERFECTTIMES]];
+//    }
 }
 
 +(void)showGameCenterWithController:(ViewController *)viewController difflevel:(GameDifficultyLevel)difflevel{
-    [[[GAMGCManager shareInstance] gameCenter] setViewController:viewController];
-    [[[GAMGCManager shareInstance] gameCenter] showGameCenter];
+//    [[[GAMGCManager shareInstance] gameCenter] setViewController:viewController];
+//    [[[GAMGCManager shareInstance] gameCenter] showGameCenter];
 }
 @end
