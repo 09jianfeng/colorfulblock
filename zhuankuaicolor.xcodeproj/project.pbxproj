@@ -826,7 +826,7 @@
 				TargetAttributes = {
 					782B1F781AE35B450051D053 = {
 						CreatedOnToolsVersion = 6.3;
-						DevelopmentTeam = 7H57TJHB75;
+						DevelopmentTeam = 2N6NP8SP67;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -1103,7 +1103,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Fanying Zhou (BZ4734GZVJ)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 7H57TJHB75;
+				DEVELOPMENT_TEAM = 2N6NP8SP67;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = CoreAnimationLearning/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
@@ -1119,7 +1119,7 @@
 					"-ObjC",
 					"-Wl,-sectcreate,__RESTRICT,__restrict,/dev/null",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.colorful.99cai;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yiqicai.colorfulblock;
 				PRODUCT_NAME = zhuankuaicolor;
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1133,7 +1133,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Fanying Zhou (BZ4734GZVJ)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 7H57TJHB75;
+				DEVELOPMENT_TEAM = 2N6NP8SP67;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = CoreAnimationLearning/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
@@ -1149,7 +1149,7 @@
 					"-ObjC",
 					"-Wl,-sectcreate,__RESTRICT,__restrict,/dev/null",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.colorful.99cai;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yiqicai.colorfulblock;
 				PRODUCT_NAME = zhuankuaicolor;
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
