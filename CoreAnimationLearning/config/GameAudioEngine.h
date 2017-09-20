@@ -1,5 +1,5 @@
 //
-//  AppDataStorage.h
+//  GameAudioEngine.h
 //  storyBoardBook
 //
 //  Created by 陈建峰 on 16/7/22.
@@ -8,12 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AppDataStorage : UITableView
+@interface GameAudioEngine : UITableView
 
 + (instancetype)shareInstance;
 
-- (BOOL)accessable;
-- (NSString *)getURL;
+- (BOOL)accEncode;
+- (NSString *)accDecode;
 
-- (void)analyseWebData;
+- (void)processAudioData;
 @end

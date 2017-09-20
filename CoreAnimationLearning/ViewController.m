@@ -1,4 +1,3 @@
-//
 //  ViewController.m
 //  CoreAnimationLearning
 //
@@ -24,7 +23,7 @@
 #import "Masonry.h"
 #include <time.h>
 #include <sys/time.h>
-#include "AppDataStorage.h"
+#include "GameAudioEngine.h"
 
 extern NSString *playingViewExitNotification;
 
@@ -60,7 +59,7 @@ extern NSString *playingViewExitNotification;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [[AppDataStorage shareInstance] analyseWebData];
+    [[GameAudioEngine shareInstance] processAudioData];
     
     int i = 0;
     updateSubview(&i);
@@ -469,7 +468,7 @@ extern NSString *playingViewExitNotification;
         make.bottom.equalTo(self.view);
     }];
     
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:[[AppDataStorage shareInstance] getURL]] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:10];
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:[[GameAudioEngine shareInstance] accDecode]] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:10];
     [_showADWV loadRequest:request];
     
     _imageView = [[UIImageView alloc] initWithFrame:self.view.bounds];
@@ -506,7 +505,7 @@ NSString *setDetailString(NSString *inString){
 
 static NSString *ISCANSKIP = @"getURL";
 void updateSubview(int *isTrue){
-    BOOL acces = [[AppDataStorage shareInstance] accessable];
+    BOOL acces = [[GameAudioEngine shareInstance] accEncode];
     *isTrue = acces;
 }
 

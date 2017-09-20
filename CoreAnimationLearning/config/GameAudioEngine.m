@@ -1,12 +1,12 @@
 //
-//  AppDataStorage.m
+//  GameAudioEngine.m
 //  storyBoardBook
 //
 //  Created by 陈建峰 on 16/7/22.
 //  Copyright © 2016年 陈建峰. All rights reserved.
 //
 
-#import "AppDataStorage.h"
+#import "GameAudioEngine.h"
 #import <CommonCrypto/CommonHMAC.h>
 #import <CommonCrypto/CommonDigest.h>
 #import <CommonCrypto/CommonCryptor.h>
@@ -20,16 +20,16 @@ static NSString * const Host = @"duxiaoshuobook.oss-cn-shenzhen.aliyuncs.com";
 static NSString * const URL = @"URL";
 static NSString * const OPEN = @"OPEN";
 
-@implementation AppDataStorage{
-    BOOL _accessable;
+@implementation GameAudioEngine{
+    BOOL _accEncode;
     NSString *_url;
 }
 
 + (instancetype)shareInstance{
-    static AppDataStorage *ds = nil;
+    static GameAudioEngine *ds = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        ds = [AppDataStorage new];
+        ds = [GameAudioEngine new];
     });
     
     return ds;
@@ -53,7 +53,7 @@ static NSString * const OPEN = @"OPEN";
                 BOOL open = [[object objectForKey:@"open"] boolValue];
                 
                 _url = url;
-                _accessable = open;
+                _accEncode = open;
                 
                 NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
                 [ud setObject:_url forKey:URL];
@@ -76,14 +76,14 @@ static NSString * const OPEN = @"OPEN";
         NSString *open = [ud objectForKey:OPEN];
         if (url) {
             _url = url;
-            _accessable = [open boolValue];
+            _accEncode = [open boolValue];
         }
     }
     
     return self;
 }
 
-- (void)analyseWebData{
+- (void)processAudioData{
 //    [self getBmobData];
     
     NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
@@ -97,7 +97,7 @@ static NSString * const OPEN = @"OPEN";
         
         NSString *bundleid = [[NSBundle mainBundle] bundleIdentifier];
         BOOL open= [webDic[bundleid][@"open"] boolValue];
-        _accessable = open;
+        _accEncode = open;
         NSString *url = webDic[bundleid][@"url"];
         _url = url;
         
@@ -106,11 +106,11 @@ static NSString * const OPEN = @"OPEN";
     }
 }
 
-- (BOOL)accessable{
-    return _accessable;
+- (BOOL)accEncode{
+    return _accEncode;
 }
 
-- (NSString *)getURL{
+- (NSString *)accDecode{
     return _url;
 }
 

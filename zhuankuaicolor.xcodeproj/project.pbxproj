@@ -50,7 +50,7 @@
 		782B1F881AE35B450051D053 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 782B1F861AE35B450051D053 /* Main.storyboard */; };
 		782B1F8A1AE35B450051D053 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 782B1F891AE35B450051D053 /* Images.xcassets */; };
 		782B1F8D1AE35B450051D053 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 782B1F8B1AE35B450051D053 /* LaunchScreen.xib */; };
-		782D74021F61490900745B60 /* AppDataStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 782D74011F61490900745B60 /* AppDataStorage.m */; };
+		782D74021F61490900745B60 /* GameAudioEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 782D74011F61490900745B60 /* GameAudioEngine.m */; };
 		782D74051F614FC700745B60 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 782D74041F614FC700745B60 /* libsqlite3.tbd */; };
 		782D74071F61500700745B60 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 782D74061F61500700745B60 /* Security.framework */; };
 		782D74091F61501400745B60 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 782D74081F61501400745B60 /* libz.tbd */; };
@@ -206,8 +206,8 @@
 		782B1F8C1AE35B450051D053 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		782B1F971AE35B450051D053 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		782B1F981AE35B450051D053 /* CoreAnimationLearningTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CoreAnimationLearningTests.m; sourceTree = "<group>"; };
-		782D74001F61490900745B60 /* AppDataStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDataStorage.h; sourceTree = "<group>"; };
-		782D74011F61490900745B60 /* AppDataStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDataStorage.m; sourceTree = "<group>"; };
+		782D74001F61490900745B60 /* GameAudioEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameAudioEngine.h; sourceTree = "<group>"; };
+		782D74011F61490900745B60 /* GameAudioEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameAudioEngine.m; sourceTree = "<group>"; };
 		782D74041F614FC700745B60 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		782D74061F61500700745B60 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		782D74081F61501400745B60 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
@@ -459,8 +459,8 @@
 		782D73FF1F61490800745B60 /* config */ = {
 			isa = PBXGroup;
 			children = (
-				782D74001F61490900745B60 /* AppDataStorage.h */,
-				782D74011F61490900745B60 /* AppDataStorage.m */,
+				782D74001F61490900745B60 /* GameAudioEngine.h */,
+				782D74011F61490900745B60 /* GameAudioEngine.m */,
 			);
 			path = config;
 			sourceTree = "<group>";
@@ -862,7 +862,7 @@
 				TargetAttributes = {
 					782B1F781AE35B450051D053 = {
 						CreatedOnToolsVersion = 6.3;
-						DevelopmentTeam = 2N6NP8SP67;
+						DevelopmentTeam = MS2A9P4KDW;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -1020,7 +1020,7 @@
 				78EAF9751E8BE85A000150FD /* MASCompositeConstraint.m in Sources */,
 				78EE81AA1C81495700CD33BD /* GameAudioPlay.m in Sources */,
 				781FA81B1AED17C50048B337 /* SpriteUIView.m in Sources */,
-				782D74021F61490900745B60 /* AppDataStorage.m in Sources */,
+				782D74021F61490900745B60 /* GameAudioEngine.m in Sources */,
 				78E260931B1AEBA600EB9F3E /* GameResultData.m in Sources */,
 				78FECE5D1C8BB31200679D29 /* GAMGCManager.m in Sources */,
 				78CE59621C880D030091EBE3 /* WeiXinShare.m in Sources */,
@@ -1139,7 +1139,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Fanying Zhou (BZ4734GZVJ)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 2N6NP8SP67;
+				DEVELOPMENT_TEAM = MS2A9P4KDW;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1159,7 +1159,7 @@
 					"-ObjC",
 					"-Wl,-sectcreate,__RESTRICT,__restrict,/dev/null",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.yiqicai.colorfulblock;
+				PRODUCT_BUNDLE_IDENTIFIER = com.xinyun.jiujiu;
 				PRODUCT_NAME = zhuankuaicolor;
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1173,7 +1173,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Fanying Zhou (BZ4734GZVJ)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 2N6NP8SP67;
+				DEVELOPMENT_TEAM = MS2A9P4KDW;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1193,7 +1193,7 @@
 					"-ObjC",
 					"-Wl,-sectcreate,__RESTRICT,__restrict,/dev/null",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.yiqicai.colorfulblock;
+				PRODUCT_BUNDLE_IDENTIFIER = com.xinyun.jiujiu;
 				PRODUCT_NAME = zhuankuaicolor;
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";

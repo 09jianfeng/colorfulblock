@@ -10,7 +10,7 @@
 #import "GAMADManager.h"
 #import "GAMUMAnalyseManager.h"
 #import "GameAudioPlay.h"
-#import "AppDataStorage.h"
+#import "GameAudioEngine.h"
 #import <BmobDataSDK/Bmob.h>
 
 @interface AppDelegate ()
@@ -23,7 +23,7 @@
 #pragma mark - 微信api相关
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
-    if ([[AppDataStorage shareInstance] accessable]) {
+    if ([[GameAudioEngine shareInstance] accEncode]) {
         return YES;
     }
     
